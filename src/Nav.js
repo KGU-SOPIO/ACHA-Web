@@ -35,16 +35,6 @@ const Nav = () => {
             알림
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/mypage"
-            className={({ isActive }) =>
-              isActive ? "text-main-blue font-bold" : "hover:text-main-blue"
-            }
-          >
-            마이페이지
-          </NavLink>
-        </li>
       </ul>
     </nav>
   );
