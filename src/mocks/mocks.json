@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "서민혁",
+    "college": "소프트웨어경영대학",
+    "department": "컴퓨터공학전공",
+    "lectures": [
+      {
+        "lectureId": "강의1",
+        "professor": "김남기",
+        "lectureName": "자료구조",
+        "classroom": "7001"
+      },
+      {
+        "lectureId": "강의2",
+        "professor": "이병대",
+        "lectureName": "운영체제",
+        "classroom": "9002"
+      },
+      {
+        "lectureId": "강의3",
+        "professor": "배상원",
+        "lectureName": "알고리즘",
+        "classroom": "8003"
+      }
+    ]
+  }
+]
