@@ -1,7 +1,8 @@
+import UserSettings from "../home/UserSettings";
 function Home() {
   return (
     <div className="p-20">
-      <div>홈</div>
+      <UserSettings />
     </div>
   );
 }

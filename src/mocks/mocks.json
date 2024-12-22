@@ -1,33 +1,24 @@
-[
-  {
-    "user": {
-      "id": 1,
-      "name": "서민혁",
-      "college": "소프트웨어경영대학",
-      "department": "컴퓨터공학전공"
+{
+  "user": {
+    "id": 1,
+    "name": "서민혁",
+    "college": "소프트웨어경영대학",
+    "department": "컴퓨터공학전공"
+  },
+  "lectures": [
+    {
+      "lectureId": "강의1",
+      "professor": "송명근",
+      "lectureName": "사고와 표현",
+      "classroom": "3306 강의실(New 멀티미디어실)",
+      "dDay": 1
     },
-    "lectures": [
-      {
-        "lectureId": "강의1",
-        "professor": "김남기",
-        "lectureName": "자료구조",
-        "classroom": "7001",
-        "dDay": 1
-      },
-      {
-        "lectureId": "강의2",
-        "professor": "이병대",
-        "lectureName": "운영체제",
-        "classroom": "9002",
-        "dDay": 2
-      },
-      {
-        "lectureId": "강의3",
-        "professor": "배상원",
-        "lectureName": "알고리즘",
-        "classroom": "8003",
-        "dDay": 3
-      }
-    ]
-  }
-]
+    {
+      "lectureId": "강의2",
+      "professor": "송명근",
+      "lectureName": "사고와 표현",
+      "classroom": "3306 강의실(New 멀티미디어실)",
+      "dDay": 10
+    }
+  ]
+}
