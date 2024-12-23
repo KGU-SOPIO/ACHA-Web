@@ -11,7 +11,7 @@ function UserSettings() {
   };
 
   return (
-    <div className="p-8 px-12 max-w-5xl mx-auto rounded-lg bg-[rgba(228,232,241,1)]">
+    <div className="p-8 px-12 max-w-6xl mx-auto rounded-lg bg-[rgba(228,232,241,1)]">
       <div className="flex justify-between items-center">
         {/* 사용자 정보 */}
         <div className="flex items-center pr-12">
