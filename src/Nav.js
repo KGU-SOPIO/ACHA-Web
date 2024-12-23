@@ -4,12 +4,12 @@ import React from "react";
 const Nav = () => {
   return (
     <nav className="fixed top-0 w-full bg-white shadow-md z-10">
-      <ul className="flex justify-around py-4 text-gray-700">
+      <ul className="flex justify-center gap-32 py-4 font-bold">
         <li>
           <NavLink
             to="/home"
             className={({ isActive }) =>
-              isActive ? "text-main-blue font-bold" : "hover:text-main-blue"
+              isActive ? "text-main-blue " : "hover:text-main-blue"
             }
           >
             홈
@@ -19,7 +19,7 @@ const Nav = () => {
           <NavLink
             to="/courses"
             className={({ isActive }) =>
-              isActive ? "text-main-blue font-bold" : "hover:text-main-blue"
+              isActive ? "text-main-blue " : "hover:text-main-blue"
             }
           >
             강좌
@@ -29,7 +29,7 @@ const Nav = () => {
           <NavLink
             to="/notifications"
             className={({ isActive }) =>
-              isActive ? "text-main-blue font-bold" : "hover:text-main-blue"
+              isActive ? "text-main-blue " : "hover:text-main-blue"
             }
           >
             알림
