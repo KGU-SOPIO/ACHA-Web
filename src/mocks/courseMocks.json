@@ -1,0 +1,164 @@
+{
+  "courses": [
+    {
+      "courseName": "사고와 표현",
+      "courseLink": "/courses/1",
+      "courseCode": "CSE101",
+      "notices": [
+        {
+          "link": "/notices/1",
+          "content": "강의 자료 업데이트되었습니다.",
+          "index": "1",
+          "title": "자료 업데이트 공지",
+          "date": "2024-12-24",
+          "files": [
+            {
+              "fileName": "자료.pdf",
+              "fileLink": "/files/자료.pdf"
+            }
+          ]
+        }
+      ],
+      "activities": [
+        [
+          {
+            "available": true,
+            "activityName": "과제1",
+            "activityLink": "/activities/1",
+            "activityCode": "ACT101",
+            "activityType": "Assignment",
+            "lectureDeadline": "2024-12-31",
+            "lectureTime": "13:00",
+            "attendance": true,
+            "gradingStatus": "Not Graded",
+            "deadline": "2024-12-31T23:59",
+            "timeLeft": "7일",
+            "lastModified": "2024-12-23",
+            "description": "과제 1번 제출",
+            "submitStatus": "Pending"
+          }
+        ]
+      ]
+    },
+    {
+      "courseName": "프로그래밍 기초",
+      "courseLink": "/courses/2",
+      "courseCode": "CSE102",
+      "notices": [
+        {
+          "link": "/notices/2",
+          "content": "실습 과제 업로드되었습니다.",
+          "index": "2",
+          "title": "실습 과제 공지",
+          "date": "2024-12-25",
+          "files": [
+            {
+              "fileName": "실습.pdf",
+              "fileLink": "/files/실습.pdf"
+            }
+          ]
+        }
+      ],
+      "activities": [
+        [
+          {
+            "available": true,
+            "activityName": "과제2",
+            "activityLink": "/activities/2",
+            "activityCode": "ACT102",
+            "activityType": "Assignment",
+            "lectureDeadline": "2025-01-05",
+            "lectureTime": "15:00",
+            "attendance": false,
+            "gradingStatus": "Graded",
+            "deadline": "2025-01-05T23:59",
+            "timeLeft": "12일",
+            "lastModified": "2024-12-24",
+            "description": "실습 2번 제출",
+            "submitStatus": "Completed"
+          }
+        ]
+      ]
+    },
+    {
+      "courseName": "데이터베이스",
+      "courseLink": "/courses/3",
+      "courseCode": "CSE103",
+      "notices": [
+        {
+          "link": "/notices/3",
+          "content": "기말 프로젝트 공지사항입니다.",
+          "index": "3",
+          "title": "기말 프로젝트 공지",
+          "date": "2024-12-26",
+          "files": [
+            {
+              "fileName": "프로젝트.pdf",
+              "fileLink": "/files/프로젝트.pdf"
+            }
+          ]
+        }
+      ],
+      "activities": [
+        [
+          {
+            "available": true,
+            "activityName": "기말 프로젝트",
+            "activityLink": "/activities/3",
+            "activityCode": "ACT103",
+            "activityType": "Project",
+            "lectureDeadline": "2025-01-10",
+            "lectureTime": "17:00",
+            "attendance": false,
+            "gradingStatus": "Not Graded",
+            "deadline": "2025-01-10T23:59",
+            "timeLeft": "18일",
+            "lastModified": "2024-12-20",
+            "description": "기말 프로젝트 제출",
+            "submitStatus": "Pending"
+          }
+        ]
+      ]
+    },
+    {
+      "courseName": "소프트웨어 공학",
+      "courseLink": "/courses/4",
+      "courseCode": "CSE104",
+      "notices": [
+        {
+          "link": "/notices/4",
+          "content": "기말 고사 일정 안내",
+          "index": "4",
+          "title": "기말 고사 공지",
+          "date": "2024-12-28",
+          "files": [
+            {
+              "fileName": "고사일정.pdf",
+              "fileLink": "/files/고사일정.pdf"
+            }
+          ]
+        }
+      ],
+      "activities": [
+        [
+          {
+            "available": true,
+            "activityName": "기말 고사",
+            "activityLink": "/activities/4",
+            "activityCode": "ACT104",
+            "activityType": "Exam",
+            "lectureDeadline": "2025-01-15",
+            "lectureTime": "10:00",
+            "attendance": false,
+            "gradingStatus": "Not Graded",
+            "deadline": "2025-01-15T23:59",
+            "timeLeft": "22일",
+            "lastModified": "2024-12-22",
+            "description": "기말 고사 응시",
+            "submitStatus": "Pending"
+          }
+        ]
+      ]
+    }
+  ]
+}
