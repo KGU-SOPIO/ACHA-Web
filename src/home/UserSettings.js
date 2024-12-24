@@ -1,3 +1,4 @@
+import { ReactComponent as ArrowRight } from "../assets/arrowRight.svg";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { useState } from "react";
 
@@ -15,7 +16,7 @@ function UserSettings() {
         {/* 사용자 정보 */}
         <div className="flex items-center pr-12">
           <div className="">
-            <h2 className="text-lg font-semibold">조민혁님</h2>
+            <h2 className="text-lg font-semibold">서민혁님</h2>
             <p className="text-sm text-gray-500">
               소프트웨어경영대학{" "}
               <span className="bg-main-blue text-white px-2 py-1 rounded-xl">
@@ -27,9 +28,9 @@ function UserSettings() {
         <a
           href="/mypage"
           aria-label="마이페이지로 이동"
-          className="text-gray-700 hover:text-gray-900"
+          className="text-gray-400 hover:text-gray-900"
         >
-          <IoChevronForwardOutline size={30} className="text-gray-400" />
+          <ArrowRight className="text-gray-300 w-6 h-6" />
         </a>
 
         {/* 구분선 */}

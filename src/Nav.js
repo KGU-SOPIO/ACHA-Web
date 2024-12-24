@@ -5,7 +5,7 @@ import React from "react";
 const Nav = () => {
   return (
     <nav className="fixed top-0 w-full bg-white shadow-md z-10">
-      <div className="flex justify-between px-12">
+      <div className="flex justify-between items-center px-12">
         <div>
           <Logo />
         </div>
@@ -41,6 +41,15 @@ const Nav = () => {
             </NavLink>
           </li>
         </ul>
+        <div>
+          <a
+            href="/mypage"
+            aria-label="마이페이지로 이동"
+            className="text-red-500 bg-red-100 hover:bg-red-200 p-2 px-6 rounded-md"
+          >
+            로그아웃
+          </a>
+        </div>
       </div>
     </nav>
   );

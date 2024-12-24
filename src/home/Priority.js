@@ -1,3 +1,4 @@
+import { ReactComponent as ArrowRight } from "../assets/arrowRight.svg";
 import { ReactComponent as LectureIcon } from "../assets/lecture.svg";
 import { ReactComponent as ListIcon } from "../assets/list_task.svg";
 import { ReactComponent as MediaIcon } from "../assets/media.svg";
@@ -152,7 +153,12 @@ function Priority() {
               </h2>
               <LectureIcon className="flex items center w-4 h-4" />
             </div>
-            <div className=" text-gray-500 cursor-pointer">{`전체보기 >`}</div>
+            <div className="text-gray-500 cursor-pointer flex items-center">
+              <p>전체보기</p>
+              <div>
+                <ArrowRight />
+              </div>
+            </div>
           </div>
           <div className="max-h-[600px] overflow-y-auto pr-4 ">
             {renderWithUniqueDday(lectures)}
@@ -168,7 +174,12 @@ function Priority() {
               </h2>
               <ListIcon className="flex items center w-4 h-4" />
             </div>
-            <div className="text-gray-500 cursor-pointer">{`전체보기 >`}</div>
+            <div className="text-gray-500 cursor-pointer flex items-center">
+              <p>전체보기</p>
+              <div>
+                <ArrowRight />
+              </div>
+            </div>
           </div>
           <div className="max-h-[600px] overflow-y-auto pr-4">
             {renderWithUniqueDday(assignments)}
