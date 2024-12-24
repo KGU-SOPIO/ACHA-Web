@@ -154,7 +154,9 @@ function Priority() {
               <LectureIcon className="flex items center w-4 h-4" />
             </div>
             <div className="text-gray-500 cursor-pointer flex items-center">
-              <p>전체보기</p>
+              <a href="/courses" aria-label="강좌로 이동" className="">
+                전체보기
+              </a>
               <div>
                 <ArrowRight />
               </div>
@@ -175,7 +177,9 @@ function Priority() {
               <ListIcon className="flex items center w-4 h-4" />
             </div>
             <div className="text-gray-500 cursor-pointer flex items-center">
-              <p>전체보기</p>
+              <a href="/courses" aria-label="강좌로 이동" className="">
+                전체보기
+              </a>
               <div>
                 <ArrowRight />
               </div>

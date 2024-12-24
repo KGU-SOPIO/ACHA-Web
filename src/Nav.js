@@ -44,7 +44,7 @@ const Nav = () => {
         <div>
           <a
             href="/"
-            aria-label="마이페이지로 이동"
+            aria-label="랜딩페이지로 이동"
             className="text-red-500 bg-red-100 hover:bg-red-200 p-2 px-6 rounded-md"
           >
             로그아웃
