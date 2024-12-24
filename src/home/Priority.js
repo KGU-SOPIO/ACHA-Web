@@ -104,7 +104,7 @@ function Priority() {
         <div key={item.id}>
           {showDday && (
             <div
-              className={`mb-4 rounded-full flex text-center font-[Noto_Sans_KR] text-[14px] font-bold leading-[20px] bg-blue-100 items-center ${
+              className={`inline-block mb-4 rounded-full  text-center font-[Noto_Sans_KR] text-[14px] font-bold leading-[20px] bg-blue-100 items-center ${
                 isDday ? "text-white" : ""
               }`}
             >
@@ -117,7 +117,7 @@ function Priority() {
               >
                 {dDay}
               </div>
-              <div className="text-main-blue font-bold rounded-lg p-1 inline-block pl-2">
+              <div className="text-main-blue font-bold rounded-lg p-1 inline-block px-2 pr-4">
                 {formattedDate}
               </div>
             </div>
@@ -130,7 +130,6 @@ function Priority() {
               <button className="mt-2 px-4 py-2 border text-sm rounded-lg">
                 <div className="flex items-center">
                   {item.type === "강의 시청" ? <MediaIcon /> : <TaskIcon />}
-
                   <div className="pl-2">{item.type}</div>
                 </div>
               </button>

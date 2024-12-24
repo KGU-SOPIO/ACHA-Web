@@ -44,7 +44,7 @@ function UserSettings() {
           <div className="flex justify-end items-center gap-2">
             <input
               placeholder="시간 단위"
-              className="p-2 border rounded w-1/2 "
+              className="p-2 border-2 rounded-xl w-1/2 "
             />
             <p className="m-0">시간</p>
             <p className="m-0 bg-main-blue rounded-xl text-white w-6 h-6  flex justify-center items-center cursor-pointer">
