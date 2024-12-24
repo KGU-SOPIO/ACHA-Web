@@ -1,5 +1,4 @@
 import { IoChevronForwardOutline } from "react-icons/io5";
-import mockData from "../mocks/mocks.json";
 import { useState } from "react";
 
 function UserSettings() {
@@ -16,11 +15,11 @@ function UserSettings() {
         {/* 사용자 정보 */}
         <div className="flex items-center pr-12">
           <div className="">
-            <h2 className="text-lg font-semibold">{mockData.user.name}님</h2>
+            <h2 className="text-lg font-semibold">조민혁님</h2>
             <p className="text-sm text-gray-500">
-              {mockData.user.college}{" "}
+              소프트웨어경영대학{" "}
               <span className="bg-main-blue text-white px-2 py-1 rounded-xl">
-                {mockData.user.department}
+                컴퓨터공학전공
               </span>
             </p>
           </div>

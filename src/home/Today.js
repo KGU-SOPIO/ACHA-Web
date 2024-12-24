@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
+import CourseData from "../mocks/courseMocks.json";
 import { ReactComponent as QuoteLeft } from "../assets/“left.svg";
 import { ReactComponent as QuoteRight } from "../assets/“right.svg";
-import mockData from "../mocks/mocks.json";
-import quoteData from "../mocks/mock.json";
+import quoteData from "../mocks/quotesMocks.json";
 
 function Today() {
   const [currentDate, setCurrentDate] = useState("");
@@ -28,11 +28,11 @@ function Today() {
         </p>
         <div className="flex">
           <div className="space-y-4 w-full">
-            {mockData.lectures.map((lecture, index) => {
+            {CourseData.courses.map((lecture, index) => {
               const backgroundColorClass =
                 lecture.dDay <= 3
                   ? "bg-red-100 text-red-600"
-                  : "bg-blue-100 text-blue-600";
+                  : "bg-blue-100 text-blue-700";
 
               return (
                 <div
@@ -41,15 +41,17 @@ function Today() {
                 >
                   <div>
                     <p className="text-xs text-gray-700">
-                      {lecture.professor} 교수님
+                      {lecture.courseCode} 교수님
                     </p>
-                    <p className="font-bold">{lecture.lectureName}</p>
-                    <p className="text-xs text-gray-700">{lecture.classroom}</p>
+                    <p className="font-bold">{lecture.courseName}</p>
+                    <p className="text-xs text-gray-700">
+                      {lecture.courseCode}
+                    </p>
                   </div>
                   <div
                     className={`w-auto px-4 py-2 flex items-center justify-center text-white font-bold text-xs rounded-full ${backgroundColorClass} self-center`}
                   >
-                    D-{lecture.dDay}
+                    D-{/*lecture.dDay*/}10
                   </div>
                 </div>
               );
