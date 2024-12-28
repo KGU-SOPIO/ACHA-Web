@@ -1,4 +1,5 @@
 import FAQ from "../welcome/FAQ";
+import Footer from "./Footer";
 import ImageSlide from "../welcome/ImageSlide";
 import LendingImg1 from "../assets/lending1.png";
 import LendingImg2 from "../assets/lending2.png";
@@ -141,6 +142,7 @@ function Welcome() {
           <FAQ />
         </div>
       </div>
+      <Footer />
     </>
   );
 }
