@@ -32,7 +32,7 @@ function Today() {
               const backgroundColorClass =
                 lecture.dDay <= 3
                   ? "bg-red-100 text-red-600"
-                  : "bg-blue-100 text-blue-700";
+                  : "bg-blue-100 text-blue-800";
 
               return (
                 <div
