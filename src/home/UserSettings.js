@@ -1,5 +1,4 @@
 import { ReactComponent as ArrowRight } from "../assets/arrowRight.svg";
-import { IoChevronForwardOutline } from "react-icons/io5";
 import { useState } from "react";
 
 function UserSettings() {
