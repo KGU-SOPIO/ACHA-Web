@@ -1,8 +1,16 @@
+import { NavLink, useNavigate } from "react-router-dom";
+
 import { ReactComponent as Logo } from "./assets/sopio_logo.svg";
-import { NavLink } from "react-router-dom";
 import React from "react";
 
 const Nav = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    alert("로그아웃 되었습니다.");
+    navigate("/");
+  };
   return (
     <nav className="fixed top-0 w-full bg-white shadow-md z-10">
       <div className="flex justify-between items-center px-12">
@@ -42,13 +50,12 @@ const Nav = () => {
           </li>
         </ul>
         <div>
-          <a
-            href="/"
-            aria-label="랜딩페이지로 이동"
+          <button
+            onClick={handleLogout}
             className="text-red-500 bg-red-100 hover:bg-red-200 p-2 px-6 rounded-md"
           >
             로그아웃
-          </a>
+          </button>
         </div>
       </div>
     </nav>
