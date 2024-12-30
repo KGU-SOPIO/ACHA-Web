@@ -4,18 +4,22 @@ import React, { useState } from "react";
 import Footer from "./Footer";
 
 function Login() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [id, setId] = useState("");
+  const [pwd, setPwd] = useState("");
+
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
+    const currentId = "202212345";
+    const currentPwd = "1234@";
+
     // 임시 로그인 처리
-    const isAuthenticated = true; // 실제 인증 로직을 여기에 추가
+    const isAuthenticated = id === currentId && pwd === currentPwd; // 실제 인증 로직을 여기에 추가
     if (isAuthenticated) {
-      setIsLoggedIn(true);
       navigate("/home");
     } else {
-      alert("로그인 실패");
+      alert("로그인 실패\n : ID 또는 비밀번호가 일치하지 않습니다.");
     }
   };
 
@@ -37,6 +41,8 @@ function Login() {
             <input
               id="studentId"
               type="text"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
               placeholder="학번"
               className="appearance-none border rounded w-full py-2 px-3 text-gray-700"
             />
@@ -51,6 +57,8 @@ function Login() {
             <input
               id="password"
               type="password"
+              value={pwd}
+              onChange={(e) => setPwd(e.target.value)}
               placeholder="비밀번호"
               className="appearance-none border rounded w-full py-2 px-3 text-gray-700"
             />
