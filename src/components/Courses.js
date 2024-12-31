@@ -1,6 +1,7 @@
 import { ReactComponent as DownArrow } from "../assets/downArrowIcon.svg";
 import Footer from "./Footer";
 import { ReactComponent as MediaIcon } from "../assets/mediaIcon.svg";
+import { ReactComponent as RightArrow } from "../assets/rightArrowBlue.svg";
 import { ReactComponent as TaskIcon } from "../assets/task.svg";
 import { ReactComponent as UpArrow } from "../assets/upArrowIcon.svg";
 import WeeklyActivities from "../courses/WeeklyActivities";
@@ -23,9 +24,10 @@ function Courses() {
             <h2 className="text-[14px]">{mockData[0].prosessor}</h2>
             <h2 className="text-[24px] font-bold">{mockData[0].courseName}</h2>
           </div>
-          <button className="text-main-blue border border-main-blue px-[20px] py-[17px] rounded-2xl w-[156px] ">
-            공지사항
-          </button>
+          <div className="flex justify-between items-center border border-main-blue rounded-2xl w-[196px] px-[20px] py-[17px]">
+            <button className="text-main-blue ">공지사항</button>
+            <RightArrow className="w-[24px] h-[24px]" />
+          </div>
         </div>
         {/* Weekly Activities Section */}
         <div className="max-w-6xl pb-[48px] border-b mb-[26px]">
