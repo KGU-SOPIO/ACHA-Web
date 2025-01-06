@@ -2,7 +2,7 @@ import { ReactComponent as Logo } from "../assets/Dark_sopio_logo.svg";
 import React from "react";
 function Footer() {
   return (
-    <footer className="bg-[rgba(237,239,242,1)] text-[rgba(109,109,109,1)] py-8 mt-8 px-[500px]">
+    <footer className="bg-[rgba(237,239,242,1)] text-[rgba(109,109,109,1)] py-8 px-[500px]">
       <div className="container mx-auto flex justify-between items-start px-6">
         {/* 로고 섹션 */}
         <div className=" space-x-4">
