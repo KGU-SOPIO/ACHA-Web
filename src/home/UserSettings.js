@@ -10,7 +10,7 @@ function UserSettings() {
   };
 
   return (
-    <div className="p-8 px-12 max-w-6xl mx-auto rounded-lg bg-[rgba(228,232,241,1)]">
+    <div className="p-8 px-12 max-w-6xl mx-auto rounded-lg bg-white">
       <div className="flex justify-between items-center">
         {/* 사용자 정보 */}
         <div className="flex items-center pr-12">
@@ -37,19 +37,18 @@ function UserSettings() {
 
         {/* 알림주기 */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <p>알림주기</p>
-            <p>3 시간</p>
-          </div>
-          <div className="flex justify-end items-center gap-2">
-            <input
-              placeholder="시간 단위"
-              className="p-2 border-2 rounded-xl w-1/2 "
-            />
-            <p className="m-0">시간</p>
-            <p className="m-0 bg-main-blue rounded-xl text-white w-6 h-6  flex justify-center items-center cursor-pointer">
-              +
-            </p>
+          <div className="flex justify-between items-start mb-2">
+            <div>
+              <p className="mr-[24px]">알림주기</p>
+            </div>
+            <div className="text-end items-center text-gray-500">
+              <p>여러분의 알림은</p>
+              <p>
+                <span className="font-bold">3일전 / 1일전 / 1시간 전</span>
+                <span>에</span>
+              </p>
+              <p>전송됩니다</p>
+            </div>
           </div>
         </div>
 
