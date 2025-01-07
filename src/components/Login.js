@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
 import Footer from "./Footer";
+import Input from "../signup/Input";
 
 function Login() {
   const [id, setId] = useState("");
@@ -31,38 +32,23 @@ function Login() {
           onSubmit={handleLogin}
           className="flex flex-col items-center justify-center bg-white rounded-md border border-gray-300 p-12 w-full"
         >
-          <div className="mb-4 w-full">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="studentId"
-            >
-              학번
-            </label>
-            <input
-              id="studentId"
-              type="text"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-              placeholder="학번"
-              className="appearance-none border rounded w-full py-2 px-3 text-gray-700"
-            />
-          </div>
-          <div className="mb-4 w-full">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              비밀번호
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={pwd}
-              onChange={(e) => setPwd(e.target.value)}
-              placeholder="비밀번호"
-              className="appearance-none border rounded w-full py-2 px-3 text-gray-700"
-            />
-          </div>
+          <Input
+            id="studentNumber"
+            name="studentNumber"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            placeholder="학번"
+            label="학번"
+          />
+          <Input
+            id="password"
+            name="password"
+            value={pwd}
+            onChange={(e) => setPwd(e.target.value)}
+            type="password"
+            placeholder="비밀번호"
+            label="비밀번호"
+          />
           <button
             type="submit"
             className="w-full bg-main-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
