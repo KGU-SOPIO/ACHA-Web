@@ -3,69 +3,9 @@ import { ReactComponent as LectureIcon } from "../assets/lecture.svg";
 import { ReactComponent as ListIcon } from "../assets/list_task.svg";
 import { ReactComponent as MediaIcon } from "../assets/media.svg";
 import { ReactComponent as TaskIcon } from "../assets/task.svg";
-
+import mockData from "../mocks/taskMedia.json";
 function Priority() {
-  const lectures = [
-    {
-      id: 1,
-      title: "1주차 플립러닝 -01",
-      subject: "사고와 표현",
-      time: "오후 09:00까지",
-      type: "강의 시청",
-      date: "2024-12-29",
-    },
-    {
-      id: 2,
-      title: "2주차 플립러닝 -02",
-      subject: "사고와 표현",
-      time: "오후 09:00까지",
-      type: "강의 시청",
-      date: "2024-12-29",
-    },
-    {
-      id: 3,
-      title: "3주차 플립러닝 -03",
-      subject: "사고와 표현",
-      time: "오후 09:00까지",
-      type: "강의 시청",
-      date: "2024-12-29",
-    },
-    {
-      id: 4,
-      title: "4주차 플립러닝 -03",
-      subject: "사고와 표현",
-      time: "오후 09:00까지",
-      type: "강의 시청",
-      date: "2024-12-30",
-    },
-    {
-      id: 5,
-      title: "5주차 플립러닝 -03",
-      subject: "사고와 표현",
-      time: "오후 09:00까지",
-      type: "강의 시청",
-      date: "2024-12-30",
-    },
-  ];
-
-  const assignments = [
-    {
-      id: 1,
-      title: "개요서 제출",
-      subject: "사고와 표현",
-      time: "오후 09:00까지",
-      type: "과제 제출",
-      date: "2024-12-24",
-    },
-    {
-      id: 2,
-      title: "개요서 제출",
-      subject: "사고와 표현",
-      time: "오후 09:00까지",
-      type: "과제 제출",
-      date: "2025-01-01",
-    },
-  ];
+  const { lectures, assignments } = mockData;
 
   // 디데이 계산
   const getDday = (itemDate) => {
