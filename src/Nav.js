@@ -42,11 +42,17 @@ const Nav = () => {
           </li>
         </ul>
         <div className="flex">
-          <NavLink to="/notifications" className="mr-[9px] ">
-            <NotificationsIcon className="bg-[rgba(240,246,255,1)] rounded-full" />
+          <NavLink
+            to="/notifications"
+            className="mr-[9px] w-[36px] h-[36x] bg-[rgba(240,246,255,1)] rounded-full p-[8px]"
+          >
+            <NotificationsIcon />
           </NavLink>
-          <NavLink to="/myPage">
-            <MyIcon className="bg-[rgba(210,222,241,1)] rounded-full" />
+          <NavLink
+            to="/myPage"
+            className="bg-[rgba(240,246,255,1)] rounded-full p-[8px]"
+          >
+            <MyIcon />
           </NavLink>
           {/* <button
             onClick={handleLogout}
