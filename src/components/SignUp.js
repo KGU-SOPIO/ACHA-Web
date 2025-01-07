@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import Button from "../signup/Button";
 import Footer from "./Footer";
 import Input from "../signup/Input";
 import { Link } from "react-router-dom";
@@ -75,12 +76,7 @@ function SignUp() {
             placeholder="비밀번호"
             label="비밀번호"
           />
-          <button
-            type="submit"
-            className="w-full bg-main-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            회원가입
-          </button>
+          <Button name="회원가입" />
         </form>
 
         <Link to="/login" className="text-blue-500 hover:underline">
