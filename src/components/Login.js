@@ -5,8 +5,18 @@ import Footer from "./Footer";
 import Input from "../signup/Input";
 
 function Login() {
-  const [id, setId] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    studentNumber: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInfo((prevInfo) => ({
+      ...prevInfo,
+      [name]: value,
+    }));
+  };
 
   const navigate = useNavigate();
 
@@ -16,7 +26,8 @@ function Login() {
     const currentPwd = "1234@";
 
     // 임시 로그인 처리
-    const isAuthenticated = id === currentId && pwd === currentPwd; // 실제 인증 로직을 여기에 추가
+    const isAuthenticated =
+      userInfo.studentNumber === currentId && userInfo.password === currentPwd; // 실제 인증 로직을 여기에 추가
     if (isAuthenticated) {
       navigate("/home");
     } else {
@@ -35,16 +46,16 @@ function Login() {
           <Input
             id="studentNumber"
             name="studentNumber"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            value={userInfo.studentNumber}
+            onChange={handleChange}
             placeholder="학번"
             label="학번"
           />
           <Input
             id="password"
             name="password"
-            value={pwd}
-            onChange={(e) => setPwd(e.target.value)}
+            value={userInfo.password}
+            onChange={handleChange}
             type="password"
             placeholder="비밀번호"
             label="비밀번호"
