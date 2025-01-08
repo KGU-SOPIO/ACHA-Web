@@ -42,7 +42,7 @@ function Priority() {
       previousDday = dDay;
 
       return (
-        <div key={item.id}>
+        <div key={item.lectureId || item.assignmentId}>
           {showDday && (
             <div
               className={`inline-block mb-4 rounded-full  text-center font-[Noto_Sans_KR] text-[14px] font-bold leading-[20px] bg-blue-100 items-center ${
