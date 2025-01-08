@@ -19,7 +19,7 @@ function Courses() {
     <div>
       <div className="pt-[157px] px-[346px] pb-[208px]">
         {/* Header Section */}
-        <div className="flex justify-between items-center mb-[30px] max-w-6xl">
+        <div className="flex justify-between items-center mb-[30px] max-w-6xl mx-auto">
           <div className="flex flex-col justify-start">
             <h2 className="text-[14px]">{mockData[0].prosessor}</h2>
             <h2 className="text-[24px] font-bold">{mockData[0].courseName}</h2>
@@ -30,10 +30,10 @@ function Courses() {
           </div>
         </div>
         {/* Weekly Activities Section */}
-        <div className="max-w-6xl pb-[48px] border-b mb-[26px]">
+        <div className="max-w-6xl pb-[48px] border-b mb-[26px] mx-auto">
           <WeeklyActivities />
         </div>
-        <div className="bg-[rgba(245,246,248,1)] max-w-6xl h-[500px] rounded-xl px-[240px] py-[34px] overflow-y-auto">
+        <div className="bg-[rgba(245,246,248,1)] max-w-6xl mx-auto h-[500px] rounded-xl px-[240px] py-[34px] overflow-y-auto">
           <div>
             {mockData[0].week.map((week) => (
               <div
