@@ -1,11 +1,16 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 
 import { ReactComponent as Logo } from "./assets/sopio_logo.svg";
 import { ReactComponent as MyIcon } from "./assets/myIcon.svg";
+import NotificationModal from "./components/NotificationModal";
 import { ReactComponent as NotificationsIcon } from "./assets/bellIcon.svg";
-import React from "react";
 
 const Nav = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => setIsModalOpen((prev) => !prev);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -14,49 +19,58 @@ const Nav = () => {
     navigate("/");
   };
   return (
-    <nav className="fixed top-0 w-full bg-white shadow-md z-10">
-      <div className="flex justify-between items-center px-12">
-        <div>
-          <Logo />
-        </div>
-        <ul className="flex justify-center gap-32 py-4 font-bold">
-          <li>
-            <NavLink
-              to="/home"
-              className={({ isActive }) =>
-                isActive ? "text-main-blue " : "hover:text-main-blue"
-              }
+    <div>
+      <nav className="fixed top-0 w-full bg-white shadow-md z-10">
+        <div className="flex justify-between items-center px-12">
+          <div>
+            <Logo />
+          </div>
+          <ul className="flex justify-center gap-32 py-4 font-bold">
+            <li>
+              <NavLink
+                to="/home"
+                className={({ isActive }) =>
+                  isActive ? "text-main-blue " : "hover:text-main-blue"
+                }
+              >
+                홈
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/courses"
+                className={({ isActive }) =>
+                  isActive ? "text-main-blue " : "hover:text-main-blue"
+                }
+              >
+                강좌
+              </NavLink>
+            </li>
+          </ul>
+          <div className="flex">
+            <div
+              onClick={toggleModal}
+              className="mr-[9px] w-[36px] h-[36x] bg-[rgba(240,246,255,1)] rounded-full p-[8px]"
             >
-              홈
-            </NavLink>
-          </li>
-          <li>
+              <NotificationsIcon />
+            </div>
             <NavLink
-              to="/courses"
-              className={({ isActive }) =>
-                isActive ? "text-main-blue " : "hover:text-main-blue"
-              }
+              to="/myPage"
+              className="bg-[rgba(240,246,255,1)] rounded-full p-[8px]"
             >
-              강좌
+              <MyIcon />
             </NavLink>
-          </li>
-        </ul>
-        <div className="flex">
-          <NavLink to="/notifications" className="mr-[9px] ">
-            <NotificationsIcon className="bg-[rgba(240,246,255,1)] rounded-full" />
-          </NavLink>
-          <NavLink to="/myPage">
-            <MyIcon className="bg-[rgba(210,222,241,1)] rounded-full" />
-          </NavLink>
-          {/* <button
+            {/* <button
             onClick={handleLogout}
             className="text-red-500 bg-red-100 hover:bg-red-200 p-2 px-6 rounded-md"
           >
             로그아웃
           </button> */}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+      {isModalOpen && <NotificationModal onClose={toggleModal} />}
+    </div>
   );
 };
 
