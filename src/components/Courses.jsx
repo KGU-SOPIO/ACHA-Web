@@ -11,8 +11,8 @@ import { useState } from "react";
 function Courses() {
   const [openWeek, setOpenWeek] = useState(null);
 
-  const toggleWeek = (activityCode) => {
-    setOpenWeek(openWeek === activityCode ? null : activityCode);
+  const toggleWeek = (week) => {
+    setOpenWeek(openWeek === week ? null : week);
   };
 
   return (
@@ -53,13 +53,9 @@ function Courses() {
                   </div>
                   <div
                     className="cursor-pointer flex items-center"
-                    onClick={() => toggleWeek(activity.activityCode)}
+                    onClick={() => toggleWeek(activity.week)}
                   >
-                    {openWeek === activity.activityCode ? (
-                      <UpArrow />
-                    ) : (
-                      <DownArrow />
-                    )}
+                    {openWeek === activity.week ? <UpArrow /> : <DownArrow />}
                   </div>
                 </div>
 

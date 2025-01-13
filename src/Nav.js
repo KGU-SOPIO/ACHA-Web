@@ -3,13 +3,18 @@ import React, { useState } from "react";
 
 import { ReactComponent as Logo } from "./assets/sopio_logo.svg";
 import { ReactComponent as MyIcon } from "./assets/myIcon.svg";
+import MyPage from "./components/MyPage";
 import NotificationModal from "./components/NotificationModal";
 import { ReactComponent as NotificationsIcon } from "./assets/bellIcon.svg";
 
 const Nav = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
+  const [isMypageModalOpen, setIsMypageModalOpen] = useState(false);
 
-  const toggleModal = () => setIsModalOpen((prev) => !prev);
+  const toggleNotificationModal = () =>
+    setIsNotificationModalOpen((prev) => !prev);
+
+  const toggleMypageModal = () => setIsMypageModalOpen((prev) => !prev);
 
   const navigate = useNavigate();
 
@@ -49,17 +54,18 @@ const Nav = () => {
           </ul>
           <div className="flex">
             <div
-              onClick={toggleModal}
+              onClick={toggleNotificationModal}
               className="mr-[9px] w-[36px] h-[36x] bg-[rgba(240,246,255,1)] rounded-full p-[8px]"
             >
               <NotificationsIcon />
             </div>
-            <NavLink
-              to="/myPage"
-              className="bg-[rgba(240,246,255,1)] rounded-full p-[8px]"
+            <div
+              onClick={toggleMypageModal}
+              className="bg-[rgba(189,210,242,1)] rounded-full p-[8px]"
             >
               <MyIcon />
-            </NavLink>
+            </div>
+
             {/* <button
             onClick={handleLogout}
             className="text-red-500 bg-red-100 hover:bg-red-200 p-2 px-6 rounded-md"
@@ -69,7 +75,10 @@ const Nav = () => {
           </div>
         </div>
       </nav>
-      {isModalOpen && <NotificationModal onClose={toggleModal} />}
+      {isNotificationModalOpen && (
+        <NotificationModal onClose={toggleNotificationModal} />
+      )}
+      {isMypageModalOpen && <MyPage onClose={toggleMypageModal} />}
     </div>
   );
 };
