@@ -11,11 +11,14 @@ const Nav = () => {
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
   const [isMypageModalOpen, setIsMypageModalOpen] = useState(false);
 
-  const toggleNotificationModal = () =>
+  const toggleNotificationModal = () => {
     setIsNotificationModalOpen((prev) => !prev);
-
-  const toggleMypageModal = () => setIsMypageModalOpen((prev) => !prev);
-
+    if (isMypageModalOpen) setIsMypageModalOpen((prev) => !prev);
+  };
+  const toggleMypageModal = () => {
+    setIsMypageModalOpen((prev) => !prev);
+    if (isNotificationModalOpen) setIsNotificationModalOpen((prev) => !prev);
+  };
   const navigate = useNavigate();
 
   const handleLogout = () => {
