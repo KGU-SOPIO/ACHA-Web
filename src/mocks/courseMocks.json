@@ -1,60 +1,44 @@
 {
   "courses": [
     {
-      "courseName": "사고와 표현",
-      "courseLink": "/courses/1",
-      "courseCode": "CSE101",
+      "courseName": "사고와표현",
+      "courseLink": "https://www.naver.com",
+      "courseIdentifier": "A0001_0001",
+      "courseCode": "1001",
+      "professor": "송명진",
+      "lectureRoom": "3306(멀티미디어실 New)",
       "notices": [
         {
-          "link": "/notices/1",
-          "content": "강의 자료 업데이트되었습니다.",
+          "link": "https://www.naver.com",
+          "content": "공지사항 내용입니다. \n공지사항 내용입니다. \n공지사항 내용입니다. \n",
           "index": "1",
-          "title": "자료 업데이트 공지",
-          "date": "2024-12-24",
+          "title": "공지사항 -1 ",
+          "date": "2025-01-09",
           "files": [
             {
-              "fileName": "자료.pdf",
-              "fileLink": "/files/자료.pdf"
+              "fileName": "[양식1]보고서 제출",
+              "fileLink": "https://www.naver.com"
+            },
+            {
+              "fileName": "[양식2]개요서 제출",
+              "fileLink": "https://www.naver.com"
             }
           ]
-        }
-      ],
-      "activities": [
-        [
-          {
-            "available": true,
-            "activityName": "과제1",
-            "activityLink": "/activities/1",
-            "activityCode": "ACT101",
-            "activityType": "Assignment",
-            "lectureDeadline": "2024-12-31",
-            "lectureTime": "13:00",
-            "attendance": true,
-            "gradingStatus": "Not Graded",
-            "deadline": "2024-12-31T23:59",
-            "timeLeft": "7일",
-            "lastModified": "2024-12-23",
-            "description": "과제 1번 제출",
-            "submitStatus": "Pending"
-          }
-        ]
-      ]
-    },
-    {
-      "courseName": "프로그래밍 기초",
-      "courseLink": "/courses/2",
-      "courseCode": "CSE102",
-      "notices": [
+        },
         {
-          "link": "/notices/2",
-          "content": "실습 과제 업로드되었습니다.",
+          "link": "https://www.naver.com",
+          "content": "공지사항 내용입니다. \n공지사항 내용입니다. \n공지사항 내용입니다. \n",
           "index": "2",
-          "title": "실습 과제 공지",
-          "date": "2024-12-25",
+          "title": "공지사항 -2 ",
+          "date": "2025-01-10",
           "files": [
             {
-              "fileName": "실습.pdf",
-              "fileLink": "/files/실습.pdf"
+              "fileName": "[양식1]보고서 제출",
+              "fileLink": "https://www.naver.com"
+            },
+            {
+              "fileName": "[양식2]개요서 제출",
+              "fileLink": "https://www.naver.com"
             }
           ]
         }
@@ -62,39 +46,96 @@
       "activities": [
         [
           {
-            "available": true,
-            "activityName": "과제2",
-            "activityLink": "/activities/2",
-            "activityCode": "ACT102",
-            "activityType": "Assignment",
-            "lectureDeadline": "2025-01-05",
-            "lectureTime": "15:00",
-            "attendance": false,
-            "gradingStatus": "Graded",
-            "deadline": "2025-01-05T23:59",
-            "timeLeft": "12일",
-            "lastModified": "2024-12-24",
-            "description": "실습 2번 제출",
-            "submitStatus": "Completed"
+            "week": 1,
+            "available": "true",
+            "activityName": "1주차 강의 자료",
+            "activityLink": "https://www.naver.com",
+            "activityCode": "000001",
+            "activityType": "file"
+          },
+          {
+            "week": 1,
+            "available": "true",
+            "activityName": "1주차 영상 강의",
+            "activityLink": "https://www.naver.com",
+            "activityCode": "000002",
+            "activityType": "video",
+            "lectureDeadline": "2025-01-10 00:00:00 ~ 2025-01-15 23:59:59",
+            "lectureTime": "22:57"
+          }
+        ],
+        [
+          {
+            "week": 2,
+            "available": "true",
+            "activityName": "2주차 강의 자료",
+            "activityLink": "https://www.naver.com",
+            "activityCode": "000003",
+            "activityType": "file"
+          },
+          {
+            "week": 2,
+            "available": "true",
+            "activityName": "2주차 영상 강의",
+            "activityLink": "https://www.naver.com",
+            "activityCode": "000004",
+            "activityType": "video",
+            "lectureDeadline": "2025-01-10 00:00:00 ~ 2025-01-15 23:59:59",
+            "lectureTime": "22:57"
+          },
+          {
+            "week": 2,
+            "available": "true",
+            "activityName": "2주차 과제",
+            "activityLink": "https://www.naver.com",
+            "activityCode": "000005",
+            "activityType": "assigment",
+            "gradingStatus": "채점되지 않음.",
+            "deadline": "2025-01-10 00:00:00 ~ 2025-01-15 23:59:59",
+            "description": "2주차 과제는 pdf로 제출 바랍니다."
           }
         ]
       ]
     },
     {
-      "courseName": "데이터베이스",
-      "courseLink": "/courses/3",
-      "courseCode": "CSE103",
+      "courseName": "웹프로그래밍",
+      "courseLink": "https://www.naver.com",
+      "courseIdentifier": "A0001_0002",
+      "courseCode": "1002",
+      "professor": "정경용",
+      "lectureRoom": "8001",
       "notices": [
         {
-          "link": "/notices/3",
-          "content": "기말 프로젝트 공지사항입니다.",
-          "index": "3",
-          "title": "기말 프로젝트 공지",
-          "date": "2024-12-26",
+          "link": "https://www.naver.com",
+          "content": "공지사항 내용입니다. \n공지사항 내용입니다. \n공지사항 내용입니다. \n",
+          "index": "1",
+          "title": "공지사항 -1 ",
+          "date": "2025-01-09",
           "files": [
             {
-              "fileName": "프로젝트.pdf",
-              "fileLink": "/files/프로젝트.pdf"
+              "fileName": "[양식1]보고서 제출",
+              "fileLink": "https://www.naver.com"
+            },
+            {
+              "fileName": "[양식2]개요서 제출",
+              "fileLink": "https://www.naver.com"
+            }
+          ]
+        },
+        {
+          "link": "https://www.naver.com",
+          "content": "공지사항 내용입니다. \n공지사항 내용입니다. \n공지사항 내용입니다. \n",
+          "index": "2",
+          "title": "공지사항 -2 ",
+          "date": "2025-01-10",
+          "files": [
+            {
+              "fileName": "[양식1]보고서 제출",
+              "fileLink": "https://www.naver.com"
+            },
+            {
+              "fileName": "[양식2]개요서 제출",
+              "fileLink": "https://www.naver.com"
             }
           ]
         }
@@ -102,60 +143,53 @@
       "activities": [
         [
           {
-            "available": true,
-            "activityName": "기말 프로젝트",
-            "activityLink": "/activities/3",
-            "activityCode": "ACT103",
-            "activityType": "Project",
-            "lectureDeadline": "2025-01-10",
-            "lectureTime": "17:00",
-            "attendance": false,
-            "gradingStatus": "Not Graded",
-            "deadline": "2025-01-10T23:59",
-            "timeLeft": "18일",
-            "lastModified": "2024-12-20",
-            "description": "기말 프로젝트 제출",
-            "submitStatus": "Pending"
+            "week": 1,
+            "available": "true",
+            "activityName": "웹프 1주차 강의 자료",
+            "activityLink": "https://www.naver.com",
+            "activityCode": "000001",
+            "activityType": "file"
+          },
+          {
+            "week": 1,
+            "available": "true",
+            "activityName": "1주차 영상 강의",
+            "activityLink": "https://www.naver.com",
+            "activityCode": "000002",
+            "activityType": "video",
+            "lectureDeadline": "2025-01-10 00:00:00 ~ 2025-01-15 23:59:59",
+            "lectureTime": "22:57"
           }
-        ]
-      ]
-    },
-    {
-      "courseName": "소프트웨어 공학",
-      "courseLink": "/courses/4",
-      "courseCode": "CSE104",
-      "notices": [
-        {
-          "link": "/notices/4",
-          "content": "기말 고사 일정 안내",
-          "index": "4",
-          "title": "기말 고사 공지",
-          "date": "2024-12-28",
-          "files": [
-            {
-              "fileName": "고사일정.pdf",
-              "fileLink": "/files/고사일정.pdf"
-            }
-          ]
-        }
-      ],
-      "activities": [
+        ],
         [
           {
-            "available": true,
-            "activityName": "기말 고사",
-            "activityLink": "/activities/4",
-            "activityCode": "ACT104",
-            "activityType": "Exam",
-            "lectureDeadline": "2025-01-15",
-            "lectureTime": "10:00",
-            "attendance": false,
-            "gradingStatus": "Not Graded",
-            "deadline": "2025-01-15T23:59",
-            "timeLeft": "22일",
-            "lastModified": "2024-12-22",
-            "description": "기말 고사 응시",
-            "submitStatus": "Pending"
+            "week": 2,
+            "available": "true",
+            "activityName": "2주차 강의 자료",
+            "activityLink": "https://www.naver.com",
+            "activityCode": "000003",
+            "activityType": "file"
+          },
+          {
+            "week": 2,
+            "available": "true",
+            "activityName": "2주차 영상 강의",
+            "activityLink": "https://www.naver.com",
+            "activityCode": "000004",
+            "activityType": "video",
+            "lectureDeadline": "2025-01-10 00:00:00 ~ 2025-01-15 23:59:59",
+            "lectureTime": "22:57"
+          },
+          {
+            "week": 2,
+            "available": "true",
+            "activityName": "2주차 과제",
+            "activityLink": "https://www.naver.com",
+            "activityCode": "000005",
+            "activityType": "assigment",
+            "gradingStatus": "채점되지 않음.",
+            "deadline": "2025-01-10 00:00:00 ~ 2025-01-15 23:59:59",
+            "description": "2주차 과제는 pdf로 제출 바랍니다."
           }
         ]
       ]

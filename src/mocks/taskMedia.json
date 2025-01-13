@@ -1,46 +1,55 @@
 {
   "lectures": [
     {
-      "lectureId": 1,
-      "title": "1주차 플립러닝 -01",
-      "subject": "사고와 표현",
-      "time": "오후 09:00까지",
-      "type": "강의 시청",
-      "date": "2025-01-08"
+      "activityCode": 1,
+      "courseName": "사고와 표현",
+      "activityName": "사료 강의 - 1",
+      "activityLink": "https://www.naver.com",
+      "activityType": "video",
+      "deadline": "2025-01-10 00:00:00 ~ 2025-01-14 23:59:59",
+      "lectureTime": "22:57"
     },
     {
-      "lectureId": 2,
-      "title": "2주차 플립러닝 -02",
-      "subject": "사고와 표현",
-      "time": "오후 09:00까지",
-      "type": "강의 시청",
-      "date": "2025-01-10"
+      "activityCode": 2,
+      "courseName": "사고와 표현",
+      "activityName": "사표 강의 - 2",
+      "activityLink": "https://www.naver.com",
+      "activityType": "video",
+      "deadline": "2025-01-10 00:00:00 ~ 2025-01-13 23:59:59",
+      "lectureTime": "22:57"
     },
     {
-      "lectureId": 3,
-      "title": "3주차 플립러닝 -02",
-      "subject": "사고와 표현",
-      "time": "오후 09:00까지",
-      "type": "강의 시청",
-      "date": "2025-01-10"
+      "activityCode": 3,
+      "courseName": "웹프로그래밍",
+      "activityName": "웹프 강의 - 1",
+      "activityLink": "https://www.naver.com",
+      "activityType": "video",
+      "deadline": "2025-01-10 00:00:00 ~ 2025-01-13 23:59:59",
+      "lectureTime": "22:57"
     }
   ],
   "assignments": [
     {
-      "assignmentId": 1,
-      "title": "개요서 제출1",
-      "subject": "사고와 표현",
-      "time": "오후 09:00까지",
-      "type": "과제 제출",
-      "date": "2025-01-8"
+      "activityCode": 4,
+      "available": "true",
+      "courseName": "웹 프로그래밍",
+      "activityName": "웹프 과제 - 1",
+      "activityLink": "https://www.naver.com",
+      "activityType": "assignment",
+      "gradingStatus": "채점되지 않음.",
+      "deadline": "2025-01-10 00:00:00 ~ 2025-01-13 23:59:59",
+      "description": "2주차 과제는 pdf로 제출 바랍니다."
     },
     {
-      "assignmentId": 2,
-      "title": "두번째 과제",
-      "subject": "사고와 표현",
-      "time": "오후 09:00까지",
-      "type": "과제 제출",
-      "date": "2025-01-12"
+      "activityCode": 5,
+      "available": "true",
+      "courseName": "사고와 표현",
+      "activityName": "사표 과제 - 1",
+      "activityLink": "https://www.naver.com",
+      "activityType": "assignment",
+      "gradingStatus": "채점되지 않음.",
+      "deadline": "2025-01-10 00:00:00 ~ 2025-01-15 23:59:59",
+      "description": "2주차 과제는 pdf로 제출 바랍니다."
     }
   ]
 }

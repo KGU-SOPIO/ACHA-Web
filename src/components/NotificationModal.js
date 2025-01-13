@@ -1,95 +1,18 @@
 import React, { useState } from "react";
+import { formatDate, getDday, parseMockData, sortByDday } from "../utils/utils";
 
-import { ReactComponent as MediaIcon } from "../assets/media.svg";
-import { ReactComponent as TaskIcon } from "../assets/task.svg";
+import DdayRenderer from "../home/DdayRenderer";
 import mockData from "../mocks/taskMedia.json";
 
 const NotificationModal = ({ onClose }) => {
-  const { lectures, assignments } = mockData;
+  const lectures = parseMockData(mockData.lectures);
+  const assignments = parseMockData(mockData.assignments);
   const [activeTab, setActiveTab] = useState("all");
-
-  const getDday = (itemDate) => {
-    const today = new Date();
-    const targetDate = new Date(itemDate);
-    const diffTime = targetDate - today;
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  };
-
-  const formatDday = (diffDays) => {
-    if (diffDays === 0) {
-      return "D - Day";
-    } else if (diffDays > 0) {
-      return `D - ${diffDays}`;
-    } else {
-      return `D + ${Math.abs(diffDays)}`;
-    }
-  };
-
-  const sortByDday = (items) =>
-    [...items].sort((a, b) => getDday(a.date) - getDday(b.date));
 
   const filteredData = () => {
     if (activeTab === "lectures") return sortByDday(lectures);
     if (activeTab === "assignments") return sortByDday(assignments);
     return sortByDday([...lectures, ...assignments]);
-  };
-
-  const formatDate = (itemDate) => {
-    const date = new Date(itemDate);
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    return `${month}월 ${day}일`;
-  };
-
-  const renderItems = (items) => {
-    let previousDday = null;
-
-    return items.map((item) => {
-      const dDayNumber = getDday(item.date);
-      const dDay = formatDday(dDayNumber);
-      const formattedDate = formatDate(item.date);
-      const isDday = dDay === "D - Day";
-      const showDday = dDay !== previousDday;
-      previousDday = dDay;
-
-      return (
-        <div key={`${item.lectureId || item.assignmentId}-${item.date}`}>
-          {showDday && (
-            <div
-              className={`inline-block mb-4 rounded-full  text-center font-[Noto_Sans_KR] text-[14px] font-bold leading-[20px] bg-blue-100 items-center ${
-                isDday ? "text-white" : ""
-              }`}
-            >
-              <div
-                className={`${
-                  isDday
-                    ? "bg-main-blue text-white border-2 border-main-blue "
-                    : "text-main-blue border-2 border-main-blue bg-[rgba(245,246,248,1)]"
-                } font-bold rounded-full p-2 px-4 inline-block`}
-              >
-                {dDay}
-              </div>
-              <div className="text-main-blue font-bold rounded-lg p-1 inline-block px-2 pr-4">
-                {formattedDate}
-              </div>
-            </div>
-          )}
-          <div className="mb-4 p-4 border rounded-lg shadow-sm">
-            <h3 className="text-md font-bold">{item.title}</h3>
-            <p className="text-sm">{item.subject}</p>
-            <div className="flex justify-between items-center">
-              <div className="text-sm mt-2 text-gray-500">{item.time}</div>
-              <button className="mt-2 px-4 py-2 border text-sm rounded-lg">
-                <div className="flex items-center">
-                  {item.type === "강의 시청" ? <MediaIcon /> : <TaskIcon />}
-                  <div className="pl-2">{item.type}</div>
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
-      );
-    });
   };
 
   return (
@@ -129,7 +52,11 @@ const NotificationModal = ({ onClose }) => {
           </button>
         </div>
         <div className="max-h-[740px] overflow-y-auto">
-          {renderItems(filteredData())}
+          <DdayRenderer
+            items={filteredData()}
+            getDday={getDday}
+            formatDate={formatDate}
+          />
         </div>
       </div>
     </div>

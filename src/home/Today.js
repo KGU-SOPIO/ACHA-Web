@@ -41,11 +41,11 @@ function Today() {
                 >
                   <div>
                     <p className="text-xs text-gray-700">
-                      {lecture.courseCode} 교수님
+                      {lecture.professor} 교수님
                     </p>
                     <p className="font-bold">{lecture.courseName}</p>
                     <p className="text-xs text-gray-700">
-                      {lecture.courseCode}
+                      {lecture.lectureRoom}
                     </p>
                   </div>
                   <div
