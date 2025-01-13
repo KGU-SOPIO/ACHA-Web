@@ -4,7 +4,9 @@ import { ReactComponent as TaskIcon } from "../assets/task.svg";
 import mockData from "../mocks/courseMock.json";
 
 function WeeklyActivities() {
-  const sortedWeeks = [...mockData[0].week].sort((a, b) => a.weekId - b.weekId);
+  const sortedWeeks = [...mockData[0].activities].sort(
+    (a, b) => a.activityCode - b.activityCode
+  );
   return (
     <>
       <div className="flex ml-[22px] mb-[12px]">
@@ -15,42 +17,42 @@ function WeeklyActivities() {
         <BookIcon />
       </div>
       <div className="flex space-x-4 overflow-x-auto">
-        {sortedWeeks.map((week) => (
-          <div key={week.weekId} className="flex space-x-4">
+        {sortedWeeks.map((activity) => (
+          <div key={activity.activityCode} className="flex space-x-4">
             {/* Media Section */}
-            {week.media.concat(week.task).map((item) => (
+            {activity.lectures.concat(activity.assignment).map((item) => (
               <div
-                key={item.mediaId || item.taskId}
+                key={item.activityCode}
                 className="flex-none w-[300px] px-[24px] py-[21px] border rounded-xl"
               >
                 <p className="mb-[12px] text-[14px]">
-                  <span className="font-bold">{week.weekId}주차 </span>
+                  <span className="font-bold">{activity.week}주차 </span>
                   <span> [{item.date}]</span>
                 </p>
 
                 <div className="flex text-[14px] items-center justify-start p-[14px] border rounded-md">
-                  {item.mediaId ? (
+                  {item.activityType === "video" ? (
                     <>
                       <MediaIcon className="w-[24px] h-[24px]" />
                       <a
-                        href={item.link}
+                        href={item.activityLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="ml-[1px]"
                       >
-                        {item.mediaName}
+                        {item.activityName}
                       </a>
                     </>
                   ) : (
                     <>
                       <TaskIcon className="w-[24px] h-[24px]" />
                       <a
-                        href={item.link}
+                        href={item.activityLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="ml-[1px]"
                       >
-                        {item.taskName}
+                        {item.activityName}
                       </a>
                     </>
                   )}

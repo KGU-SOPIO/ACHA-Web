@@ -11,8 +11,8 @@ import { useState } from "react";
 function Courses() {
   const [openWeek, setOpenWeek] = useState(null);
 
-  const toggleWeek = (weekId) => {
-    setOpenWeek(openWeek === weekId ? null : weekId);
+  const toggleWeek = (activityCode) => {
+    setOpenWeek(openWeek === activityCode ? null : activityCode);
   };
 
   return (
@@ -35,9 +35,9 @@ function Courses() {
         </div>
         <div className="bg-[rgba(245,246,248,1)] max-w-6xl mx-auto h-[500px] rounded-xl px-[240px] py-[34px] overflow-y-auto">
           <div>
-            {mockData[0].week.map((week) => (
+            {mockData[0].activities.map((activity) => (
               <div
-                key={week.weekId}
+                key={activity.activityCode}
                 className="flex flex-col mb-[10px] bg-white rounded-xl"
               >
                 <div className="flex items-center px-[24px] justify-between">
@@ -46,36 +46,37 @@ function Courses() {
                     <div className="w-[12px] h-[12px] bg-[rgba(255,78,107,1)] rounded-full"></div>
                     <p className="px-[8px] py-[23px] text-[14px]">
                       <span>
-                        {week.weekId}주차 [{week.media[0].date}]
+                        {activity.week}주차 [{activity.lectures[0].date}]
                         {/*임시 주차 추후에 수정해야함 */}
                       </span>
                     </p>
                   </div>
                   <div
                     className="cursor-pointer flex items-center"
-                    onClick={() => toggleWeek(week.weekId)}
+                    onClick={() => toggleWeek(activity.activityCode)}
                   >
-                    {openWeek === week.weekId ? <UpArrow /> : <DownArrow />}
+                    {openWeek === activity.activityCode ? (
+                      <UpArrow />
+                    ) : (
+                      <DownArrow />
+                    )}
                   </div>
                 </div>
 
-                {openWeek === week.weekId &&
-                  week.media.concat(week.task).map((item) => (
-                    <div
-                      key={item.mediaId || item.taskId}
-                      className="rounded-xl"
-                    >
+                {openWeek === activity.activityCode &&
+                  activity.lectures.concat(activity.assignment).map((item) => (
+                    <div key={item.activityCode} className="rounded-xl">
                       <div className="flex text-[14px] items-center justify-start px-[20px] py-[23px] border-t ">
-                        {item.mediaId ? (
+                        {item.activityType === "video" ? (
                           <div className="flex items-center">
                             <MediaIcon className="w-[24px] h-[24px]" />
                             <a
-                              href={item.link}
+                              href={item.activityLink}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="ml-[1px]"
                             >
-                              {item.mediaName}
+                              {item.activityName}
                             </a>
                             <p>({item.date})</p>
                           </div>
@@ -83,12 +84,12 @@ function Courses() {
                           <div className="flex items-center">
                             <TaskIcon className="w-[24px] h-[24px]" />
                             <a
-                              href={item.link}
+                              href={item.activityLink}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="ml-[1px]"
                             >
-                              {item.taskName}
+                              {item.activityName}
                             </a>
                             <p>({item.date})</p>
                           </div>

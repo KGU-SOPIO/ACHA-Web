@@ -1,88 +1,115 @@
 [
   {
-    "courseId": 1,
-    "prosessor": "송명진 교수님",
+    "courseCode": 10,
+    "prosessor": "송명진",
     "courseName": "사고와 표현",
-    "week": [
+    "courseLink": "https://www.naver.com",
+    "courseIdentifier": "A0001_0001",
+    "lectureRoom": "3306(멀티미디어실 New)",
+    "notices": [
       {
-        "weekId": 1,
-        "media": [
+        "link": "https://www.naver.com",
+        "content": "공지사항 내용입니다. \n공지사항 내용입니다. \n공지사항 내용입니다. \n",
+        "index": "1",
+        "title": "공지사항 -1 ",
+        "date": "2025-01-09",
+        "files": [
           {
-            "mediaId": 1,
-            "mediaName": "1주차 플립드러닝-1",
-            "date": "9월20일-9월26일",
-            "link": "https://www.naver.com"
+            "fileName": "[양식1]보고서 제출",
+            "fileLink": "https://www.naver.com"
           },
           {
-            "mediaId": 2,
-            "mediaName": "1주차 플립드러닝-2",
-            "date": "9월20일-9월26일",
-            "link": "https://www.naver.com"
-          }
-        ],
-        "task": [
-          {
-            "taskId": 1,
-            "taskName": "1주차 과제",
-            "date": "9월20일-9월26일",
-            "link": "https://www.naver.com"
+            "fileName": "[양식2]개요서 제출",
+            "fileLink": "https://www.naver.com"
           }
         ]
       },
       {
-        "weekId": 2,
-        "media": [
+        "link": "https://www.naver.com",
+        "content": "공지사항 내용입니다. \n공지사항 내용입니다. \n공지사항 내용입니다. \n",
+        "index": "2",
+        "title": "공지사항 -2 ",
+        "date": "2025-01-10",
+        "files": [
           {
-            "mediaId": 1,
-            "mediaName": "2주차 플립드러닝-1",
+            "fileName": "[양식1]보고서 제출",
+            "fileLink": "https://www.naver.com"
+          },
+          {
+            "fileName": "[양식2]개요서 제출",
+            "fileLink": "https://www.naver.com"
+          }
+        ]
+      }
+    ],
+    "activities": [
+      {
+        "week": 1,
+        "lectures": [
+          {
+            "activityCode": 1,
+            "activityName": "1주차 플립드러닝-1",
+            "date": "9월20일-9월26일",
+            "activityType": "video",
+            "activityLink": "https://www.naver.com"
+          },
+          {
+            "activityCode": 2,
+            "activityName": "1주차 플립드러닝-2",
+            "date": "9월20일-9월26일",
+            "activityType": "video",
+            "activityLink": "https://www.naver.com"
+          }
+        ],
+        "assignment": [
+          {
+            "activityCode": 3,
+            "activityName": "1주차 과제",
+            "date": "9월20일-9월26일",
+            "activityType": "assignment",
+            "activityLink": "https://www.naver.com"
+          }
+        ]
+      },
+      {
+        "week": 2,
+        "lectures": [
+          {
+            "activityCode": 4,
+            "activityName": "2주차 플립드러닝-1",
             "date": "9월30일-10월7일",
-            "link": "https://www.naver.com"
+            "activityType": "video",
+            "activityLink": "https://www.naver.com"
           }
         ],
-        "task": [
+        "assignment": [
           {
-            "taskId": 1,
-            "taskName": "2주차 과제",
+            "activityCode": 5,
+            "activityName": "2주차 과제",
             "date": "10월8일-10월13일",
-            "link": "https://www.naver.com"
+            "activityType": "assignment",
+            "activityLink": "https://www.naver.com"
           }
         ]
       },
       {
-        "weekId": 3,
-        "media": [
+        "week": 3,
+        "lectures": [
           {
-            "mediaId": 1,
-            "mediaName": "2주차 플립드러닝-1",
+            "activityCode": 6,
+            "activityName": "2주차 플립드러닝-1",
             "date": "10월8일-10월13일",
-            "link": "https://www.naver.com"
+            "activityType": "video",
+            "activityLink": "https://www.naver.com"
           }
         ],
-        "task": [
+        "assignment": [
           {
-            "taskId": 1,
-            "taskName": "2주차 과제",
+            "activityCode": 7,
+            "activityName": "2주차 과제",
             "date": "9월20일-9월26일",
-            "link": "https://www.naver.com"
-          }
-        ]
-      },
-      {
-        "weekId": 4,
-        "media": [
-          {
-            "mediaId": 1,
-            "mediaName": "2주차 플립드러닝-1",
-            "date": "10월14일-10월20일",
-            "link": "https://www.naver.com"
-          }
-        ],
-        "task": [
-          {
-            "taskId": 1,
-            "taskName": "2주차 과제",
-            "date": "9월20일-9월26일",
-            "link": "https://www.naver.com"
+            "activityType": "assignment",
+            "activityLink": "https://www.naver.com"
           }
         ]
       }

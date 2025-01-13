@@ -1,10 +1,10 @@
 {
   "courses": [
     {
+      "courseCode": "1001",
       "courseName": "사고와표현",
       "courseLink": "https://www.naver.com",
       "courseIdentifier": "A0001_0001",
-      "courseCode": "1001",
       "professor": "송명진",
       "lectureRoom": "3306(멀티미디어실 New)",
       "notices": [
@@ -98,10 +98,10 @@
       ]
     },
     {
+      "courseCode": "1002",
       "courseName": "웹프로그래밍",
       "courseLink": "https://www.naver.com",
       "courseIdentifier": "A0001_0002",
-      "courseCode": "1002",
       "professor": "정경용",
       "lectureRoom": "8001",
       "notices": [
