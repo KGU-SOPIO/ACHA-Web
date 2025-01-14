@@ -6,7 +6,7 @@ function CoursesList() {
   return (
     <div>
       <div className="max-w-full overflow-x-hidden py-32 bg-[rgba(245,246,248,1)]">
-        <div className="flex gap-8 max-w-6xl mx-auto my-10">
+        <div className="flex gap-8 max-w-6xl mx-auto my-10 mt-[80px]">
           <MyCourseList />
           <Priority />
         </div>

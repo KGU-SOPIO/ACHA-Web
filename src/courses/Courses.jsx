@@ -1,3 +1,5 @@
+import { useNavigate, useParams } from "react-router-dom";
+
 import { ReactComponent as DownArrow } from "../assets/downArrowIcon.svg";
 import Footer from "../components/Footer";
 import { ReactComponent as MediaIcon } from "../assets/mediaIcon.svg";
@@ -6,12 +8,12 @@ import { ReactComponent as TaskIcon } from "../assets/task.svg";
 import { ReactComponent as UpArrow } from "../assets/upArrowIcon.svg";
 import WeeklyActivities from "./WeeklyActivities";
 import mockData from "../mocks/courseMock.json";
-import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 function Courses() {
   const { courseCode } = useParams();
   const [openWeek, setOpenWeek] = useState(null);
+  const navigate = useNavigate();
   const courseData = mockData.find(
     (course) => course.courseCode === Number(courseCode)
   );
@@ -33,7 +35,12 @@ function Courses() {
             <h2 className="text-[24px] font-bold">{courseData.courseName}</h2>
           </div>
           <div className="flex justify-between items-center border border-main-blue rounded-2xl w-[196px] px-[20px] py-[17px]">
-            <button className="text-main-blue ">공지사항</button>
+            <button
+              className="text-main-blue"
+              onClick={() => navigate(`/courses/:courseCode/notices`)}
+            >
+              공지사항
+            </button>
             <RightArrow className="w-[24px] h-[24px]" />
           </div>
         </div>

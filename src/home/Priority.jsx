@@ -41,14 +41,6 @@ function Priority() {
               </h2>
               <ListIcon className="flex items center w-4 h-4" />
             </div>
-            <div className="text-gray-500 cursor-pointer flex items-center">
-              <a href="/courses" aria-label="강좌로 이동" className="">
-                전체보기
-              </a>
-              <div>
-                <ArrowRight />
-              </div>
-            </div>
           </div>
           <div className="max-h-[600px] overflow-y-auto pr-4">
             <DdayRenderer
