@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import Courses from "./Courses";
+import Courses from "../courses/Courses";
+import CoursesList from "./CoursesList";
 import Home from "./Home";
 import Login from "./Login";
 import MyPage from "./MyPage";
@@ -15,7 +16,8 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/:courseCode" element={<Courses />} />
+        <Route path="/courses" element={<CoursesList />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="*" element={<Navigate to="/home" replace />} />

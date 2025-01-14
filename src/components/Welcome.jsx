@@ -1,8 +1,8 @@
 import FAQ from "../welcome/FAQ";
 import Footer from "./Footer";
 import ImageSlide from "../welcome/ImageSlide";
-import LendingImg1 from "../assets/lending1.png";
-import LendingImg2 from "../assets/lending2.png";
+import LendingImg1 from "../welcome/lending1.png";
+import LendingImg2 from "../welcome/lending2.png";
 import { Link } from "react-router-dom";
 import Logo from "../assets/sopio_logo.svg";
 import { motion } from "framer-motion";
