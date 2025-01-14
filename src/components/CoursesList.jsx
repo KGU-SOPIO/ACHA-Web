@@ -4,11 +4,13 @@ import Priority from "../home/Priority";
 
 function CoursesList() {
   return (
-    <div>
-      <div className="max-w-full overflow-x-hidden py-32 bg-[rgba(245,246,248,1)]">
-        <div className="flex gap-8 max-w-6xl mx-auto my-10 mt-[80px]">
-          <MyCourseList />
-          <Priority />
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-grow bg-[rgba(245,246,248,1)]">
+        <div className="max-w-full overflow-x-hidden py-32 ">
+          <div className="flex gap-8 max-w-6xl mx-auto my-10 mt-[80px]">
+            <MyCourseList />
+            <Priority />
+          </div>
         </div>
       </div>
       <Footer />

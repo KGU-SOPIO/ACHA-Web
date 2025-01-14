@@ -1,7 +1,6 @@
 import { ReactComponent as BookIcon } from "../assets/bookIcon.svg";
 import { ReactComponent as MediaIcon } from "../assets/mediaIcon.svg";
 import { ReactComponent as TaskIcon } from "../assets/task.svg";
-import mockData from "../mocks/courseMock.json";
 
 function WeeklyActivities({ activities }) {
   const sortedWeeks = [...activities].sort(
