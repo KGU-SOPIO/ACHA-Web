@@ -5,10 +5,10 @@ function Input({
   onChange,
   type = "text",
   placeholder,
-  label,
+  label = "",
 }) {
   return (
-    <div className="mb-4 w-full">
+    <div className="mb-[30px] w-full">
       <label
         className="block text-gray-700 text-sm font-bold mb-2"
         htmlFor={id}
@@ -22,7 +22,7 @@ function Input({
         onChange={onChange}
         type={type}
         placeholder={placeholder}
-        className="appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        className="appearance-none border rounded-xl w-full py-[18px] px-[16px] text-gray-700"
       />
     </div>
   );
