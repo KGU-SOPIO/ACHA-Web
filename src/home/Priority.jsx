@@ -1,6 +1,5 @@
 import { formatDate, getDday, parseMockData } from "../utils/utils";
 
-import { ReactComponent as ArrowRight } from "../assets/arrowRight.svg";
 import DdayRenderer from "../home/DdayRenderer";
 import { ReactComponent as LectureIcon } from "../assets/lecture.svg";
 import { ReactComponent as ListIcon } from "../assets/list_task.svg";
