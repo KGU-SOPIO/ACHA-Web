@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Button from "../signup/Button";
 import Footer from "./Footer";
 import Input from "../signup/Input";
 import Loading01 from "./Loading01";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
+import { ReactComponent as Warning } from "../assets/warning.svg";
 
 function Login() {
   const [studentNumber, setStudentNumber] = useState("");
@@ -21,6 +22,10 @@ function Login() {
     const currentId = "202212345";
     const currentPwd = "1234@";
 
+    // setTimeout(() => {
+    //   navigate("/error");
+    //   setIsLoading(false);
+    // }, 3000);
     // 임시 로그인 처리
     setTimeout(() => {
       const isAuthenticated =
@@ -30,9 +35,9 @@ function Login() {
         navigate("/home");
       } else {
         setLoginCheck(true);
-        setIsLoading(false);
       }
-    }, 3000);
+      setIsLoading(false);
+    }, 1000);
   };
 
   return (
@@ -47,9 +52,12 @@ function Login() {
             className="flex flex-col items-center justify-center bg-white rounded-md max-w-[400px] w-full mt-[70px]"
           >
             {loginCheck && (
-              <label className="text-red-400 flex ">
-                학번 또는 비밀번호가 일치하지 않습니다.
-              </label>
+              <div className="flex items-center gap-[8px] border py-[8px] px-[17px] rounded-full mb-[20px]">
+                <Warning className="w-[24px] h-[24px]" />
+                <label className="text-red-500 flex text-[16px]">
+                  학번 또는 비밀번호가 일치하지 않습니다.
+                </label>
+              </div>
             )}
             <Input
               id="studentNumber"
@@ -77,7 +85,7 @@ function Login() {
                 </div>
                 <div className="underline">비밀번호 찾기</div>
               </div>
-              <Button name="시작하기" loginCheck={loginCheck} />
+              <Button name="시작하기" onClick={handleLogin} />
             </div>
             <p>
               아직 회원이 아니신가요?{" "}

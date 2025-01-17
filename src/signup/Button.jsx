@@ -1,7 +1,8 @@
-function Button({ type = "submit", name }) {
+function Button({ type = "submit", name, onClick = {} }) {
   return (
     <div className="w-full  mt-[60px]">
       <button
+        onClick={onClick}
         type={type}
         className="w-full bg-main-blue hover:bg-blue-700 text-white font-bold py-[13px] mb-[70px] rounded-xl focus:outline-none focus:shadow-outline"
       >
