@@ -1,4 +1,3 @@
-import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
 import Button from "../signup/Button";
@@ -7,6 +6,7 @@ import Input from "../signup/Input";
 import Loading01 from "./Loading01";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import { ReactComponent as Warning } from "../assets/warning.svg";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [studentNumber, setStudentNumber] = useState("");
@@ -42,14 +42,14 @@ function Login() {
 
   return (
     <div className="flex flex-col h-screen bg-white">
-      <main className="flex-grow flex flex-col items-center justify-center w-full max-w-md mx-auto py-12">
+      <main className="flex-grow flex flex-col items-center justify-center w-full max-w-md mx-auto py-24">
         <Logo className="w-[80px] h-[84px]" />
         {isLoading ? (
           <Loading01 />
         ) : (
           <form
             onSubmit={handleLogin}
-            className="flex flex-col items-center justify-center bg-white rounded-md max-w-[400px] w-full mt-[70px]"
+            className="flex flex-col items-center justify-center bg-white rounded-md max-w-[400px] w-full"
           >
             {loginCheck && (
               <div className="flex items-center gap-[8px] border py-[8px] px-[17px] rounded-full mb-[20px]">
