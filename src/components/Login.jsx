@@ -74,6 +74,7 @@ function Login() {
               type="password"
               placeholder="비밀번호"
             />
+            {/*로직 구현해야하고 회원테이블에 없을 시 자동으로 회원가입되게 수정해야함*/}
             <div className="w-full">
               <div className="flex justify-between w-full items-center text-[14px]">
                 <div className="flex items-center">
@@ -85,14 +86,9 @@ function Login() {
                 </div>
                 <div className="underline">비밀번호 찾기</div>
               </div>
+
               <Button name="시작하기" onClick={handleLogin} />
             </div>
-            <p>
-              아직 회원이 아니신가요?{" "}
-              <Link to="/signup" className="text-main-blue hover:underline">
-                회원가입
-              </Link>
-            </p>
           </form>
         )}
       </main>
