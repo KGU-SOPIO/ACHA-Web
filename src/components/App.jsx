@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import CourseNotice from "../courses/CourseNotice";
 import Courses from "../courses/Courses";
 import CoursesList from "./CoursesList";
+import ErrorPage from "./ErrorPage";
 import Home from "./Home";
 import Login from "./Login";
 import MyPage from "./MyPage";
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="*" element={<Navigate to="/home" replace />} />
+        <Route path="/error" element={<ErrorPage />} />
       </Routes>
     </div>
   );
