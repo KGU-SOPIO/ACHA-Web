@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 import Button from "../signup/Button";
+import ConsentInformationModal from "../signup/ConsentInformationModal";
 import Footer from "./Footer";
 import Input from "../signup/Input";
-import { Link } from "react-router-dom";
 import Loading01 from "./Loading01";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
+import SignupSuccess from "../signup/SignupSuccess";
 
 function SignUp() {
   const [userInfo, setUserInfo] = useState({
@@ -14,9 +15,13 @@ function SignUp() {
     department: "",
     major: "",
   });
-
+  const [isConsentModalOpen, setIsConsentModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSignUpComplete, setIsSignUpComplete] = useState(false);
 
+  const toggleConsentModal = () => {
+    setIsConsentModalOpen((prev) => !prev);
+  };
   const handleChange = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -27,10 +32,23 @@ function SignUp() {
     }));
   };
 
+  const handleSignUpComplete = () => {
+    setIsConsentModalOpen(false);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSignUpComplete(true);
+    }, 1000);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userInfo);
   };
+
+  if (isSignUpComplete) {
+    return <SignupSuccess />;
+  }
 
   return (
     <div className="flex flex-col h-screen bg-white">
@@ -75,7 +93,13 @@ function SignUp() {
               placeholder="전공"
               label="전공"
             />
-            <Button name="다음" />
+            <Button name="다음" onClick={toggleConsentModal} />
+            {isConsentModalOpen && (
+              <ConsentInformationModal
+                onClose={toggleConsentModal}
+                onAgree={handleSignUpComplete}
+              />
+            )}
           </form>
         )}
       </main>
