@@ -52,7 +52,7 @@ function Login() {
             className="flex flex-col items-center justify-center bg-white rounded-md max-w-[400px] w-full"
           >
             {loginCheck && (
-              <div className="flex items-center gap-[8px] border py-[8px] px-[17px] rounded-full mb-[20px]">
+              <div className="flex items-center gap-[8px] border py-[8px] px-[17px] rounded-full mb-[20px] mt-[30px]">
                 <Warning className="w-[24px] h-[24px]" />
                 <label className="text-red-500 flex text-[16px]">
                   학번 또는 비밀번호가 일치하지 않습니다.
