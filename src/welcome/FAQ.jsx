@@ -5,12 +5,12 @@ import faqData from "../mocks/faqData.json";
 
 function FAQ() {
   const [data, setData] = useState([]);
-  const [openIndices, setOpenIndices] = useState({}); // 각 항목의 상태를 객체로 관리
+  const [openIndices, setOpenIndices] = useState({});
 
   const toggleAnswer = (index) => {
     setOpenIndices((prev) => ({
       ...prev,
-      [index]: !prev[index], // 현재 상태를 반전
+      [index]: !prev[index],
     }));
   };
 
@@ -50,7 +50,7 @@ function FAQ() {
               <div
                 className="overflow-hidden px-[25px] pb-[25px]"
                 style={{
-                  maxHeight: openIndices[index] ? "500px" : "0", // 500px은 답변의 최대 높이를 의미. 필요에 맞게 조정
+                  maxHeight: openIndices[index] ? "500px" : "0",
                 }}
               >
                 <p className="text-lg pt-4">{item.answer}</p>

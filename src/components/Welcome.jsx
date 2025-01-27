@@ -9,11 +9,12 @@ import { motion } from "framer-motion";
 
 function Welcome() {
   return (
-    <div className="h-screen snap-y snap-mandatory overflow-y-scroll">
-      {/* Hero Section */}
-      <section className="h-screen snap-start flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-6xl text-[74px] font-bold mb-[182px]">Acha!</h1>
+    <>
+      <div className="flex flex-col items-center justify-center ">
+        <div className="mb-[296px]">
+          <h1 className="text-6xl text-[74px] font-bold mb-[182px] mt-[227px]">
+            Acha!
+          </h1>
           <Link
             to="/login"
             className="text-white bg-main-blue px-12 py-4 rounded-md hover:bg-blue-600"
@@ -21,11 +22,9 @@ function Welcome() {
             Start Right Now
           </Link>
         </div>
-      </section>
 
-      {/* Section 1 */}
-      <section className="h-screen snap-start flex items-center justify-center">
-        <div className="flex items-center w-full max-w-6xl mx-auto">
+        {/*세션1*/}
+        <div className="flex items-center w-full max-w-6xl mx-auto mb-[232px]">
           <motion.div
             className="flex-1 text-left"
             initial={{ x: -100, opacity: 0 }}
@@ -37,11 +36,9 @@ function Welcome() {
               x: { duration: 1 },
             }}
           >
-            <div className="flex">
-              <h1 className="text-4xl font-bold mb-4">너&nbsp;</h1>
-              <h1 className="text-4xl font-bold mb-4 text-main-blue">
-                과제제출함?
-              </h1>
+            <div className="flex text-[48px] font-bold">
+              <h1>너&nbsp;</h1>
+              <h1 className="text-main-blue">과제제출함?</h1>
             </div>
           </motion.div>
           <motion.div
@@ -58,11 +55,9 @@ function Welcome() {
             />
           </motion.div>
         </div>
-      </section>
 
-      {/* Section 2 */}
-      <section className="h-screen snap-start flex items-center justify-center">
-        <div className="flex items-center w-full max-w-6xl mx-auto">
+        {/*세션2*/}
+        <div className="flex items-center w-full max-w-6xl mx-auto mb-[226px]">
           <motion.div
             className="flex-1 text-left"
             initial={{ x: -100, opacity: 0 }}
@@ -91,19 +86,17 @@ function Welcome() {
               x: { duration: 1 },
             }}
           >
-            <div>
-              <h1 className="text-4xl font-bold mb-4">곧 다가올 마감일,</h1>
-              <h1 className="text-4xl font-bold mb-4 text-main-blue justify-end flex">
+            <div className="text-[48px] font-bold">
+              <h1>곧 다가올 마감일,</h1>
+              <h1 className="text-main-blue justify-end flex">
                 놓치지 마세요!
               </h1>
             </div>
           </motion.div>
         </div>
-      </section>
 
-      {/* Section 3 */}
-      <section className="h-screen snap-start flex items-center justify-center">
-        <div className="flex items-center w-full max-w-6xl mx-auto">
+        {/*세션3*/}
+        <div className="flex items-center w-full max-w-6xl mx-auto mb-[236px]">
           <motion.div
             className="flex-1 text-left"
             initial={{ x: -100, opacity: 0 }}
@@ -115,11 +108,9 @@ function Welcome() {
               x: { duration: 1 },
             }}
           >
-            <div>
-              <h1 className="text-4xl font-bold mb-4">"해야지" 생각하고</h1>
-              <h1 className="text-4xl font-bold mb-4 text-main-blue">
-                잊어버리시진 않으셨나요?
-              </h1>
+            <div className="text-[48px] font-bold">
+              <h1>"해야지" 생각하고</h1>
+              <h1 className=" text-main-blue">잊어버리시진 않으셨나요?</h1>
             </div>
           </motion.div>
           <motion.div
@@ -140,23 +131,15 @@ function Welcome() {
             />
           </motion.div>
         </div>
-      </section>
-
-      {/* Image Slide Section */}
-      <section className="h-screen snap-start flex flex-col items-center justify-center">
-        <ImageSlide />
-      </section>
-
-      {/* FAQ Section */}
-      <section className="min-h-screen snap-start flex flex-col items-center justify-center">
-        <div className="w-full">
+        <div className="mb-[200px]">
+          <ImageSlide />
+        </div>
+        <div className="flex w-full mb-[179px]">
           <FAQ />
         </div>
-      </section>
-
-      {/* Footer */}
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 
