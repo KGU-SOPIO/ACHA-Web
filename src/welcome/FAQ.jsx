@@ -5,14 +5,13 @@ import faqData from "../mocks/faqData.json";
 
 function FAQ() {
   const [data, setData] = useState([]);
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndices, setOpenIndices] = useState({}); // 각 항목의 상태를 객체로 관리
 
   const toggleAnswer = (index) => {
-    if (openIndex === index) {
-      setOpenIndex(null);
-    } else {
-      setOpenIndex(index);
-    }
+    setOpenIndices((prev) => ({
+      ...prev,
+      [index]: !prev[index], // 현재 상태를 반전
+    }));
   };
 
   useEffect(() => {
@@ -31,7 +30,7 @@ function FAQ() {
           <div
             key={index}
             className={`transition-all duration-300 ease-in-out border rounded-xl ${
-              openIndex === index ? "border-t" : ""
+              openIndices[index] ? "border-t" : ""
             }`}
           >
             <div
@@ -43,15 +42,15 @@ function FAQ() {
             >
               <h3 className="text-2xl font-semibold">{item.question}</h3>
               <span className="ml-2 text-xl w-[30px] h-[30px]">
-                {openIndex === index ? <AiOutlineUp /> : <AiOutlineDown />}
+                {openIndices[index] ? <AiOutlineUp /> : <AiOutlineDown />}
               </span>
             </div>
 
-            {openIndex === index && (
+            {openIndices[index] && (
               <div
                 className="overflow-hidden px-[25px] pb-[25px]"
                 style={{
-                  maxHeight: openIndex === index ? "500px" : "0", // 500px은 답변의 최대 높이를 의미. 필요에 맞게 조정
+                  maxHeight: openIndices[index] ? "500px" : "0", // 500px은 답변의 최대 높이를 의미. 필요에 맞게 조정
                 }}
               >
                 <p className="text-lg pt-4">{item.answer}</p>

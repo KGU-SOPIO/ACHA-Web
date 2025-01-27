@@ -9,12 +9,11 @@ import { motion } from "framer-motion";
 
 function Welcome() {
   return (
-    <>
-      <div className="flex flex-col items-center justify-center ">
-        <div className="mb-[296px]">
-          <h1 className="text-6xl text-[74px] font-bold mb-[182px] mt-[227px]">
-            Acha!
-          </h1>
+    <div className="h-screen snap-y snap-mandatory overflow-y-scroll">
+      {/* Hero Section */}
+      <section className="h-screen snap-start flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-6xl text-[74px] font-bold mb-[182px]">Acha!</h1>
           <Link
             to="/login"
             className="text-white bg-main-blue px-12 py-4 rounded-md hover:bg-blue-600"
@@ -22,9 +21,11 @@ function Welcome() {
             Start Right Now
           </Link>
         </div>
+      </section>
 
-        {/*세션1*/}
-        <div className="flex items-center w-full max-w-6xl mx-auto mb-[232px]">
+      {/* Section 1 */}
+      <section className="h-screen snap-start flex items-center justify-center">
+        <div className="flex items-center w-full max-w-6xl mx-auto">
           <motion.div
             className="flex-1 text-left"
             initial={{ x: -100, opacity: 0 }}
@@ -57,9 +58,11 @@ function Welcome() {
             />
           </motion.div>
         </div>
+      </section>
 
-        {/*세션2*/}
-        <div className="flex items-center w-full max-w-6xl mx-auto mb-[226px]">
+      {/* Section 2 */}
+      <section className="h-screen snap-start flex items-center justify-center">
+        <div className="flex items-center w-full max-w-6xl mx-auto">
           <motion.div
             className="flex-1 text-left"
             initial={{ x: -100, opacity: 0 }}
@@ -96,9 +99,11 @@ function Welcome() {
             </div>
           </motion.div>
         </div>
+      </section>
 
-        {/*세션3*/}
-        <div className="flex items-center w-full max-w-6xl mx-auto mb-[236px]">
+      {/* Section 3 */}
+      <section className="h-screen snap-start flex items-center justify-center">
+        <div className="flex items-center w-full max-w-6xl mx-auto">
           <motion.div
             className="flex-1 text-left"
             initial={{ x: -100, opacity: 0 }}
@@ -135,15 +140,23 @@ function Welcome() {
             />
           </motion.div>
         </div>
-        <div className="mb-[200px]">
-          <ImageSlide />
-        </div>
-        <div className="flex w-full mb-[179px]">
+      </section>
+
+      {/* Image Slide Section */}
+      <section className="h-screen snap-start flex flex-col items-center justify-center">
+        <ImageSlide />
+      </section>
+
+      {/* FAQ Section */}
+      <section className="min-h-screen snap-start flex flex-col items-center justify-center">
+        <div className="w-full">
           <FAQ />
         </div>
-      </div>
+      </section>
+
+      {/* Footer */}
       <Footer />
-    </>
+    </div>
   );
 }
 
