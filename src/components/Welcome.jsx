@@ -11,15 +11,15 @@ function Welcome() {
   return (
     <>
       <div className="flex flex-col items-center justify-center ">
-        <div className="mb-[296px]">
+        <div className="mb-[346px]">
           <h1 className="text-6xl text-[74px] font-bold mb-[182px] mt-[227px]">
             Acha!
           </h1>
           <Link
             to="/login"
-            className="text-white bg-main-blue px-12 py-4 rounded-md hover:bg-blue-600"
+            className="text-white text-[16px] bg-main-blue px-12 py-4 rounded-md hover:bg-blue-600"
           >
-            Start Right Now
+            지금 바로 시작하기!
           </Link>
         </div>
 
