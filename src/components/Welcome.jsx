@@ -11,15 +11,15 @@ function Welcome() {
   return (
     <>
       <div className="flex flex-col items-center justify-center ">
-        <div className="mb-[296px]">
+        <div className="mb-[346px]">
           <h1 className="text-6xl text-[74px] font-bold mb-[182px] mt-[227px]">
             Acha!
           </h1>
           <Link
             to="/login"
-            className="text-white bg-main-blue px-12 py-4 rounded-md hover:bg-blue-600"
+            className="text-white text-[16px] bg-main-blue px-12 py-4 rounded-md hover:bg-blue-600"
           >
-            Start Right Now
+            지금 바로 시작하기!
           </Link>
         </div>
 
@@ -36,11 +36,9 @@ function Welcome() {
               x: { duration: 1 },
             }}
           >
-            <div className="flex">
-              <h1 className="text-4xl font-bold mb-4">너&nbsp;</h1>
-              <h1 className="text-4xl font-bold mb-4 text-main-blue">
-                과제제출함?
-              </h1>
+            <div className="flex text-[48px] font-bold">
+              <h1>너&nbsp;</h1>
+              <h1 className="text-main-blue">과제제출함?</h1>
             </div>
           </motion.div>
           <motion.div
@@ -88,9 +86,9 @@ function Welcome() {
               x: { duration: 1 },
             }}
           >
-            <div>
-              <h1 className="text-4xl font-bold mb-4">곧 다가올 마감일,</h1>
-              <h1 className="text-4xl font-bold mb-4 text-main-blue justify-end flex">
+            <div className="text-[48px] font-bold">
+              <h1>곧 다가올 마감일,</h1>
+              <h1 className="text-main-blue justify-end flex">
                 놓치지 마세요!
               </h1>
             </div>
@@ -110,11 +108,9 @@ function Welcome() {
               x: { duration: 1 },
             }}
           >
-            <div>
-              <h1 className="text-4xl font-bold mb-4">"해야지" 생각하고</h1>
-              <h1 className="text-4xl font-bold mb-4 text-main-blue">
-                잊어버리시진 않으셨나요?
-              </h1>
+            <div className="text-[48px] font-bold">
+              <h1>"해야지" 생각하고</h1>
+              <h1 className=" text-main-blue">잊어버리시진 않으셨나요?</h1>
             </div>
           </motion.div>
           <motion.div
