@@ -59,9 +59,9 @@ const About = () => {
               {DeveloperData.map((member) => (
                 <div
                   key={member.id}
-                  className="border border-gray-200 rounded-lg p-4 flex flex-col items-center w-full text-[14px]"
+                  className="border border-gray-200 rounded-xl px-[22px] py-[19px] flex flex-col items-center w-full text-[14px]"
                 >
-                  <div className="w-full flex justify-between items-center mb-[16px]">
+                  <div className="w-full flex justify-between items-center mb-[16px] font-medium">
                     <h3 className="text-[20px]">{member.name}</h3>
                     <p className="text-main-blue bg-blue-100 px-[12px] py-[6px] rounded-2xl">
                       {member.department}
