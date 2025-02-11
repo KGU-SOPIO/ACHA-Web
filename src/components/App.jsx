@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
+import About from "./About";
 import CourseNotice from "../courses/CourseNotice";
 import Courses from "../courses/Courses";
 import CoursesList from "./CoursesList";
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/courses" element={<CoursesList />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<Navigate to="/home" replace />} />
         <Route path="/error" element={<ErrorPage />} />
       </Routes>
