@@ -6,6 +6,7 @@ import App from "./components/App";
 import AuthErrorPage from "./login/AuthErrorPage";
 import Landing from "./components/Landing";
 import Login from "./components/Login";
+import NotFoundPage from "./components/NotFoundPage";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import SignUp from "./components/SignUp";
@@ -18,6 +19,7 @@ root.render(
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/LoginError" element={<AuthErrorPage />} />
+      <Route path="/not-found" element={<NotFoundPage />} />
       <Route path="/*" element={<App />} />
     </Routes>
   </Router>

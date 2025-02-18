@@ -9,6 +9,7 @@ import Home from "./Home";
 import Login from "./Login";
 import MyPage from "./MyPage";
 import Nav from "../Nav";
+import NotFoundPage from "./NotFoundPage";
 import React from "react";
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/LoginError" element={<AuthErrorPage />} />
-        <Route path="*" element={<Navigate to="/home" replace />} />
+        <Route path="*" element={<Navigate to="/not-found" replace />} />
       </Routes>
     </div>
   );
