@@ -64,7 +64,7 @@ const Nav = () => {
             </div>
             <div
               onClick={toggleMypageModal}
-              className="bg-[rgba(189,210,242,1)] rounded-full p-[8px]"
+              className="bg-[rgba(199,220,252,1)] rounded-full p-[8px]"
             >
               <MyIcon />
             </div>

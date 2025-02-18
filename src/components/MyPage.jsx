@@ -8,39 +8,35 @@ import { useState } from "react";
 
 function MyPage({ onClose }) {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [modalState, setModalState] = useState({
+    isDeleteModalOpen: false,
+    isLogoutModalOpen: false,
+  });
+
+  const openModal = (type) => {
+    setModalState((prev) => ({ ...prev, [type]: true }));
+  };
+
+  const closeModal = (type) => {
+    onClose();
+    setModalState((prev) => ({ ...prev, [type]: false }));
+  };
 
   const handleClick = (path) => {
     navigate(path);
     onClose();
   };
 
-  const handleDeleteAccount = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   const confirmDelete = () => {
     alert("계정이 삭제되었습니다.");
     closeModal();
-  };
-
-  const handleLogout = () => {
-    setIsLogoutModalOpen(true);
-  };
-
-  const closeLogoutModal = () => {
-    setIsLogoutModalOpen(false);
+    navigate("/");
   };
 
   const confirmLogout = () => {
     alert("로그아웃되었습니다.");
-    closeLogoutModal();
-    navigate("/login");
+    closeModal();
+    navigate("/");
   };
 
   return (
@@ -54,24 +50,24 @@ function MyPage({ onClose }) {
           About
         </div>
         <div
-          onClick={handleLogout}
+          onClick={() => openModal("isLogoutModalOpen")}
           className="cursor-pointer hover:bg-gray-100 rounded-md"
         >
           로그아웃
         </div>
         <div
-          onClick={handleDeleteAccount}
+          onClick={() => openModal("isDeleteModalOpen")}
           className="text-red-500 cursor-pointer hover:bg-gray-100"
         >
           계정삭제
         </div>
       </div>
-      {isModalOpen && (
+      {modalState.isDeleteModalOpen && (
         <Modal
           icon={trashIcon}
           title="계정 삭제"
           description="사용자의 정보는 안전하게 삭제됩니다."
-          onCancel={closeModal}
+          onCancel={() => closeModal("isDeleteModalOpen")}
           onConfirm={confirmDelete}
           name="삭제"
           iconBackground="bg-red-100"
@@ -90,11 +86,11 @@ function MyPage({ onClose }) {
         </Modal>
       )}
 
-      {isLogoutModalOpen && (
+      {modalState.isLogoutModalOpen && (
         <Modal
           icon={logoutIcon}
           title="로그아웃 할까요?"
-          onCancel={closeLogoutModal}
+          onCancel={() => closeModal("isLogoutModalOpen")}
           onConfirm={confirmLogout}
           name="로그아웃"
           iconBackground="bg-blue-100"
