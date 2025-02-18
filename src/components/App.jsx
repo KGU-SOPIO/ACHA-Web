@@ -9,7 +9,6 @@ import Home from "./Home";
 import Login from "./Login";
 import MyPage from "./MyPage";
 import Nav from "../Nav";
-import Notifications from "./Notifications";
 import React from "react";
 
 const App = () => {
@@ -22,7 +21,6 @@ const App = () => {
         <Route path="/courses/:courseCode" element={<Courses />} />
         <Route path="/courses/:courseCode/notices" element={<CourseNotice />} />
         <Route path="/courses" element={<CoursesList />} />
-        <Route path="/notifications" element={<Notifications />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<Navigate to="/home" replace />} />
