@@ -3,7 +3,7 @@ import "./index.css";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import App from "./components/App";
-import ErrorPage from "./login/AuthErrorPage";
+import AuthErrorPage from "./login/AuthErrorPage";
 import Landing from "./components/Landing";
 import Login from "./components/Login";
 import React from "react";
@@ -17,7 +17,7 @@ root.render(
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/error" element={<ErrorPage />} />
+      <Route path="/LoginError" element={<AuthErrorPage />} />
       <Route path="/*" element={<App />} />
     </Routes>
   </Router>

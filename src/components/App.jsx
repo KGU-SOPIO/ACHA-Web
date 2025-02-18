@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import About from "./About";
+import AuthErrorPage from "../login/AuthErrorPage";
 import CourseNotice from "../courses/CourseNotice";
 import Courses from "../courses/Courses";
 import CoursesList from "./CoursesList";
-import ErrorPage from "../login/AuthErrorPage";
 import Home from "./Home";
 import Login from "./Login";
 import MyPage from "./MyPage";
@@ -23,8 +23,8 @@ const App = () => {
         <Route path="/courses" element={<CoursesList />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/about" element={<About />} />
+        <Route path="/LoginError" element={<AuthErrorPage />} />
         <Route path="*" element={<Navigate to="/home" replace />} />
-        <Route path="/error" element={<ErrorPage />} />
       </Routes>
     </div>
   );
