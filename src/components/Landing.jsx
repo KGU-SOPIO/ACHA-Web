@@ -1,6 +1,6 @@
-import FAQ from "../welcome/FAQ";
+import FAQ from "../landing/FAQ";
 import Footer from "./Footer";
-import ImageSlide from "../welcome/ImageSlide";
+import ImageSlide from "../landing/ImageSlide";
 import LendingImg1 from "../assets/lending1.png";
 import LendingImg2 from "../assets/lending2.png";
 import { Link } from "react-router-dom";

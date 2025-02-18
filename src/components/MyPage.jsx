@@ -1,11 +1,42 @@
+import Input from "../signup/Input";
+import Modal from "../mypage/Modal";
+import checkIcon from "../mypage/check.png";
+import logoutIcon from "../mypage/logout.svg";
+import trashIcon from "../mypage/trash.svg";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function MyPage({ onClose }) {
   const navigate = useNavigate();
+  const [modalState, setModalState] = useState({
+    isDeleteModalOpen: false,
+    isLogoutModalOpen: false,
+  });
+
+  const openModal = (type) => {
+    setModalState((prev) => ({ ...prev, [type]: true }));
+  };
+
+  const closeModal = (type) => {
+    onClose();
+    setModalState((prev) => ({ ...prev, [type]: false }));
+  };
 
   const handleClick = (path) => {
     navigate(path);
     onClose();
+  };
+
+  const confirmDelete = () => {
+    alert("계정이 삭제되었습니다.");
+    closeModal();
+    navigate("/");
+  };
+
+  const confirmLogout = () => {
+    alert("로그아웃되었습니다.");
+    closeModal();
+    navigate("/");
   };
 
   return (
@@ -19,18 +50,62 @@ function MyPage({ onClose }) {
           About
         </div>
         <div
-          onClick={onClose}
+          onClick={() => openModal("isLogoutModalOpen")}
           className="cursor-pointer hover:bg-gray-100 rounded-md"
         >
           로그아웃
         </div>
         <div
-          onClick={onClose}
+          onClick={() => openModal("isDeleteModalOpen")}
           className="text-red-500 cursor-pointer hover:bg-gray-100"
         >
-          탈퇴하기
+          계정삭제
         </div>
       </div>
+      {modalState.isDeleteModalOpen && (
+        <Modal
+          icon={trashIcon}
+          title="계정 삭제"
+          description="사용자의 정보는 안전하게 삭제됩니다."
+          onCancel={() => closeModal("isDeleteModalOpen")}
+          onConfirm={confirmDelete}
+          name="삭제"
+          iconBackground="bg-red-100"
+          confirmButtonColor="bg-red-500"
+          margin="mt-[36px]"
+        >
+          <p className="mb-[18px] flex justify-center font-medium">
+            비밀번호 확인
+          </p>
+          <Input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="비밀번호 입력"
+          />
+        </Modal>
+      )}
+
+      {modalState.isLogoutModalOpen && (
+        <Modal
+          icon={logoutIcon}
+          title="로그아웃 할까요?"
+          onCancel={() => closeModal("isLogoutModalOpen")}
+          onConfirm={confirmLogout}
+          name="로그아웃"
+          iconBackground="bg-blue-100"
+          confirmButtonColor="bg-main-blue"
+        >
+          <div className="flex justify-center itemx-center gap-[9px]">
+            <p>기기 정보들은 안전하게 삭제돼요</p>
+            <img
+              src={checkIcon}
+              alt="Check Icon"
+              className="w-[20px] h-[20px] mt-[2px]"
+            />
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }
