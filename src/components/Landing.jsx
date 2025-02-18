@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/sopio_logo.svg";
 import { motion } from "framer-motion";
 
-function Welcome() {
+function Landing() {
   return (
     <>
       <div className="flex flex-col items-center justify-center ">
@@ -143,4 +143,4 @@ function Welcome() {
   );
 }
 
-export default Welcome;
+export default Landing;
