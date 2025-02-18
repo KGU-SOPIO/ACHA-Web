@@ -4,7 +4,7 @@ import About from "./About";
 import CourseNotice from "../courses/CourseNotice";
 import Courses from "../courses/Courses";
 import CoursesList from "./CoursesList";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "../login/AuthErrorPage";
 import Home from "./Home";
 import Login from "./Login";
 import MyPage from "./MyPage";

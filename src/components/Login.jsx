@@ -27,6 +27,7 @@ function Login() {
     //   setIsLoading(false);
     // }, 3000);
     // 임시 로그인 처리
+
     setTimeout(() => {
       const isAuthenticated =
         studentNumber === currentId && password === currentPwd; // 인증 로직
@@ -43,7 +44,7 @@ function Login() {
   return (
     <div className="flex flex-col h-screen bg-white">
       <main className="flex-grow flex flex-col items-center justify-center w-full max-w-md mx-auto py-24">
-        <Logo className="w-[80px] h-[84px]" />
+        <Logo className="w-[80px] h-[84px] mb-[70px]" />
         {isLoading ? (
           <Loading01 />
         ) : (
@@ -52,7 +53,7 @@ function Login() {
             className="flex flex-col items-center justify-center bg-white rounded-md max-w-[400px] w-full"
           >
             {loginCheck && (
-              <div className="flex items-center gap-[8px] border py-[8px] px-[17px] rounded-full mb-[20px] mt-[30px]">
+              <div className="flex items-center gap-[8px] border py-[8px] px-[17px] rounded-full mb-[20px] ">
                 <Warning className="w-[24px] h-[24px]" />
                 <label className="text-red-500 flex text-[16px]">
                   학번 또는 비밀번호가 일치하지 않습니다.

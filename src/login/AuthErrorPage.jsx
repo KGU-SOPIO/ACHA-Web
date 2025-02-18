@@ -1,10 +1,10 @@
 import Button from "../signup/Button";
 import { ReactComponent as ErrorIcon } from "../assets/stop-sign.svg";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import { useNavigate } from "react-router-dom";
 
-function ErrorPage() {
+function AuthErrorPage() {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -32,4 +32,4 @@ function ErrorPage() {
   );
 }
 
-export default ErrorPage;
+export default AuthErrorPage;
