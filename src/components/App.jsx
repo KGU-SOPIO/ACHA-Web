@@ -9,7 +9,6 @@ import Home from "./Home";
 import Login from "./Login";
 import MyPage from "./MyPage";
 import Nav from "../Nav";
-import NotFoundPage from "./NotFoundPage";
 import React from "react";
 
 const App = () => {

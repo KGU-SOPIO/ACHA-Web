@@ -24,13 +24,6 @@ function UserSettings() {
             </p>
           </div>
         </div>
-        <a
-          href="/mypage"
-          aria-label="마이페이지로 이동"
-          className="text-gray-400 hover:text-gray-900"
-        >
-          <ArrowRight className="text-gray-300 w-6 h-6" />
-        </a>
 
         {/* 구분선 */}
         <div className="border-l-2 border-gray-300 h-12 mx-8"></div>
