@@ -7,24 +7,32 @@ import Input from "../signup/Input";
 import Loading01 from "./Loading01";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import SignupSuccess from "../signup/SignupSuccess";
+import { signup } from "../api/authApi.js";
+import { useLocation } from "react-router-dom";
 
 function SignUp() {
+  const location = useLocation();
+
+  const studentData = location.state || {};
   const [userInfo, setUserInfo] = useState({
-    name: "",
-    studentNumber: "",
-    department: "",
-    major: "",
+    studentId: "",
+    password: "",
+    name: studentData.name || "",
+    college: studentData.college || "",
+    department: studentData.department || "",
+    major: studentData.major || "",
   });
+
   const [isConsentModalOpen, setIsConsentModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUpComplete, setIsSignUpComplete] = useState(false);
+  const [error, setError] = useState("");
 
   const toggleConsentModal = () => {
     setIsConsentModalOpen((prev) => !prev);
   };
+
   const handleChange = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
     const { name, value } = e.target;
     setUserInfo((prevInfo) => ({
       ...prevInfo,
@@ -32,13 +40,19 @@ function SignUp() {
     }));
   };
 
-  const handleSignUpComplete = () => {
+  const handleSignUpComplete = async () => {
     setIsConsentModalOpen(false);
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
+    setError("");
+
+    try {
+      await signup(userInfo);
       setIsSignUpComplete(true);
-    }, 1000);
+    } catch (error) {
+      setError(error.message || "회원가입 중 오류가 발생했습니다.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -68,14 +82,16 @@ function SignUp() {
               onChange={handleChange}
               placeholder="이름"
               label="이름"
+              disabled
             />
             <Input
-              id="studentNumber"
-              name="studentNumber"
-              value={userInfo.studentNumber}
+              id="college"
+              name="college"
+              value={userInfo.college}
               onChange={handleChange}
-              placeholder="학번"
-              label="학번"
+              placeholder="단과대학"
+              label="단과대학"
+              disabled
             />
             <Input
               id="department"
@@ -84,14 +100,33 @@ function SignUp() {
               onChange={handleChange}
               placeholder="학부"
               label="학부"
+              disabled
             />
             <Input
               id="major"
               name="major"
-              value={userInfo.major}
+              value={userInfo.major || ""}
               onChange={handleChange}
-              placeholder="전공"
+              placeholder="-"
               label="전공"
+              disabled
+            />
+            <Input
+              id="studentId"
+              name="studentId"
+              value={userInfo.studentId}
+              onChange={handleChange}
+              placeholder="학번"
+              label="학번"
+            />
+            <Input
+              id="password"
+              name="password"
+              value={userInfo.password}
+              onChange={handleChange}
+              type="password"
+              placeholder="비밀번호"
+              label="비밀번호"
             />
             <Button name="다음" onClick={toggleConsentModal} />
             {isConsentModalOpen && (
