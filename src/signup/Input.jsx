@@ -6,6 +6,7 @@ function Input({
   type = "text",
   placeholder,
   label = "",
+  disabled = false,
 }) {
   return (
     <div className="mb-[30px] w-full">
@@ -23,6 +24,7 @@ function Input({
         type={type}
         placeholder={placeholder}
         className="appearance-none border rounded-xl w-full py-[18px] px-[16px] text-gray-700"
+        disabled={disabled}
       />
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { fetchMemberData, login } from "../api/authApi.js";
 
 import Button from "../signup/Button";
 import Footer from "./Footer";
@@ -9,36 +10,60 @@ import { ReactComponent as Warning } from "../assets/warning.svg";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [studentNumber, setStudentNumber] = useState("");
+  const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
   const [loginCheck, setLoginCheck] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const currentId = "202212345";
-    const currentPwd = "1234@";
+    setLoginCheck(false);
 
-    // setTimeout(() => {
-    //   navigate("/error");
-    //   setIsLoading(false);
-    // }, 3000);
-    // 임시 로그인 처리
+    try {
+      const result = await login(studentId, password);
 
-    setTimeout(() => {
-      const isAuthenticated =
-        studentNumber === currentId && password === currentPwd; // 인증 로직
-      if (isAuthenticated) {
-        setLoginCheck(false);
-        navigate("/home");
-      } else {
-        setLoginCheck(true);
+      if (!result.success) {
+        // 2-2. 학번, 비번으로 학생 정보 요청
+        const memberData = await fetchMemberData(studentId, password);
+        console.log("회원정보: ", memberData);
+        // 2-3. 회원가입 인풋에서 보여주기 위해 데이터 전달
+        navigate("/signup", { state: memberData });
+        return;
       }
+
+      navigate("/home");
+    } catch (error) {
+      console.error("로그인 에러:", error);
+      if (error.code === "MEMBER_NOT_FOUND") {
+        try {
+          // 2-2. 학번, 비번으로 학생 정보 요청
+          const memberData = await fetchMemberData(studentId, password);
+
+          // 2-3. 회원가입 인풋에서 보여주기 위해 데이터 전달
+          navigate("/signup", { state: memberData });
+          return;
+        } catch (fetchError) {
+          console.error("학생 정보 요청 실패:", fetchError);
+        }
+      }
+      setLoginCheck(true);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
+  };
+
+  const handleStudentIdChange = (e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setStudentId(value);
+      setError("");
+    } else {
+      setError("학번에는 숫자만 입력 가능합니다.");
+    }
   };
 
   return (
@@ -60,11 +85,17 @@ function Login() {
                 </label>
               </div>
             )}
+            {error && (
+              <div className="flex items-center gap-[8px] border py-[8px] px-[17px] rounded-full mb-[20px] ">
+                <Warning className="w-[24px] h-[24px]" />
+                <label className="text-red-500 flex text-[16px]">{error}</label>
+              </div>
+            )}
             <Input
-              id="studentNumber"
-              name="studentNumber"
-              value={studentNumber}
-              onChange={(e) => setStudentNumber(e.target.value)}
+              id="studentId"
+              name="studentId"
+              value={studentId}
+              onChange={handleStudentIdChange}
               placeholder="학번"
             />
             <Input
@@ -75,7 +106,6 @@ function Login() {
               type="password"
               placeholder="비밀번호"
             />
-            {/*로직 구현해야하고 회원테이블에 없을 시 자동으로 회원가입되게 수정해야함*/}
             <div className="w-full">
               <div className="flex justify-between w-full items-center text-[14px]">
                 <div className="flex items-center">
