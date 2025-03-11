@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { fetchMemberData, login, signup } from "../api/authApi.js";
-import { useLocation, useNavigate } from "react-router-dom";
 
 import Button from "../signup/Button";
 import ConsentInformationModal from "../signup/ConsentInformationModal";
@@ -10,9 +9,9 @@ import Loading01 from "./Loading01";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import SignupSuccess from "../signup/SignupSuccess";
 import { ReactComponent as Warning } from "../assets/warning.svg";
+import { useLocation } from "react-router-dom";
 
 function SignUp() {
-  const navigate = useNavigate();
   const location = useLocation();
   const studentData = location.state || {};
 
@@ -29,14 +28,6 @@ function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUpComplete, setIsSignUpComplete] = useState(false);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    const signUpCompleted = localStorage.getItem("isSignUpComplete");
-    if (signUpCompleted === "true") {
-      alert("이미 아차서비스의 회원이십니다.");
-      navigate("/login");
-    }
-  }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,24 +62,40 @@ function SignUp() {
 
     try {
       const result = await login(userInfo.studentId, userInfo.password);
+
       if (!result.success) {
         const memberData = await fetchMemberData(
           userInfo.studentId,
           userInfo.password
         );
         console.log("회원정보: ", memberData);
-        if (
-          studentData.name !== memberData.name ||
-          studentData.college !== memberData.college ||
-          studentData.department !== memberData.department ||
-          studentData.major !== memberData.major
-        ) {
-          setError("로그인한 정보와 회원가입 정보가 일치하지 않습니다.");
-          setIsLoading(false);
-          return;
-        }
+        setIsLoading(false);
         setIsConsentModalOpen(true);
+        return;
       }
+
+      const memberData = await fetchMemberData(
+        userInfo.studentId,
+        userInfo.password
+      );
+      console.log("로그인한 유저 정보: ", memberData);
+      if (
+        studentData.name !== memberData.name ||
+        studentData.college !== memberData.college ||
+        studentData.department !== memberData.department ||
+        studentData.major !== memberData.major
+      ) {
+        setError("로그인한 정보와 회원가입 정보가 일치하지 않습니다.");
+        setIsLoading(false);
+        return;
+      }
+      if (memberData.isRegistered) {
+        setError("이미 아차서비스 회원입니다.");
+        setIsLoading(false);
+        return;
+      }
+
+      setIsConsentModalOpen(true);
     } catch (error) {
       console.error("로그인 에러:", error);
       if (error.code === "MEMBER_NOT_FOUND") {
@@ -112,7 +119,6 @@ function SignUp() {
     try {
       await signup({ ...userInfo });
       setIsSignUpComplete(true);
-      localStorage.setItem("isSignUpComplete", "true");
     } catch (error) {
       setError(error.message || "회원가입 중 오류가 발생했습니다.");
     } finally {
@@ -140,7 +146,7 @@ function SignUp() {
               name="name"
               value={userInfo.name}
               onChange={handleChange}
-              placeholder="이름"
+              placeholder="-"
               label="이름"
               disabled
             />
@@ -149,7 +155,7 @@ function SignUp() {
               name="college"
               value={userInfo.college}
               onChange={handleChange}
-              placeholder="단과대학"
+              placeholder="-"
               label="단과대학"
               disabled
             />
@@ -158,7 +164,7 @@ function SignUp() {
               name="department"
               value={userInfo.department}
               onChange={handleChange}
-              placeholder="학부"
+              placeholder="-"
               label="학부"
               disabled
             />
