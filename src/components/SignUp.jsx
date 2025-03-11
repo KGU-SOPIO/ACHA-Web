@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchMemberData, login, signup } from "../api/authApi.js";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Button from "../signup/Button";
 import ConsentInformationModal from "../signup/ConsentInformationModal";
@@ -9,9 +10,9 @@ import Loading01 from "./Loading01";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import SignupSuccess from "../signup/SignupSuccess";
 import { ReactComponent as Warning } from "../assets/warning.svg";
-import { useLocation } from "react-router-dom";
 
 function SignUp() {
+  const navigate = useNavigate();
   const location = useLocation();
   const studentData = location.state || {};
 
@@ -28,6 +29,14 @@ function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUpComplete, setIsSignUpComplete] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const signUpCompleted = localStorage.getItem("isSignUpComplete");
+    if (signUpCompleted === "true") {
+      alert("이미 아차서비스의 회원이십니다.");
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -103,6 +112,7 @@ function SignUp() {
     try {
       await signup({ ...userInfo });
       setIsSignUpComplete(true);
+      localStorage.setItem("isSignUpComplete", "true");
     } catch (error) {
       setError(error.message || "회원가입 중 오류가 발생했습니다.");
     } finally {
