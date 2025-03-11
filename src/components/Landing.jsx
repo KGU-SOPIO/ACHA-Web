@@ -1,13 +1,13 @@
-import FAQ from "../welcome/FAQ";
+import FAQ from "../landing/FAQ";
 import Footer from "./Footer";
-import ImageSlide from "../welcome/ImageSlide";
+import ImageSlide from "../landing/ImageSlide";
 import LendingImg1 from "../assets/lending1.png";
 import LendingImg2 from "../assets/lending2.png";
 import { Link } from "react-router-dom";
 import Logo from "../assets/sopio_logo.svg";
 import { motion } from "framer-motion";
 
-function Welcome() {
+function Landing() {
   return (
     <>
       <div className="flex flex-col items-center justify-center ">
@@ -143,4 +143,4 @@ function Welcome() {
   );
 }
 
-export default Welcome;
+export default Landing;
