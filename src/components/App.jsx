@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import CourseNotice from "../courses/CourseNotice";
 import Courses from "../courses/Courses";
 import CoursesList from "./CoursesList";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "../signup/ErrorPage";
 import Home from "./Home";
 import Login from "./Login";
 import MyPage from "./MyPage";

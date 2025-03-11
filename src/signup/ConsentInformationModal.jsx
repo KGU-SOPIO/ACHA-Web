@@ -20,8 +20,15 @@ function ConsentInformationModal({ onClose, onAgree }) {
           </div>
         </div>
         <div className="flex items-center py-[16px] justify-center bg-gray-100 rounded-xl mb-[20px] text-gray-600 gap-[10px]">
-          개인정보 활동 동의
-          <Note />
+          <a
+            href="https://www.acha.team/terms/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-[10px]"
+          >
+            개인정보 활동 동의
+            <Note />
+          </a>
         </div>
         <button
           onClick={onAgree}

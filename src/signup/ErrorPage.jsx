@@ -1,6 +1,6 @@
-import Button from "../signup/Button";
+import Button from "./Button";
 import { ReactComponent as ErrorIcon } from "../assets/stop-sign.svg";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ function ErrorPage() {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate("/login");
+    navigate("/signup");
   };
 
   return (
