@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { fetchMemberData, login, signup } from "../api/authApi.js";
 
 import Button from "../signup/Button";
 import ConsentInformationModal from "../signup/ConsentInformationModal";
@@ -7,13 +8,13 @@ import Input from "../signup/Input";
 import Loading01 from "./Loading01";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import SignupSuccess from "../signup/SignupSuccess";
-import { signup } from "../api/authApi.js";
+import { ReactComponent as Warning } from "../assets/warning.svg";
 import { useLocation } from "react-router-dom";
 
 function SignUp() {
   const location = useLocation();
-
   const studentData = location.state || {};
+
   const [userInfo, setUserInfo] = useState({
     studentId: "",
     password: "",
@@ -28,10 +29,6 @@ function SignUp() {
   const [isSignUpComplete, setIsSignUpComplete] = useState(false);
   const [error, setError] = useState("");
 
-  const toggleConsentModal = () => {
-    setIsConsentModalOpen((prev) => !prev);
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInfo((prevInfo) => ({
@@ -40,24 +37,67 @@ function SignUp() {
     }));
   };
 
-  const handleSignUpComplete = async () => {
-    setIsConsentModalOpen(false);
+  const validateInputs = () => {
+    const { studentId, password } = userInfo;
+
+    const studentIdPattern = /^[0-9]+$/;
+    if (!studentId || !studentIdPattern.test(studentId)) {
+      setError("학번은 숫자만 입력 가능합니다.");
+      return false;
+    }
+    if (!studentId || !password) {
+      setError("학번과 비밀번호를 모두 입력해주세요.");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
+  const handleLoginValidation = async (e) => {
+    e.preventDefault();
+    if (!validateInputs()) return;
+
     setIsLoading(true);
     setError("");
 
     try {
-      await signup(userInfo);
+      const result = await login(userInfo.studentId, userInfo.password);
+      if (!result.success) {
+        const memberData = await fetchMemberData(
+          userInfo.studentId,
+          userInfo.password
+        );
+        console.log("회원정보: ", memberData);
+        setIsConsentModalOpen(true);
+      }
+    } catch (error) {
+      console.error("로그인 에러:", error);
+      if (error.code === "MEMBER_NOT_FOUND") {
+        try {
+          setIsConsentModalOpen(true);
+          return;
+        } catch (fetchError) {
+          console.error("학생 정보 요청 실패:", fetchError);
+        }
+      }
+      setError(error.message || "서버 오류가 발생했습니다.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSignUp = async () => {
+    setIsLoading(true);
+    setError("");
+
+    try {
+      await signup({ ...userInfo });
       setIsSignUpComplete(true);
     } catch (error) {
       setError(error.message || "회원가입 중 오류가 발생했습니다.");
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(userInfo);
   };
 
   if (isSignUpComplete) {
@@ -73,7 +113,7 @@ function SignUp() {
         ) : (
           <form
             className="flex flex-col items-center justify-center bg-white rounded-md max-w-[400px] w-full mt-[70px]"
-            onSubmit={handleSubmit}
+            onSubmit={(e) => e.preventDefault()}
           >
             <Input
               id="name"
@@ -111,6 +151,14 @@ function SignUp() {
               label="전공"
               disabled
             />
+
+            {error && (
+              <div className="flex items-center gap-[8px] border py-[8px] px-[17px] rounded-full mb-[20px] ">
+                <Warning className="w-[24px] h-[24px]" />
+                <label className="text-red-500 flex text-[16px]">{error}</label>
+              </div>
+            )}
+
             <Input
               id="studentId"
               name="studentId"
@@ -128,11 +176,13 @@ function SignUp() {
               placeholder="비밀번호"
               label="비밀번호"
             />
-            <Button name="다음" onClick={toggleConsentModal} />
+
+            <Button name="다음" onClick={handleLoginValidation} />
+
             {isConsentModalOpen && (
               <ConsentInformationModal
-                onClose={toggleConsentModal}
-                onAgree={handleSignUpComplete}
+                onClose={() => setIsConsentModalOpen(false)}
+                onAgree={handleSignUp}
               />
             )}
           </form>

@@ -65,6 +65,7 @@ function Login() {
       setError("학번에는 숫자만 입력 가능합니다.");
     }
   };
+
   return (
     <div className="flex flex-col h-screen bg-white">
       <main className="flex-grow flex flex-col items-center justify-center w-full max-w-md mx-auto py-24">
