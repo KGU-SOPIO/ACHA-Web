@@ -69,7 +69,16 @@ function SignUp() {
           userInfo.password
         );
         console.log("회원정보: ", memberData);
-        setIsLoading(false);
+        if (
+          studentData.name !== memberData.name ||
+          studentData.college !== memberData.college ||
+          studentData.department !== memberData.department ||
+          studentData.major !== memberData.major
+        ) {
+          setError("로그인한 정보와 회원가입 정보가 일치하지 않습니다.");
+          setIsLoading(false);
+          return;
+        }
         setIsConsentModalOpen(true);
         return;
       }
