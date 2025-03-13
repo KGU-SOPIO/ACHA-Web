@@ -1,22 +1,10 @@
-import axios from "axios";
+import { clearTokens, saveTokens } from "./tokenService";
 
-const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
-instance.interceptors.request.use(
-  (config) => {
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+import { server } from "./server";
 
 export const login = async (studentId, password) => {
   try {
-    const response = await instance.post("/members/signin", {
+    const response = await server.post("/members/signin", {
       studentId,
       password,
     });
@@ -27,6 +15,10 @@ export const login = async (studentId, password) => {
         message: "아차 서비스의 회원이 아닙니다.",
         studentId,
       };
+    }
+
+    if (response.data?.accessToken && response.data?.refreshToken) {
+      saveTokens(response.data.accessToken, response.data.refreshToken);
     }
 
     return { success: true, data: response.data };
@@ -47,7 +39,7 @@ export const login = async (studentId, password) => {
 
 export const fetchMemberData = async (studentId, password) => {
   try {
-    const response = await instance.post("/members/data", {
+    const response = await server.post("/members/data", {
       studentId,
       password,
     });
@@ -59,9 +51,37 @@ export const fetchMemberData = async (studentId, password) => {
 
 export const signup = async (signupData) => {
   try {
-    const response = await instance.post("/members/signup", signupData);
+    const response = await server.post("/members/signup", signupData);
+
+    if (response.data?.accessToken && response.data?.refreshToken) {
+      saveTokens(response.data.accessToken, response.data.refreshToken);
+    }
+
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;
   }
+};
+
+export const reissueToken = async (refreshToken) => {
+  try {
+    const response = await server.post("/members/reissue", { refreshToken });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
+export const fetchCurrentMember = async () => {
+  try {
+    const response = await server.get("/members");
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
+export const logout = () => {
+  clearTokens();
+  // await server.post("/members/logout");
 };
