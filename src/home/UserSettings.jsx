@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-// import { ReactComponent as ArrowRight } from "../assets/arrowRight.svg";
 import Loading01 from "../components/Loading01";
 import { fetchCurrentMember } from "../api/authApi";
 
