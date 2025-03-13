@@ -1,22 +1,8 @@
-import axios from "axios";
-
-const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
-instance.interceptors.request.use(
-  (config) => {
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+import { server } from "./server";
 
 export const login = async (studentId, password) => {
   try {
-    const response = await instance.post("/members/signin", {
+    const response = await server.post("/members/signin", {
       studentId,
       password,
     });
@@ -47,7 +33,7 @@ export const login = async (studentId, password) => {
 
 export const fetchMemberData = async (studentId, password) => {
   try {
-    const response = await instance.post("/members/data", {
+    const response = await server.post("/members/data", {
       studentId,
       password,
     });
@@ -59,7 +45,7 @@ export const fetchMemberData = async (studentId, password) => {
 
 export const signup = async (signupData) => {
   try {
-    const response = await instance.post("/members/signup", signupData);
+    const response = await server.post("/members/signup", signupData);
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;
