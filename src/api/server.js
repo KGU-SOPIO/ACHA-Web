@@ -26,16 +26,19 @@ server.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 403 && !originalRequest._retry) {
+    const { refreshToken } = getTokens();
+    if (
+      error.response?.status === 403 &&
+      refreshToken &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
 
       try {
-        const { refreshToken } = getTokens();
         const response = await reissueToken(refreshToken);
-
         const { accessToken } = response;
-        const { refreshToken: currentRefreshToken } = getTokens();
-        saveTokens(accessToken, currentRefreshToken);
+
+        saveTokens(accessToken, refreshToken);
 
         server.defaults.headers.common[
           "Authorization"
@@ -44,8 +47,9 @@ server.interceptors.response.use(
 
         return server(originalRequest);
       } catch (refreshError) {
+        console.error("토큰 재발급 실패:", refreshError);
+
         clearTokens();
-        window.location.href = "/login";
         return Promise.reject(refreshError);
       }
     }

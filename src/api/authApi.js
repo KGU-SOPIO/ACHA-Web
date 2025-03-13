@@ -1,4 +1,4 @@
-import { clearTokens, saveTokens } from "./tokenService";
+import { clearTokens, getTokens, saveTokens } from "./tokenService";
 
 import { server } from "./server";
 
@@ -14,6 +14,15 @@ export const login = async (studentId, password) => {
         success: false,
         message: "아차 서비스의 회원이 아닙니다.",
         studentId,
+      };
+    }
+
+    if (response.data?.code === "MEMBER_NOT_AUTHENTICATED") {
+      return {
+        success: false,
+        message: "서비스를 이용하기 위해서 2~3일이 소요됩니다.",
+        studentId,
+        requireSignup: false,
       };
     }
 
@@ -84,4 +93,42 @@ export const fetchCurrentMember = async () => {
 export const logout = () => {
   clearTokens();
   // await server.post("/members/logout");
+};
+
+export const deleteAccount = async (password) => {
+  try {
+    const { accessToken } = getTokens();
+
+    const response = await server.patch(
+      "/members/signout",
+      { password },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      server.interceptors.request.clear();
+      server.interceptors.response.clear();
+      clearTokens();
+      localStorage.clear();
+      return { success: true };
+    }
+
+    return {
+      success: false,
+      message: response.data?.message || "계정 삭제에 실패했습니다.",
+    };
+  } catch (error) {
+    if (error.response?.status === 401) {
+      return { success: false, message: "비밀번호가 일치하지 않습니다." };
+    }
+    return {
+      success: false,
+      message:
+        error.response?.data?.message || "계정 삭제 중 오류가 발생했습니다.",
+    };
+  }
 };
