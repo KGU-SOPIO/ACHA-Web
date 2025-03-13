@@ -1,3 +1,5 @@
+import { clearTokens, saveTokens } from "./tokenService";
+
 import { server } from "./server";
 
 export const login = async (studentId, password) => {
@@ -13,6 +15,10 @@ export const login = async (studentId, password) => {
         message: "아차 서비스의 회원이 아닙니다.",
         studentId,
       };
+    }
+
+    if (response.data?.accessToken && response.data?.refreshToken) {
+      saveTokens(response.data.accessToken, response.data.refreshToken);
     }
 
     return { success: true, data: response.data };
@@ -46,8 +52,36 @@ export const fetchMemberData = async (studentId, password) => {
 export const signup = async (signupData) => {
   try {
     const response = await server.post("/members/signup", signupData);
+
+    if (response.data?.accessToken && response.data?.refreshToken) {
+      saveTokens(response.data.accessToken, response.data.refreshToken);
+    }
+
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;
   }
+};
+
+export const reissueToken = async (refreshToken) => {
+  try {
+    const response = await server.post("/members/reissue", { refreshToken });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
+export const fetchCurrentMember = async () => {
+  try {
+    const response = await server.get("/members");
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
+export const logout = () => {
+  clearTokens();
+  // await server.post("/members/logout");
 };

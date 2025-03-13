@@ -1,13 +1,51 @@
-import { ReactComponent as ArrowRight } from "../assets/arrowRight.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+// import { ReactComponent as ArrowRight } from "../assets/arrowRight.svg";
+import Loading01 from "../components/Loading01";
+import { fetchCurrentMember } from "../api/authApi";
 
 function UserSettings() {
   const [isNotificationOn, setIsNotificationOn] = useState(false);
+  const [memberInfo, setMemberInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  // 알림 켜기/끄기 상태 토글
+  useEffect(() => {
+    const getMemberInfo = async () => {
+      try {
+        setIsLoading(true);
+        const data = await fetchCurrentMember();
+        setMemberInfo(data);
+      } catch (error) {
+        console.error("회원 정보 조회 실패:", error);
+        setError("회원 정보를 불러오는데 실패했습니다.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getMemberInfo();
+  }, []);
+
   const toggleNotification = () => {
     setIsNotificationOn((prevState) => !prevState);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <Loading01 />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="p-8 px-12 max-w-6xl mx-auto rounded-lg bg-white">
+        <div className="text-red-500 text-center">{error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-8 px-12 max-w-6xl mx-auto rounded-lg bg-white">
@@ -15,11 +53,11 @@ function UserSettings() {
         {/* 사용자 정보 */}
         <div className="flex items-center pr-12">
           <div className="">
-            <h2 className="text-lg font-semibold">서민혁님</h2>
+            <h2 className="text-lg font-semibold">{memberInfo?.name}님</h2>
             <p className="text-sm text-gray-500">
-              소프트웨어경영대학{" "}
+              {memberInfo?.college}{" "}
               <span className="bg-main-blue text-white px-2 py-1 rounded-xl">
-                컴퓨터공학전공
+                {memberInfo?.affiliation}
               </span>
             </p>
           </div>

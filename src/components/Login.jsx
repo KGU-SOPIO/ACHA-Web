@@ -15,6 +15,7 @@ function Login() {
   const [loginCheck, setLoginCheck] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [autoLogin, setAutoLogin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -33,6 +34,9 @@ function Login() {
         // 2-3. 회원가입 인풋에서 보여주기 위해 데이터 전달
         navigate("/signup", { state: memberData });
         return;
+      }
+      if (autoLogin) {
+        localStorage.setItem("autoLogin", "true");
       }
 
       navigate("/home");
@@ -112,10 +116,12 @@ function Login() {
                   <input
                     className="w-[20px] h-[20px] rounded-full"
                     type="checkbox"
+                    checked={autoLogin}
+                    onChange={(e) => setAutoLogin(e.target.checked)}
                   />
                   <p className="ml-[6px]">자동 로그인</p>
                 </div>
-                <div className="underline">비밀번호 찾기</div>
+                <div className="underline cursor-pointer">비밀번호 찾기</div>
               </div>
 
               <Button name="시작하기" onClick={handleLogin} />

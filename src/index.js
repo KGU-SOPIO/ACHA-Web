@@ -10,6 +10,16 @@ import NotFoundPage from "./components/NotFoundPage";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import SignUp from "./components/SignUp";
+import { configureSaveTokens } from "./api/server";
+import { saveTokens } from "./api/tokenService";
+
+export const initializeApi = () => {
+  configureSaveTokens(saveTokens);
+};
+
+export * from "./api/tokenService";
+export * from "./api/authApi";
+export { server } from "./api/server";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
