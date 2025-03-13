@@ -1,22 +1,58 @@
 import { useEffect, useState } from "react";
 
-import CourseData from "../mocks/courseMocks.json";
+import Loading01 from "../components/Loading01";
 import { ReactComponent as QuoteLeft } from "../assets/“left.svg";
 import { ReactComponent as QuoteRight } from "../assets/“right.svg";
+import { fetchMemberTodayLecture } from "../api/lecture";
 import quoteData from "../mocks/quotesMocks.json";
 
 function Today() {
   const [currentDate, setCurrentDate] = useState("");
   const [randomQuote, setRandomQuote] = useState("");
+  const [todayLecture, setTodayLecture] = useState({ contents: [] });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
+    const getTodayLecture = async () => {
+      try {
+        setIsLoading(true);
+        const data = await fetchMemberTodayLecture();
+        console.log("API 응답 데이터:", data);
+        setTodayLecture(data?.contents ? data : { contents: [] });
+      } catch (error) {
+        console.error("오늘의 강의 조회 실패:", error);
+        setError("오늘의 강의를 불러오는데 실패했습니다.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getTodayLecture();
+
     const date = new Date();
     const formattedDate = `(${date.getMonth() + 1}.${date.getDate()})`;
     setCurrentDate(formattedDate);
 
-    const randomIndex = Math.floor(Math.random() * quoteData.quotes.length);
-    setRandomQuote(quoteData.quotes[randomIndex]);
+    const randomId = Math.floor(Math.random() * quoteData.quotes.length);
+    setRandomQuote(quoteData.quotes[randomId]);
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <Loading01 />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="p-8 px-12 max-w-6xl mx-auto rounded-lg bg-white">
+        <div className="text-red-500 text-center">{error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4 w-1/2">
@@ -28,30 +64,20 @@ function Today() {
         </p>
         <div className="flex">
           <div className="space-y-4 w-full">
-            {CourseData.courses.map((lecture, index) => {
-              const backgroundColorClass =
-                lecture.dDay <= 3
-                  ? "bg-red-100 text-red-600"
-                  : "bg-blue-100 text-blue-800";
-
+            {todayLecture.contents.map((lecture, id) => {
               return (
                 <div
-                  key={index}
+                  key={id}
                   className="p-4 rounded-xl bg-white border border-gray flex justify-between w-full"
                 >
                   <div>
                     <p className="text-xs text-gray-700">
                       {lecture.professor} 교수님
                     </p>
-                    <p className="font-bold">{lecture.courseName}</p>
+                    <p className="font-bold">{lecture.title}</p>
                     <p className="text-xs text-gray-700">
                       {lecture.lectureRoom}
                     </p>
-                  </div>
-                  <div
-                    className={`w-auto px-4 py-2 flex items-center justify-center text-white font-bold text-xs rounded-full ${backgroundColorClass} self-center`}
-                  >
-                    D-{/*lecture.dDay*/}10
                   </div>
                 </div>
               );

@@ -6,7 +6,7 @@ import { fetchCurrentMember } from "../api/authApi";
 function UserSettings() {
   const [isNotificationOn, setIsNotificationOn] = useState(false);
   const [memberInfo, setMemberInfo] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
