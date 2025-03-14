@@ -4,34 +4,34 @@
     "name": "홍준서",
     "major": "AI 컴퓨터공학부",
     "department": "앱",
-    "insta": "@인스타아이디"
+    "githubId": "https://github.com/JunseoKR"
   },
   {
     "id": 2,
     "name": "최수인",
     "major": "AI 컴퓨터공학부",
     "department": "웹",
-    "insta": "@인스타아이디"
+    "githubId": "https://github.com/sooinice"
   },
   {
     "id": 3,
     "name": "이한음",
     "major": "AI 컴퓨터공학부",
     "department": "서버",
-    "insta": "@인스타아이디"
+    "githubId": "https://github.com/LeeHanEum"
   },
   {
     "id": 4,
     "name": "권우진",
     "major": "AI 컴퓨터공학부",
     "department": "서버",
-    "insta": "@인스타아이디"
+    "githubId": "https://github.com/kwj0175"
   },
   {
     "id": 5,
     "name": "서민혁",
     "major": "AI 컴퓨터공학부",
     "department": "디자인",
-    "insta": "@인스타아이디"
+    "githubId": "https://github.com/Seominhyeok05"
   }
 ]

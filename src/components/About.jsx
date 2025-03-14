@@ -69,7 +69,14 @@ const About = () => {
                   </div>
                   <div className="w-full flex justify-between items-center text-gray-500">
                     <p>{member.major}</p>
-                    <p>{member.insta}</p>
+                    <a
+                      href={member.githubId}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      GitHub
+                    </a>
                   </div>
                 </div>
               ))}
