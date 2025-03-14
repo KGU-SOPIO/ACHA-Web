@@ -7,7 +7,7 @@ const Loading01 = () => {
         <ClipLoader color="#0066FF" />
       </div>
       <h3 className="mt-[24px] bg-blue-100 px-[21px] py-[5px] rounded-full text-main-blue">
-        인증하는 중
+        불러오는 중
       </h3>
     </div>
   );
