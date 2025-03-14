@@ -1,42 +1,72 @@
-export const getDday = (itemDate) => {
-  const today = new Date();
-  const targetDate = new Date(itemDate);
-  const diffTime = targetDate - today;
-  return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-};
-
-export const formatDday = (diffDays) => {
-  if (diffDays === 0) return "D - Day";
-  return diffDays > 0 ? `D - ${diffDays}` : `D + ${Math.abs(diffDays)}`;
-};
-
-export const formatDate = (itemDate) => {
-  const date = new Date(itemDate);
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return `${month}월 ${day}일`;
-};
-
 export const sortByDday = (items) =>
   [...items].sort((a, b) => getDday(a.date) - getDday(b.date));
 
 export const parseMockData = (data) => {
-  const processedData = data.map((item) => {
-    const [startDate, endDate] = item.deadline.split(" ~ ");
+  return data.map((item) => {
+    const deadline = item.deadline || "";
+    const parts = deadline.split(" ~ ");
+    const endDate = parts.length > 1 ? parts[1] : parts[0];
+
     return {
       ...item,
-      date: endDate.split(" ")[0],
-      time: endDate.split(" ")[1],
+      date: endDate,
+      time: endDate ? endDate.split(" ")[1] : "",
     };
   });
+};
 
-  return processedData.sort((a, b) => {
-    const today = new Date();
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    const diffA = dateA - today;
-    const diffB = dateB - today;
+// Format date to display in UI
+export const formatDate = (dateString) => {
+  if (!dateString) return "";
 
-    return diffA - diffB;
-  });
+  // Parse the date string
+  const date = new Date(dateString);
+
+  // Check if the date is valid
+  if (isNaN(date.getTime())) {
+    console.error("Invalid date:", dateString);
+    return "";
+  }
+
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  return `${month}월 ${day}일`;
+};
+
+// Calculate D-day based on deadline
+export const getDday = (dateString) => {
+  if (!dateString) return 0;
+
+  // Parse the date string
+  const targetDate = new Date(dateString);
+
+  // Check if the date is valid
+  if (isNaN(targetDate.getTime())) {
+    console.error("Invalid date for D-day calculation:", dateString);
+    return 0;
+  }
+
+  const today = new Date();
+
+  // Reset time to midnight for accurate day calculation
+  today.setHours(0, 0, 0, 0);
+  const todayDate = new Date(today);
+
+  // Set target date to end of day for deadline
+  const targetDateOnly = new Date(targetDate);
+  targetDateOnly.setHours(23, 59, 59, 999);
+
+  // Calculate difference in milliseconds and convert to days
+  const diffTime = targetDateOnly - todayDate;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  return diffDays;
+};
+
+// Format D-day text
+export const formatDday = (days) => {
+  if (days === 0) return "D - Day";
+  if (days > 0) return `D - ${days}`;
+  return `D + ${Math.abs(days)}`;
 };

@@ -5,16 +5,34 @@ import { formatDday } from "../utils/utils";
 
 const DdayRenderer = ({ items, getDday, formatDate }) => {
   let previousDday = null;
-  formatDday(getDday);
+
+  if (!items || items.length === 0) {
+    return (
+      <div className="text-center text-gray-500 py-8">데이터가 없습니다.</div>
+    );
+  }
+
   return items.map((item) => {
-    const dDay = formatDday(getDday(item.date));
-    const formattedDate = formatDate(item.date);
+    const itemDate = item.date || new Date().toISOString();
+    const dDay = formatDday(getDday(itemDate));
+    const formattedDate = formatDate(itemDate);
     const isDday = dDay === "D - Day";
     const showDday = dDay !== previousDday;
     previousDday = dDay;
 
+    const key =
+      item.activityCode || `${item.courseName}-${item.title}-${Math.random()}`;
+
+    const title = item.activityName || item.title || "제목 없음";
+    const courseName = item.courseName || "강의명 없음";
+    const time = item.time || "23:59";
+
+    const activityType =
+      item.activityType ||
+      (item.type === "ASSIGNMENT" ? "assignment" : "video");
+
     return (
-      <div key={item.activityCode}>
+      <div key={key}>
         {showDday && (
           <div
             className={`inline-block mb-4 rounded-full text-center font-[Noto_Sans_KR] text-[14px] font-bold leading-[20px] bg-blue-100 items-center ${
@@ -36,15 +54,15 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
           </div>
         )}
         <div className="mb-4 p-4 border rounded-lg shadow-sm">
-          <h3 className="text-md font-bold">{item.activityName}</h3>
-          <p className="text-sm">{item.courseName}</p>
+          <h3 className="text-md font-bold">{title}</h3>
+          <p className="text-sm">{courseName}</p>
           <div className="flex justify-between items-center">
-            <div className="text-sm mt-2 text-gray-500">{item.time} 까지</div>
+            <div className="text-sm mt-2 text-gray-500">{time} 까지</div>
             <button className="mt-2 px-4 py-2 border text-sm rounded-lg">
               <div className="flex items-center">
-                {item.activityType === "video" ? <MediaIcon /> : <TaskIcon />}
+                {activityType === "video" ? <MediaIcon /> : <TaskIcon />}
                 <div className="pl-2">
-                  {item.activityType === "video" ? "강의 시청" : "과제 보기"}
+                  {activityType === "video" ? "강의 시청" : "과제 보기"}
                 </div>
               </div>
             </button>
