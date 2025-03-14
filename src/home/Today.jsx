@@ -64,8 +64,8 @@ function Today() {
         </p>
         <div className="flex">
           <div className="space-y-4 w-full">
-            {todayLecture.contents.map((lecture, id) => {
-              return (
+            {todayLecture.contents.length > 0 ? (
+              todayLecture.contents.map((lecture, id) => (
                 <div
                   key={id}
                   className="p-4 rounded-xl bg-white border border-gray flex justify-between w-full"
@@ -80,8 +80,10 @@ function Today() {
                     </p>
                   </div>
                 </div>
-              );
-            })}
+              ))
+            ) : (
+              <p className="text-center text-gray-500">오늘의 강의가 없음</p>
+            )}
           </div>
         </div>
       </div>

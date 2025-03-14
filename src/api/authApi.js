@@ -64,10 +64,41 @@ export const signup = async (signupData) => {
 
     if (response.data?.accessToken && response.data?.refreshToken) {
       saveTokens(response.data.accessToken, response.data.refreshToken);
+      try {
+        await registerInitialCourse();
+
+        await registerInitialActivity();
+      } catch (error) {
+        console.error("스크래핑 실패:", error);
+      }
     }
 
     return response.data;
   } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
+export const registerInitialCourse = async () => {
+  try {
+    const response = await server.post("/courses");
+    console.error("강의 응답:", response);
+    console.error("강의 응답 데이터:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("강의 등록 실패:", error);
+    throw error.response?.data || error.message;
+  }
+};
+
+export const registerInitialActivity = async () => {
+  try {
+    const response = await server.post("/activities");
+    console.error("활동 응답:", response);
+    console.error("활동 응답 데이터:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("활동 등록 실패:", error);
     throw error.response?.data || error.message;
   }
 };
