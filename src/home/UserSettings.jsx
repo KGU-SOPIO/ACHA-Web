@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 
-// import { ReactComponent as ArrowRight } from "../assets/arrowRight.svg";
 import Loading01 from "../components/Loading01";
 import { fetchCurrentMember } from "../api/authApi";
 
 function UserSettings() {
   const [isNotificationOn, setIsNotificationOn] = useState(false);
   const [memberInfo, setMemberInfo] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {

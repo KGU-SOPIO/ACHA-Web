@@ -1,6 +1,7 @@
 import Input from "../signup/Input";
 import Modal from "../mypage/Modal";
 import checkIcon from "../mypage/check.png";
+import { deleteAccount } from "../api/authApi";
 import logoutIcon from "../mypage/logout.svg";
 import trashIcon from "../mypage/trash.svg";
 import { useNavigate } from "react-router-dom";
@@ -12,14 +13,20 @@ function MyPage({ onClose }) {
     isDeleteModalOpen: false,
     isLogoutModalOpen: false,
   });
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const openModal = (type) => {
     setModalState((prev) => ({ ...prev, [type]: true }));
+    setError("");
   };
 
   const closeModal = (type) => {
     onClose();
     setModalState((prev) => ({ ...prev, [type]: false }));
+    setPassword("");
+    setError("");
   };
 
   const handleClick = (path) => {
@@ -27,15 +34,38 @@ function MyPage({ onClose }) {
     onClose();
   };
 
-  const confirmDelete = () => {
-    alert("계정이 삭제되었습니다.");
-    closeModal();
-    navigate("/");
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setError("");
+  };
+
+  const confirmDelete = async () => {
+    if (!password) {
+      setError("비밀번호를 입력해주세요.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const result = await deleteAccount(password);
+
+      if (result.success) {
+        alert("계정이 삭제되었습니다.");
+        window.location.href = "/login";
+      } else {
+        setError(result.message || "계정 삭제에 실패했습니다.");
+      }
+    } catch (err) {
+      setError("계정 삭제 중 오류가 발생했습니다.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const confirmLogout = () => {
     alert("로그아웃되었습니다.");
-    closeModal();
+    closeModal("isLogoutModalOpen");
     navigate("/");
   };
 
@@ -73,6 +103,7 @@ function MyPage({ onClose }) {
           iconBackground="bg-red-100"
           confirmButtonColor="bg-red-500"
           margin="mt-[36px]"
+          disabled={isLoading}
         >
           <p className="mb-[18px] flex justify-center font-medium">
             비밀번호 확인
@@ -82,7 +113,10 @@ function MyPage({ onClose }) {
             type="password"
             name="password"
             placeholder="비밀번호 입력"
+            value={password}
+            onChange={handlePasswordChange}
           />
+          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         </Modal>
       )}
 

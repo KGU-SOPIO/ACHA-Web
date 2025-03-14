@@ -15,7 +15,6 @@ function Login() {
   const [loginCheck, setLoginCheck] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [autoLogin, setAutoLogin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,26 +27,24 @@ function Login() {
       const result = await login(studentId, password);
 
       if (!result.success) {
-        // 2-2. 학번, 비번으로 학생 정보 요청
         const memberData = await fetchMemberData(studentId, password);
         console.log("회원정보: ", memberData);
-        // 2-3. 회원가입 인풋에서 보여주기 위해 데이터 전달
         navigate("/signup", { state: memberData });
         return;
-      }
-      if (autoLogin) {
-        localStorage.setItem("autoLogin", "true");
       }
 
       navigate("/home");
     } catch (error) {
       console.error("로그인 에러:", error);
+
+      if (error.code === "MEMBER_NOT_AUTHENTICATED") {
+        setError("서비스를 이용하기 위해서 2~3일이 소요됩니다.");
+        return;
+      }
+
       if (error.code === "MEMBER_NOT_FOUND") {
         try {
-          // 2-2. 학번, 비번으로 학생 정보 요청
           const memberData = await fetchMemberData(studentId, password);
-
-          // 2-3. 회원가입 인풋에서 보여주기 위해 데이터 전달
           navigate("/signup", { state: memberData });
           return;
         } catch (fetchError) {
@@ -116,8 +113,6 @@ function Login() {
                   <input
                     className="w-[20px] h-[20px] rounded-full"
                     type="checkbox"
-                    checked={autoLogin}
-                    onChange={(e) => setAutoLogin(e.target.checked)}
                   />
                   <p className="ml-[6px]">자동 로그인</p>
                 </div>
