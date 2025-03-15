@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { ReactComponent as LectureIcon } from "./class.svg";
+import { ReactComponent as LectureIcon } from "./iconoir_book.svg";
 import { Link } from "react-router-dom";
 import Loading01 from "../components/Loading01";
 import { fetchMemberLecture } from "../api/lecture";
@@ -69,12 +69,12 @@ function MyCourseList() {
 
           {/*실제 데이터 */}
           {lecture.contents.length > 0 ? (
-            lecture.contents.map((lecture, id) => (
+            lecture.contents.map((lecture) => (
               <div
-                key={id}
+                key={lecture.id}
                 className="px-[26px] py-[16px] text-[12px] text-gray-500 border-[1.5px] border-gray-200 rounded-2xl mb-[11px]"
               >
-                <Link to={`/courses/${lecture.code}`}>
+                <Link to={`/courses/${lecture.id}`}>
                   <p>{lecture.professor} 교수님</p>
                   <p className="text-[16px] text-black">{lecture.title}</p>
                   <p>{lecture.lectureRoom}</p>

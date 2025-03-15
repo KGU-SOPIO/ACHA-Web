@@ -17,15 +17,6 @@
       "activityType": "video",
       "deadline": "2025-01-10 00:00:00 ~ 2025-01-15 23:59:59",
       "lectureTime": "22:57"
-    },
-    {
-      "activityCode": 3,
-      "courseName": "웹프로그래밍",
-      "activityName": "웹프 강의 - 1",
-      "activityLink": "https://www.naver.com",
-      "activityType": "video",
-      "deadline": "2025-01-10 00:00:00 ~ 2025-01-15 23:59:59",
-      "lectureTime": "22:57"
     }
   ],
   "assignments": [
@@ -38,17 +29,6 @@
       "activityType": "assignment",
       "gradingStatus": "채점되지 않음.",
       "deadline": "2025-01-10 00:00:00 ~ 2025-01-14 23:59:59",
-      "description": "2주차 과제는 pdf로 제출 바랍니다."
-    },
-    {
-      "activityCode": 5,
-      "available": "true",
-      "courseName": "사고와 표현",
-      "activityName": "사표 과제 - 1",
-      "activityLink": "https://www.naver.com",
-      "activityType": "assignment",
-      "gradingStatus": "채점되지 않음.",
-      "deadline": "2025-01-10 00:00:00 ~ 2025-01-15 23:59:59",
       "description": "2주차 과제는 pdf로 제출 바랍니다."
     }
   ]
