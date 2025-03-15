@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { ReactComponent as LectureIcon } from "./class.svg";
+import { ReactComponent as LectureIcon } from "./iconoir_book.svg";
 import { Link } from "react-router-dom";
 import Loading01 from "../components/Loading01";
 import { fetchMemberLecture } from "../api/lecture";
