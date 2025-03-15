@@ -9,23 +9,6 @@ export const login = async (studentId, password) => {
       password,
     });
 
-    if (response.data?.code === "MEMBER_NOT_FOUND") {
-      return {
-        success: false,
-        message: "아차 서비스의 회원이 아닙니다.",
-        studentId,
-      };
-    }
-
-    if (response.data?.code === "MEMBER_NOT_AUTHENTICATED") {
-      return {
-        success: false,
-        message: "서비스를 이용하기 위해서 2~3일이 소요됩니다.",
-        studentId,
-        requireSignup: false,
-      };
-    }
-
     if (response.data?.accessToken && response.data?.refreshToken) {
       saveTokens(response.data.accessToken, response.data.refreshToken);
     }
@@ -40,6 +23,14 @@ export const login = async (studentId, password) => {
         success: false,
         message: "아차 서비스의 회원이 아닙니다.",
         studentId,
+      };
+    }
+    if (error.response.data?.code === "MEMBER_NOT_AUTHENTICATED") {
+      return {
+        success: false,
+        message: "서비스를 이용하기 위해서 2~3일이 소요됩니다.",
+        studentId, //필요한가..?
+        requireSignup: false,
       };
     }
     throw error.response?.data || error.message;
@@ -66,7 +57,6 @@ export const signup = async (signupData) => {
       saveTokens(response.data.accessToken, response.data.refreshToken);
       try {
         await registerInitialCourse();
-
         await registerInitialActivity();
       } catch (error) {
         console.error("스크래핑 실패:", error);

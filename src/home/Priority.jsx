@@ -20,33 +20,28 @@ function Priority() {
         const data = await fetchActivityMy();
         console.log("API 응답 데이터:", data);
 
-        // Process the API data
         const contents = data?.contents || [];
 
-        // Function to extract time from ISO string
         const extractTime = (deadlineStr) => {
           if (!deadlineStr) return "23:59";
 
           try {
-            // Check if the deadline is in ISO format (2025-03-17T23:59)
             if (deadlineStr.includes("T")) {
-              return deadlineStr.split("T")[1].substring(0, 5); // Extract "23:59" from "2025-03-17T23:59"
+              return deadlineStr.split("T")[1].substring(0, 5);
             }
 
-            // If it's not in ISO format, try to extract time another way
             const parts = deadlineStr.split(" ");
             if (parts.length > 1) {
-              return parts[1].substring(0, 5); // Try to get time from "2025-03-17 23:59:00" format
+              return parts[1].substring(0, 5);
             }
 
-            return "23:59"; // Default time if we can't parse
+            return "23:59";
           } catch (e) {
             console.error("시간 추출 오류:", e);
-            return "23:59"; // Default time if error occurs
+            return "23:59";
           }
         };
 
-        // Now we can use the explicit 'type' field to separate lectures and assignments
         const processedLectures = contents
           .filter((item) => item.type === "lecture")
           .map((item) => ({

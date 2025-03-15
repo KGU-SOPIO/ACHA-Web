@@ -58,14 +58,20 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
           <p className="text-sm">{courseName}</p>
           <div className="flex justify-between items-center">
             <div className="text-sm mt-2 text-gray-500">{time} 까지</div>
-            <button className="mt-2 px-4 py-2 border text-sm rounded-lg">
-              <div className="flex items-center">
-                {activityType === "video" ? <MediaIcon /> : <TaskIcon />}
-                <div className="pl-2">
-                  {activityType === "video" ? "강의 시청" : "과제 보기"}
+            <a
+              href={item.activityLink || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="mt-2 px-4 py-2 border text-sm rounded-lg">
+                <div className="flex items-center">
+                  {activityType === "video" ? <MediaIcon /> : <TaskIcon />}
+                  <div className="pl-2">
+                    {activityType === "video" ? "강의 시청" : "과제 보기"}
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
+            </a>
           </div>
         </div>
       </div>

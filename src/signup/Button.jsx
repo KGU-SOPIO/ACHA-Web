@@ -1,4 +1,4 @@
-function Button({ type = "submit", name, onClick = {} }) {
+function Button({ type = "submit", name, onClick = () => {} }) {
   return (
     <div className="w-full  mt-[60px]">
       <button
