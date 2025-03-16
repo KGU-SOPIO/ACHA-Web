@@ -6,7 +6,9 @@ import LendingImg2 from "../assets/lending2.png";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import TaskSection from "../landing/TaskSection";
+import appleLogo from "../landing/Apple_logo_black 1.svg";
 import calendarImg from "../landing/calender.svg";
+import playStoreLogo from "../landing/Google_Play_icon.svg 1.png";
 
 function Landing() {
   return (
@@ -37,17 +39,29 @@ function Landing() {
         </p>
 
         <div className="flex gap-[16px] mt-6  text-white">
-          <button className="bg-[#3C3C3C] px-[34px] py-[15px] rounded-2xl">
+          <a
+            href="https://apps.apple.com/kr/app/your-app-id" // 앱스토어 URL 넣기
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#3C3C3C] px-[34px] py-[15px] rounded-2xl flex justify-center items-center gap-[20px]"
+          >
+            <img src={appleLogo} alt="Apple Icon" className="w-5 h-5" />
             App Store
-          </button>
-          <button className="bg-[#3C3C3C] px-[34px] py-[15px] rounded-2xl">
+          </a>
+          <a
+            href="https://play.google.com/store/apps/details?id=your.package.name" // 구글 플레이 URL 넣기
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#3C3C3C] px-[34px] py-[15px] rounded-2xl flex justify-center items-center gap-[20px]"
+          >
+            <img src={playStoreLogo} alt="Apple Icon" className="w-5 h-5" />
             Google Play
-          </button>
+          </a>
         </div>
 
         <Link
           to="/login"
-          className="bg-gray-200 text-gray-700 px-[60px] py-[15px] rounded-2xl mt-3"
+          className="bg-gray-200 text-gray-700 px-[100px] py-[15px] rounded-2xl mt-3"
         >
           Get started on the Web →
         </Link>
