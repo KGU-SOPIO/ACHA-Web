@@ -1,88 +1,64 @@
-import { useEffect, useMemo, useState } from "react";
+import img1 from "./image_1.png";
+import img2 from "./image_2.png";
+import img3 from "./image_3.png";
+import { useState } from "react";
 
-import image from "../assets/black_bg.png";
+const images = [img1, img2, img3];
 
 function ImageSlide() {
-  const images = [image, image, image];
-  const [currentIndex, setCurrentIndex] = useState(1);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const extendedImages = useMemo(() => {
-    const duplicatedStart = images.slice(-2);
-    const duplicatedEnd = images.slice(0, 2);
-    return [...duplicatedStart, ...images, ...duplicatedEnd];
-  }, [images]);
-
-  const moveToIndex = (index) => {
-    setIsTransitioning(true);
-    setCurrentIndex(index);
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
-  useEffect(() => {
-    if (currentIndex === 0) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(images.length);
-      }, 500);
-    } else if (currentIndex === images.length + 1) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(1);
-      }, 500);
-    }
-  }, [currentIndex, images.length]);
-  const handlePrev = () => moveToIndex(currentIndex - 1);
-  const handleNext = () => moveToIndex(currentIndex + 1);
-  return (
-    <div>
-      <div className="flex justify-center items-center mb-[100px] gap-[188px]">
-        <button
-          onClick={handlePrev}
-          className="text-black bg-gray-100 rounded-full text-3xl p-[27px]"
-        >
-          &#8592;
-        </button>
-        <div>
-          <h1 className="text-4xl font-bold text-[60px] pb-[32px]">
-            Check our Work
-          </h1>
-          <h6 className="text-center">뭐죠이건</h6>
-        </div>
-        <button
-          onClick={handleNext}
-          className="text-black bg-gray-100 rounded-full text-3xl p-[27px]"
-        >
-          &#8594;
-        </button>
-      </div>
+  const prevSlide = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
+  };
 
-      <div className="w-full h-[551px] pb-[200px] overflow-hidden rounded-xl">
-        <div
-          className={`flex transition-transform duration-500 ease-in-out ${
-            !isTransitioning && "transition-none"
-          }`}
-          style={{
-            transform: `translateX(-${(currentIndex + 2) * (33.33 + 6.5)}%)`,
-          }}
-        >
-          <div className="flex-shrink-0 w-[33.33%] mr-[100px]">
-            <img
-              src={images[images.length - 1]}
-              alt={`Slide ${images.length}`}
-              className="w-full h-auto object-cover rounded-lg"
-            />
-          </div>
-          {extendedImages.map((src, index) => (
-            <div key={index} className="flex-shrink-0 w-[33.33%] mr-[100px]">
-              <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 rounded-lg"></div>
-              <img
-                src={src}
-                alt={`Slide ${index + 1}`}
-                className="w-[732px] h-[551px] object-cover rounded-lg mr-[100px]"
-              />
-            </div>
-          ))}
+  return (
+    <div className="flex flex-col items-center justify-center space-x-4">
+      <div className="flex space-x-[180px] items-center mb-[97px] mt-[100px]">
+        <div>
+          <button
+            onClick={prevSlide}
+            className="p-[27px] bg-gray-200 rounded-full"
+          >
+            &lt;
+          </button>
         </div>
+        <p className="text-center">
+          <span className="text-[#252432] font-pretendard text-[60px] font-bold leading-[120%] mb-[30px]">
+            Check our Work
+          </span>
+          <br />
+          <span className="text-[#3C3C3C] text-center font-pretendard text-[24px] font-normal leading-[150%]">
+            Team
+          </span>{" "}
+          <span className="text-[#3C3C3C] font-pretendard text-[24px] font-bold leading-[150%]">
+            SOPIO
+          </span>
+        </p>
+        <div>
+          <button
+            onClick={nextSlide}
+            className="p-[27px] bg-gray-200 rounded-full"
+          >
+            &gt;
+          </button>
+        </div>
+      </div>
+      <div className="flex overflow-hidden gap-[100px]">
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={images[(currentIndex + index) % images.length]}
+            alt="slide"
+            className="w-1/3 h-[550px] object-cover transition-transform duration-300 rounded-2xl"
+          />
+        ))}
       </div>
     </div>
   );

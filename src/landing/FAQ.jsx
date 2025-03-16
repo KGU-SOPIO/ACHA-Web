@@ -19,7 +19,7 @@ function FAQ() {
   }, []);
 
   return (
-    <div className="flex justify-between w-full px-[335px]">
+    <div className="flex justify-between w-full px-[335px] my-[200px]">
       <div className="text-[60px] font-bold text-left ">
         <h2>Frequently</h2>
         <h2>Asked</h2>
