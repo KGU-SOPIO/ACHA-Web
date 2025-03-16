@@ -1,143 +1,92 @@
 import FAQ from "../landing/FAQ";
+import FeatureSection from "../landing/FeatureSection";
 import Footer from "./Footer";
 import ImageSlide from "../landing/ImageSlide";
-import LendingImg1 from "../assets/lending1.png";
 import LendingImg2 from "../assets/lending2.png";
 import { Link } from "react-router-dom";
-import Logo from "../assets/sopio_logo.svg";
-import { motion } from "framer-motion";
+import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
+import TaskSection from "../landing/TaskSection";
+import appleLogo from "../landing/Apple_logo_black 1.svg";
+import calendarImg from "../landing/calender.svg";
+import playStoreLogo from "../landing/Google_Play_icon.svg 1.png";
 
 function Landing() {
   return (
     <>
-      <div className="flex flex-col items-center justify-center ">
-        <div className="mb-[346px]">
-          <h1 className="text-6xl text-[74px] font-bold mb-[182px] mt-[227px]">
-            Acha!
-          </h1>
-          <Link
-            to="/login"
-            className="text-white text-[16px] bg-main-blue px-12 py-4 rounded-md hover:bg-blue-600"
+      <div className="flex flex-col items-center justify-center">
+        <Logo className="w-[70px] h-[70px] mt-[186px]" />
+
+        <img
+          src={calendarImg}
+          alt="캘린더 이미지"
+          className="absolute top-[-50px] right-[-400px] w-[700px] h-auto -rotate-[25deg]"
+        />
+        <h1 className="text-main-blue text-center font-pretendard text-[100px] font-extrabold leading-[71px] tracking-[-0.5px] py-[34px]">
+          ACHA!
+        </h1>
+        <p className="text-gray-600 text-lg text-center">
+          <span className="text-main-blue text-center font-pretendard text-[20px] font-extrabold leading-[32px]">
+            ‘해야지’{" "}
+          </span>
+          <span className="text-[#24223E] font-pretendard text-[20px] font-bold leading-[32px]">
+            하고, 잊어버리시진 않았나요?
+          </span>
+          <br />
+          <div className="flex items-center justify-center">
+            다가올 마감일 놓치지 마세요!
+            <img src={LendingImg2} alt="앱 화면" className="w-[30px]" />
+          </div>
+        </p>
+
+        <div className="flex gap-[16px] mt-6  text-white">
+          <a
+            href="https://apps.apple.com/kr/app/your-app-id" // 앱스토어 URL 넣기
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#3C3C3C] px-[34px] py-[15px] rounded-2xl flex justify-center items-center gap-[20px]"
           >
-            지금 바로 시작하기!
-          </Link>
+            <img src={appleLogo} alt="Apple Icon" className="w-5 h-5" />
+            App Store
+          </a>
+          <a
+            href="https://play.google.com/store/apps/details?id=your.package.name" // 구글 플레이 URL 넣기
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#3C3C3C] px-[34px] py-[15px] rounded-2xl flex justify-center items-center gap-[20px]"
+          >
+            <img src={playStoreLogo} alt="Apple Icon" className="w-5 h-5" />
+            Google Play
+          </a>
         </div>
 
-        {/*세션1*/}
-        <div className="flex items-center w-full max-w-6xl mx-auto mb-[232px]">
-          <motion.div
-            className="flex-1 text-left"
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{
-              ease: "easeInOut",
-              duration: 1,
-              x: { duration: 1 },
-            }}
-          >
-            <div className="flex text-[48px] font-bold">
-              <h1>너&nbsp;</h1>
-              <h1 className="text-main-blue">과제제출함?</h1>
-            </div>
-          </motion.div>
-          <motion.div
-            className="flex-1 flex justify-end"
-            initial={{ x: 300, opacity: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{ ease: "easeInOut", duration: 1, x: { duration: 1 } }}
-          >
-            <img
-              src={LendingImg1}
-              alt="lendingImage 1"
-              className="w-[179px] h-[179px]"
-            />
-          </motion.div>
-        </div>
+        <Link
+          to="/login"
+          className="bg-gray-200 text-gray-700 px-[100px] py-[15px] rounded-2xl mt-3"
+        >
+          Get started on the Web →
+        </Link>
 
-        {/*세션2*/}
-        <div className="flex items-center w-full max-w-6xl mx-auto mb-[226px]">
-          <motion.div
-            className="flex-1 text-left"
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{
-              ease: "easeInOut",
-              duration: 1,
-              x: { duration: 1 },
-            }}
-          >
-            <img
-              src={LendingImg2}
-              alt="lendingImage 2"
-              className="w-[259px] h-[202px]"
-            />
-          </motion.div>
-          <motion.div
-            className="flex-1 flex justify-end"
-            initial={{ x: 300, opacity: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{
-              ease: "easeInOut",
-              duration: 1,
-              x: { duration: 1 },
-            }}
-          >
-            <div className="text-[48px] font-bold">
-              <h1>곧 다가올 마감일,</h1>
-              <h1 className="text-main-blue justify-end flex">
-                놓치지 마세요!
-              </h1>
-            </div>
-          </motion.div>
-        </div>
-
-        {/*세션3*/}
-        <div className="flex items-center w-full max-w-6xl mx-auto mb-[236px]">
-          <motion.div
-            className="flex-1 text-left"
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{
-              ease: "easeInOut",
-              duration: 1,
-              x: { duration: 1 },
-            }}
-          >
-            <div className="text-[48px] font-bold">
-              <h1>"해야지" 생각하고</h1>
-              <h1 className=" text-main-blue">잊어버리시진 않으셨나요?</h1>
-            </div>
-          </motion.div>
-          <motion.div
-            className="flex-1 flex justify-end"
-            initial={{ x: 300, opacity: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{
-              ease: "easeInOut",
-              duration: 1,
-              x: { duration: 1 },
-            }}
-          >
-            <img
-              src={Logo}
-              alt="lendingImage 3"
-              className="w-[110px] h-[116px]"
-            />
-          </motion.div>
-        </div>
-        <div className="mb-[200px]">
-          <ImageSlide />
-        </div>
-        <div className="flex w-full mb-[179px]">
-          <FAQ />
+        <div className="mt-[130px] text-center">
+          <p className="mb-[25px]">
+            <span className="text-[#1E1E1E] text-center font-pretendard text-[47px] font-medium leading-[60px]">
+              과제 마감 전
+            </span>
+            <br />
+            <span className="text-[#06F] font-pretendard text-[47px] font-extrabold leading-[60px]">
+              알림을 받으세요!
+            </span>
+          </p>
+          <p className="text-[#24223E] text-center font-pretendard text-[20px] font-normal leading-[27px]">
+            <span>바쁜 일상 속에서 과제 마감일을 잊어버리지 않도록</span>
+            <br />
+            <span>아차가 도와드립니다.</span>
+          </p>
         </div>
       </div>
+      <FeatureSection />
+      <TaskSection />
+      <ImageSlide />
+      <FAQ />
       <Footer />
     </>
   );
