@@ -40,7 +40,7 @@ function Landing() {
 
         <div className="flex gap-[16px] mt-6  text-white">
           <a
-            href="https://apps.apple.com/kr/app/your-app-id" // 앱스토어 URL 넣기
+            href="https://apps.apple.com/kr/app/%EC%95%84%EC%B0%A8-%EC%9D%B4%EC%A0%A0-%EB%86%93%EC%B9%98%EC%A7%80-%EB%A7%88%EC%84%B8%EC%9A%94/id6742465621" // 앱스토어 URL 넣기
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#3C3C3C] px-[34px] py-[15px] rounded-2xl flex justify-center items-center gap-[20px]"
