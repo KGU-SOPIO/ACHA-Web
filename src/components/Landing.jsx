@@ -14,10 +14,8 @@ function Landing() {
   return (
     <>
       <div className="flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16">
-        {/* 로고 */}
         <Logo className="w-[50px] h-[50px] mt-[100px] sm:w-[70px] sm:h-[70px] sm:mt-[150px]" />
 
-        {/* 캘린더 이미지 */}
         <img
           src={calendarImg}
           alt="캘린더 이미지"
@@ -28,12 +26,10 @@ function Landing() {
             w-[250px] sm:w-[500px] lg:w-[700px]"
         />
 
-        {/* 제목 */}
         <h1 className="text-main-blue text-center font-pretendard text-[50px] sm:text-[80px] lg:text-[100px] font-extrabold leading-[55px] sm:leading-[65px] lg:leading-[71px] tracking-[-0.5px] py-[20px] sm:py-[34px]">
           ACHA!
         </h1>
 
-        {/* 설명 문구 */}
         <p className="text-gray-600 text-base sm:text-lg text-center">
           <span className="text-main-blue font-pretendard text-[18px] sm:text-[20px] font-extrabold leading-[28px] sm:leading-[32px]">
             ‘해야지’{" "}
@@ -52,7 +48,6 @@ function Landing() {
           </div>
         </p>
 
-        {/* 다운로드 버튼 */}
         <div className="flex flex-col sm:flex-row gap-[12px] sm:gap-[16px] mt-6 text-white">
           <a
             href="https://apps.apple.com/kr/app/%EC%95%84%EC%B0%A8-%EC%9D%B4%EC%A0%A0-%EB%86%93%EC%B9%98%EC%A7%80-%EB%A7%88%EC%84%B8%EC%9A%94/id6742465621"
@@ -82,7 +77,6 @@ function Landing() {
           </a>
         </div>
 
-        {/* 웹 시작 버튼 */}
         <Link
           to="/login"
           className="bg-gray-200 text-gray-700 px-[60px] sm:px-[100px] py-[10px] sm:py-[15px] rounded-2xl mt-3"
@@ -90,7 +84,6 @@ function Landing() {
           Get started on the Web →
         </Link>
 
-        {/* 추가 정보 */}
         <div className="mt-[80px] sm:mt-[130px] text-center px-4">
           <p className="mb-[15px] sm:mb-[25px]">
             <span className="text-[#1E1E1E] text-center font-pretendard text-[30px] sm:text-[47px] font-medium leading-[40px] sm:leading-[60px]">
