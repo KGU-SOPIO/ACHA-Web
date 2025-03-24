@@ -3,7 +3,7 @@ import phoneImg from "../landing/phoneImg.png";
 export default function FeatureSection() {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center mt-16 mb-[100px] px-4">
-      <div className="text-left lg:ml-[200px] text-center lg:text-left">
+      <div className="text-left lg:ml-[100px] text-center lg:text-left">
         <h3 className="text-[#1E1E1E] font-pretendard text-[28px] sm:text-[32px] lg:text-[36px] font-extrabold leading-[46px] mb-[20px]">
           📅 우선 강의 & 마감 일정 관리
         </h3>
