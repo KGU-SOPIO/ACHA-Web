@@ -5,7 +5,6 @@ function Footer() {
   return (
     <footer className="bg-gray-100 text-gray-600 py-8 px-6 md:px-16 lg:px-32">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
-        {/* 로고 섹션 */}
         <div className="flex flex-col items-center md:items-start">
           <Logo className="mb-4 md:mb-[40px] w-[120px] h-auto" />
           <p className="text-xs text-center md:text-left">
