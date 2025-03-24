@@ -56,7 +56,7 @@ function ImageSlide() {
             key={index}
             src={images[(currentIndex + index) % images.length]}
             alt="slide"
-            className="w-1/3 h-[550px] object-cover transition-transform duration-300 rounded-2xl"
+            className="w-1/2 sm:w-1/3 h-[300px] sm:h-[450px] lg:h-[550px] object-cover transition-transform duration-300 rounded-2xl"
           />
         ))}
       </div>
