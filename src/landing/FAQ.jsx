@@ -1,10 +1,9 @@
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
-import { useEffect, useState } from "react";
 
 import faqData from "../mocks/faqData.json";
+import { useState } from "react";
 
 function FAQ() {
-  const [data, setData] = useState([]);
   const [openIndices, setOpenIndices] = useState({});
 
   const toggleAnswer = (index) => {
@@ -14,46 +13,38 @@ function FAQ() {
     }));
   };
 
-  useEffect(() => {
-    setData(faqData);
-  }, []);
-
   return (
-    <div className="flex justify-between w-full px-[335px] my-[200px]">
-      <div className="text-[60px] font-bold text-left ">
-        <h2>Frequently</h2>
-        <h2>Asked</h2>
-        <h2>Questions</h2>
+    <div className="flex flex-col md:flex-row justify-center gap-x-16 w-full px-6 md:px-16 lg:px-24 my-16 md:my-28 lg:my-[200px] max-w-[1100px] mx-auto">
+      <div className="w-full md:w-1/3 text-center md:text-left">
+        <h2 className="text-4xl md:text-5xl lg:text-[60px] font-bold leading-tight mb-[20px]">
+          Frequently <br /> Asked <br /> Questions
+        </h2>
       </div>
-      <div className="flex flex-col space-y-6 w-[663px]">
+
+      <div className="flex flex-col space-y-4 md:space-y-6 w-full md:w-2/3">
         {faqData.map((item, index) => (
           <div
             key={index}
-            className={`transition-all duration-300 ease-in-out border rounded-xl ${
-              openIndices[index] ? "border-t" : ""
-            }`}
+            className="border rounded-xl transition-all duration-300 ease-in-out"
           >
             <div
-              className="flex justify-between items-center cursor-pointer bg-[rgba(252,252,252,1)] px-[16px] py-[25px] w-full"
-              style={{
-                borderColor: "rgba(219, 219, 219, 1)",
-              }}
+              className="flex justify-between items-center cursor-pointer bg-gray-50 px-4 md:px-6 py-4 md:py-5 w-full border-b"
+              style={{ borderColor: "rgba(219, 219, 219, 1)" }}
               onClick={() => toggleAnswer(index)}
             >
-              <h3 className="text-2xl font-semibold">{item.question}</h3>
+              <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">
+                {item.question}
+              </h3>
               <span className="ml-2 text-xl w-[30px] h-[30px]">
                 {openIndices[index] ? <AiOutlineUp /> : <AiOutlineDown />}
               </span>
             </div>
 
             {openIndices[index] && (
-              <div
-                className="overflow-hidden px-[25px] pb-[25px]"
-                style={{
-                  maxHeight: openIndices[index] ? "500px" : "0",
-                }}
-              >
-                <p className="text-lg pt-4">{item.answer}</p>
+              <div className="overflow-hidden px-4 md:px-6 pb-4 md:pb-6">
+                <p className="text-base md:text-lg pt-2 md:pt-4">
+                  {item.answer}
+                </p>
               </div>
             )}
           </div>
