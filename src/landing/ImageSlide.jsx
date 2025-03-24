@@ -19,32 +19,32 @@ function ImageSlide() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-x-4">
+    <div className="flex flex-col items-center justify-center space-x-4 ">
       <div className="flex space-x-[180px] items-center mb-[97px] mt-[100px]">
         <div>
           <button
             onClick={prevSlide}
-            className="p-[27px] bg-gray-200 rounded-full"
+            className="p-[27px] sm:p-6 bg-gray-200 rounded-full"
           >
             &lt;
           </button>
         </div>
         <p className="text-center">
-          <span className="text-[#252432] font-pretendard text-[60px] font-bold leading-[120%] mb-[30px]">
+          <span className="text-[#252432] font-pretendard text-3xl sm:text-5xl font-bold leading-tight sm:leading-[120%]">
             Check our Work
           </span>
           <br />
-          <span className="text-[#3C3C3C] text-center font-pretendard text-[24px] font-normal leading-[150%]">
-            Team
-          </span>{" "}
-          <span className="text-[#3C3C3C] font-pretendard text-[24px] font-bold leading-[150%]">
+          <span className="text-[#3C3C3C] font-pretendard text-lg sm:text-2xl">
+            Team{" "}
+          </span>
+          <span className="text-[#3C3C3C] font-pretendard text-lg sm:text-2xl font-bold">
             SOPIO
           </span>
         </p>
         <div>
           <button
             onClick={nextSlide}
-            className="p-[27px] bg-gray-200 rounded-full"
+            className="p-[27px] sm:p-6  bg-gray-200 rounded-full"
           >
             &gt;
           </button>
