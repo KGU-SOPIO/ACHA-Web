@@ -33,7 +33,7 @@ function Login() {
   const [isSignupMode, setIsSignupMode] = useState(false);
   const [modalMode, setModalMode] = useState("login");
 
-  const handleOpenConsentModal = (e) => {
+  const handleOpenConsentModal = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -41,8 +41,64 @@ function Login() {
       return;
     }
 
-    setModalMode("login");
-    setIsConsentModalOpen(true);
+    setIsLoading(true);
+
+    try {
+      const result = await login(studentId, password);
+
+      if (!result.success) {
+        const memberData = await fetchMemberData(studentId, password);
+        setUserInfo({
+          studentId,
+          password,
+          name: memberData.name || "",
+          college: memberData.college || "",
+          department: memberData.department || "",
+          major: memberData.major || "",
+        });
+
+        setModalMode("login");
+        setIsConsentModalOpen(true);
+        return;
+      }
+
+      window.location.href = "/home";
+    } catch (error) {
+      console.error("로그인 에러:", error);
+
+      if (error.code === "INVALID_STUDENT_ID_OR_PASSWORD") {
+        setError("학번 또는 비밀번호를 잘못 입력했습니다.");
+        return;
+      }
+
+      if (error.code === "MEMBER_NOT_AUTHENTICATED") {
+        setError("서비스를 이용하기 위해서 2~3일이 소요됩니다.");
+        return;
+      }
+
+      if (error.code === "MEMBER_NOT_FOUND") {
+        try {
+          const memberData = await fetchMemberData(studentId, password);
+          setUserInfo({
+            studentId,
+            password,
+            name: memberData.name || "",
+            college: memberData.college || "",
+            department: memberData.department || "",
+            major: memberData.major || "",
+          });
+
+          setModalMode("login");
+          setIsConsentModalOpen(true);
+          return;
+        } catch (fetchError) {
+          console.error("학생 정보 요청 실패:", fetchError);
+          setError("학번 또는 비밀번호가 일치하지 않습니다.");
+        }
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleLoginProcess = async () => {
