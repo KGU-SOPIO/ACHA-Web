@@ -130,7 +130,7 @@ function Courses() {
                         <div key={item.code} className="rounded-xl">
                           <div className="flex text-[14px] items-center justify-start px-[20px] py-[23px] border-t ">
                             <div className="flex items-center">
-                              {item.type === "VIDEO" ? (
+                              {item.type === "lecture" ? (
                                 <MediaIcon className="w-[24px] h-[24px]" />
                               ) : (
                                 <TaskIcon className="w-[24px] h-[24px]" />
