@@ -1,11 +1,32 @@
+import { useEffect, useState } from "react";
+
 import { ReactComponent as BookIcon } from "../assets/bookIcon.svg";
 import { ReactComponent as MediaIcon } from "../assets/mediaIcon.svg";
 import { ReactComponent as TaskIcon } from "../assets/task.svg";
+import { fetchActivityMy } from "../api/activity";
 
-function WeeklyActivities({ activities }) {
-  const sortedWeeks = [...activities].sort(
-    (a, b) => a.activityCode - b.activityCode
-  );
+function WeeklyActivities({ courseName, activities }) {
+  const [filteredActivities, setFilteredActivities] = useState([]);
+
+  useEffect(() => {
+    const loadMyActivities = async () => {
+      try {
+        const myData = await fetchActivityMy();
+        console.log("📌 내 활동 데이터:", myData);
+
+        const matchingActivities = myData.contents.filter(
+          (activity) => activity.courseName === courseName
+        );
+        console.log("📌 필터링된 활동:", matchingActivities);
+        setFilteredActivities(matchingActivities);
+      } catch (error) {
+        console.error("내 활동 데이터를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    loadMyActivities();
+  }, [courseName]);
+
   return (
     <>
       <div className="flex ml-[22px] mb-[12px]">
@@ -15,63 +36,42 @@ function WeeklyActivities({ activities }) {
         </p>
         <BookIcon />
       </div>
+
       <div className="flex space-x-4 overflow-x-auto">
-        {sortedWeeks.map((activity) => {
-          // lectures와 assignment 모두 없으면 빈 배열로 처리
-          const activityItems = [
-            ...(activity.lectures || []),
-            ...(activity.assignment || []),
-          ];
-
-          // 활동이 없는 경우 렌더링하지 않음
-          if (activityItems.length === 0) {
-            return null;
-          }
-
-          return (
-            <div key={activity.activityCode} className="flex space-x-4">
-              {activityItems.map((item) => (
-                <div
-                  key={item.activityCode}
-                  className="flex-none w-[300px] px-[24px] py-[21px] border rounded-xl"
+        {filteredActivities.length > 0 ? (
+          filteredActivities.map((activity) => (
+            <div
+              key={`${activity.code}-${activity.title}`}
+              className="flex-none w-[300px] px-[24px] py-[21px] border rounded-xl"
+            >
+              <p className="mb-[12px] text-[14px]">
+                <span className="font-bold">{activity.courseName} </span>
+              </p>
+              <div className="flex text-[14px] items-center justify-start p-[14px] border rounded-md">
+                {activity.type === "assignment" ? (
+                  <TaskIcon className="w-[24px] h-[24px]" />
+                ) : (
+                  <MediaIcon className="w-[24px] h-[24px]" />
+                )}
+                <a
+                  href={activity.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-[1px]"
                 >
-                  <p className="mb-[12px] text-[14px]">
-                    <span className="font-bold">{activity.week}주차 </span>
-                    <span> [{item.date}]</span>
-                  </p>
-
-                  <div className="flex text-[14px] items-center justify-start p-[14px] border rounded-md">
-                    {item.activityType === "video" ? (
-                      <>
-                        <MediaIcon className="w-[24px] h-[24px]" />
-                        <a
-                          href={item.activityLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="ml-[1px]"
-                        >
-                          {item.activityName}
-                        </a>
-                      </>
-                    ) : (
-                      <>
-                        <TaskIcon className="w-[24px] h-[24px]" />
-                        <a
-                          href={item.activityLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="ml-[1px]"
-                        >
-                          {item.activityName}
-                        </a>
-                      </>
-                    )}
-                  </div>
-                </div>
-              ))}
+                  {activity.title}
+                </a>
+              </div>
+              <p className="text-[12px] text-gray-600 mt-[10px]">
+                마감일: {new Date(activity.deadline).toLocaleString()}
+              </p>
             </div>
-          );
-        })}
+          ))
+        ) : (
+          <p className="text-gray-500 text-[14px]">
+            등록된 학습 활동이 없습니다.
+          </p>
+        )}
       </div>
     </>
   );

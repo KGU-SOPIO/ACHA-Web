@@ -93,17 +93,17 @@ function Courses() {
 
           {/* Weekly Activities Section */}
           <div className="max-w-6xl pb-[48px] border-b mb-[26px] mx-auto">
-            <WeeklyActivities activities={courseData.contents} />
+            <WeeklyActivities courseName={courseData.courseName} />
           </div>
 
           <div className="bg-[rgba(245,246,248,1)] max-w-6xl mx-auto h-[500px] rounded-xl px-[240px] py-[34px] overflow-y-auto">
             <div>
-              {courseData.contents.map((activity) => {
+              {courseData.contents.map((activity, index) => {
                 if (activity.contents.length === 0) return null;
 
                 return (
                   <div
-                    key={`week-${activity.week}`}
+                    key={`week-${activity.week}-${index}`}
                     className="flex flex-col mb-[10px] bg-white rounded-xl"
                   >
                     <div className="flex items-center px-[24px] justify-between">
