@@ -1,30 +1,68 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { ReactComponent as DownArrow } from "../assets/downArrowIcon.svg";
 import Footer from "../components/Footer";
 import { ReactComponent as LeftArrow } from "./leftArrow.svg";
+import Loading01 from "../components/Loading01";
 import { ReactComponent as MediaIcon } from "../assets/mediaIcon.svg";
 import { ReactComponent as RightArrow } from "../assets/rightArrowBlue.svg";
 import { ReactComponent as TaskIcon } from "../assets/task.svg";
 import { ReactComponent as UpArrow } from "../assets/upArrowIcon.svg";
 import WeeklyActivities from "./WeeklyActivities";
-import mockData from "../mocks/courseMock.json";
-import { useState } from "react";
+import { fetchCourseActivities } from "../api/activity";
 
 function Courses() {
   const { courseCode } = useParams();
+
   const [openWeek, setOpenWeek] = useState(null);
+  const [courseData, setCourseData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const courseData = mockData.find(
-    (course) => course.courseCode === Number(courseCode)
-  );
-  if (!courseData) {
-    return <p className="mt-[100px]">강좌를 찾을 수 없음.</p>;
-  }
+
+  useEffect(() => {
+    const fetchCourseData = async () => {
+      if (!courseCode) return;
+
+      try {
+        setIsLoading(true);
+        const data = await fetchCourseActivities(courseCode);
+        setCourseData(data);
+      } catch (err) {
+        console.error("강좌 데이터 로딩 실패:", err);
+        setError("강좌 정보를 불러오는 데 실패했습니다.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCourseData();
+  }, [courseCode]);
 
   const toggleWeek = (week) => {
     setOpenWeek(openWeek === week ? null : week);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loading01 />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen text-red-500">
+        {error}
+      </div>
+    );
+  }
+
+  if (!courseData) {
+    return <p className="mt-[100px]">강좌를 찾을 수 없음.</p>;
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -39,7 +77,7 @@ function Courses() {
               >
                 <LeftArrow className="w-[24px] h-[24px] mr-[8px]" />
               </button>
-              <h2 className="text-[14px]">{courseData.prosessor}</h2>
+              <h2 className="text-[14px]">{courseData.professor} 교수님</h2>
               <h2 className="text-[24px] font-bold">{courseData.courseName}</h2>
             </div>
             <div className="flex justify-between items-center border border-main-blue rounded-2xl w-[196px] px-[20px] py-[17px]">
@@ -52,36 +90,27 @@ function Courses() {
               <RightArrow className="w-[24px] h-[24px]" />
             </div>
           </div>
+
           {/* Weekly Activities Section */}
           <div className="max-w-6xl pb-[48px] border-b mb-[26px] mx-auto">
-            <WeeklyActivities activities={courseData.activities} />
+            <WeeklyActivities activities={courseData.contents} />
           </div>
+
           <div className="bg-[rgba(245,246,248,1)] max-w-6xl mx-auto h-[500px] rounded-xl px-[240px] py-[34px] overflow-y-auto">
             <div>
-              {courseData.activities.map((activity) => {
-                const activityItems = [
-                  ...(activity.lectures || []),
-                  ...(activity.assignment || []),
-                ];
-
-                if (activityItems.length === 0) return null;
-
-                const firstItem = activityItems[0];
+              {courseData.contents.map((activity) => {
+                if (activity.contents.length === 0) return null;
 
                 return (
                   <div
-                    key={activity.activityCode}
+                    key={`week-${activity.week}`}
                     className="flex flex-col mb-[10px] bg-white rounded-xl"
                   >
                     <div className="flex items-center px-[24px] justify-between">
                       <div className="flex items-center">
-                        {/*강의 시청에 따라 색 다르게 조정 */}
                         <div className="w-[12px] h-[12px] bg-[rgba(255,78,107,1)] rounded-full"></div>
                         <p className="px-[8px] py-[23px] text-[14px]">
-                          <span>
-                            {activity.week}주차 [{firstItem.date}]
-                            {/*임시 주차 추후에 수정해야함 */}
-                          </span>
+                          <span>{activity.week}주차</span>
                         </p>
                       </div>
                       <div
@@ -97,27 +126,23 @@ function Courses() {
                     </div>
 
                     {openWeek === activity.week &&
-                      activityItems.map((item) => (
-                        <div
-                          key={`${activity.activityCode}-${item.activityType}-${item.activityCode}`}
-                          className="rounded-xl"
-                        >
+                      activity.contents.map((item) => (
+                        <div key={item.code} className="rounded-xl">
                           <div className="flex text-[14px] items-center justify-start px-[20px] py-[23px] border-t ">
                             <div className="flex items-center">
-                              {item.activityType === "video" ? (
+                              {item.type === "VIDEO" ? (
                                 <MediaIcon className="w-[24px] h-[24px]" />
                               ) : (
                                 <TaskIcon className="w-[24px] h-[24px]" />
                               )}
                               <a
-                                href={item.activityLink}
+                                href={item.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="ml-[1px]"
                               >
-                                {item.activityName}
+                                {item.title}
                               </a>
-                              <p>({item.date})</p>
                             </div>
                           </div>
                         </div>

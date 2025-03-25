@@ -4,7 +4,6 @@ import { ReactComponent as LectureIcon } from "./iconoir_book.svg";
 import { Link } from "react-router-dom";
 import Loading01 from "../components/Loading01";
 import { fetchMemberLecture } from "../api/lecture";
-import mockData from "../mocks/courseMock.json";
 
 function MyCourseList() {
   const [lecture, setLecture] = useState({ contents: [] });
@@ -53,37 +52,21 @@ function MyCourseList() {
           <LectureIcon className="bg-white" />
         </div>
         <div>
-          {/*예시 데이터 */}
-          {mockData.map((course) => (
-            <div
-              className="px-[26px] py-[16px] text-[12px] text-gray-500 border-[1.5px] border-gray-200 rounded-2xl mb-[11px]"
-              key={course.courseCode}
-            >
-              <Link to={`/courses/${course.courseCode}`}>
-                <p>{course.prosessor} 교수님</p>
-                <p className="text-[16px] text-black">{course.courseName}</p>
-                <p>{course.lectureRoom}</p>
-              </Link>
-            </div>
-          ))}
-
-          {/*실제 데이터 */}
-          {lecture.contents.length > 0 ? (
-            lecture.contents.map((lecture) => (
+          {lecture.contents.map((lecture) => {
+            console.log("lecture 데이터:", lecture); // 디버깅
+            return (
               <div
                 key={lecture.id}
                 className="px-[26px] py-[16px] text-[12px] text-gray-500 border-[1.5px] border-gray-200 rounded-2xl mb-[11px]"
               >
-                <Link to={`/courses/${lecture.id}`}>
+                <Link to={`/courses/${lecture.code}`}>
                   <p>{lecture.professor} 교수님</p>
                   <p className="text-[16px] text-black">{lecture.title}</p>
                   <p>{lecture.lectureRoom}</p>
                 </Link>
               </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-500">오늘의 강의가 없음</p>
-          )}
+            );
+          })}
         </div>
       </div>
     </div>
