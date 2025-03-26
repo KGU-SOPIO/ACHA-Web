@@ -15,6 +15,14 @@ function Today() {
 
   useEffect(() => {
     const getTodayLecture = async () => {
+      const today = new Date();
+      const dayOfWeek = today.getDay();
+
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
+        setTodayLecture({ contents: [] });
+        return;
+      }
+
       try {
         setIsLoading(true);
         const data = await fetchMemberTodayLecture();
