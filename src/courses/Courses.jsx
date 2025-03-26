@@ -9,7 +9,7 @@ import { ReactComponent as LinkIcon } from "./linkIcon.svg";
 import Loading01 from "../components/Loading01";
 import { ReactComponent as MediaIcon } from "../assets/mediaIcon.svg";
 import { ReactComponent as RightArrow } from "../assets/rightArrowBlue.svg";
-import { ReactComponent as TaskIcon } from "../assets/task.svg";
+import { ReactComponent as TaskIcon } from "./taskIcon.svg";
 import { ReactComponent as UpArrow } from "../assets/upArrowIcon.svg";
 import WeeklyActivities from "./WeeklyActivities";
 import { fetchCourseActivities } from "../api/activity";
