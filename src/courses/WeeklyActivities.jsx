@@ -97,8 +97,7 @@ function WeeklyActivities({ contents }) {
                           rel="noopener noreferrer"
                           className="ml-[8px]"
                         >
-                          {activity.title} (
-                          {activity.type === "assignment" ? "과제" : "강의"})
+                          {activity.title}
                         </a>
                       </div>
                     ))

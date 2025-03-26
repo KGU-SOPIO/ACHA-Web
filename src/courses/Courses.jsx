@@ -131,7 +131,14 @@ function Courses() {
 
                     {openWeek === activity.week &&
                       activity.contents.map((item) => (
-                        <div key={item.code} className="rounded-xl">
+                        <div
+                          key={item.code}
+                          className={` ${
+                            !(item.available && item.link)
+                              ? "text-gray-400 cursor-not-allowed"
+                              : "bg-white"
+                          }`}
+                        >
                           <div className="flex text-[14px] items-center justify-start px-[20px] py-[23px] border-t">
                             <div className="flex items-center">
                               {item.type === "lecture" ? (
@@ -139,18 +146,24 @@ function Courses() {
                               ) : item.type === "assignment" ? (
                                 <TaskIcon className="w-[24px] h-[24px]" />
                               ) : item.type === "file" ? (
-                                <FileIcon className="w-[24px] h-[24px]" /> // File 아이콘 추가
+                                <FileIcon className="w-[24px] h-[24px]" />
                               ) : item.type === "url" ? (
-                                <LinkIcon className="w-[24px] h-[24px]" /> // URL 아이콘 추가
+                                <LinkIcon className="w-[24px] h-[24px]" />
                               ) : null}
-                              <a
-                                href={item.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="ml-[7px]"
-                              >
-                                {item.title}
-                              </a>
+                              {item.available && item.link ? (
+                                <a
+                                  href={item.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="ml-[7px] text-black"
+                                >
+                                  {item.title}
+                                </a>
+                              ) : (
+                                <span className="ml-[7px]">
+                                  {item.title} (사용 불가)
+                                </span>
+                              )}
                             </div>
                           </div>
                         </div>
