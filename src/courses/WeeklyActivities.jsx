@@ -4,6 +4,14 @@ import { ReactComponent as TaskIcon } from "../assets/task.svg";
 
 function WeeklyActivities({ contents }) {
   console.log("활동: ", contents);
+
+  const filteredWeeks = contents.filter((weekData) =>
+    weekData.contents.some(
+      (activity) =>
+        activity.type === "assignment" || activity.type === "lecture"
+    )
+  );
+
   return (
     <>
       <div className="flex ml-[22px] mb-[12px]">
@@ -15,8 +23,8 @@ function WeeklyActivities({ contents }) {
       </div>
 
       <div className="flex space-x-4 overflow-x-auto">
-        {contents.length > 0 ? (
-          contents.map((weekData) => (
+        {filteredWeeks.length > 0 ? (
+          filteredWeeks.map((weekData) => (
             <div
               key={`week-${weekData.week}`}
               className="flex-none w-[300px] px-[24px] py-[21px] border rounded-xl"
@@ -38,7 +46,7 @@ function WeeklyActivities({ contents }) {
                       }`}
                       className={`flex text-[14px] items-center justify-start p-[14px] border rounded-md mb-2 ${
                         !(activity.available && activity.link)
-                          ? "bg-gray-100 cursor-not-allowed"
+                          ? "bg-gray-100 cursor-not-allowed text-gray-400"
                           : ""
                       }`}
                     >
