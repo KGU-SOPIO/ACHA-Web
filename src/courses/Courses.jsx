@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { ReactComponent as DownArrow } from "../assets/downArrowIcon.svg";
+import { ReactComponent as FileIcon } from "./fileIcon.svg";
 import Footer from "../components/Footer";
 import { ReactComponent as LeftArrow } from "./leftArrow.svg";
+import { ReactComponent as LinkIcon } from "./linkIcon.svg";
 import Loading01 from "../components/Loading01";
 import { ReactComponent as MediaIcon } from "../assets/mediaIcon.svg";
 import { ReactComponent as RightArrow } from "../assets/rightArrowBlue.svg";
@@ -134,14 +136,18 @@ function Courses() {
                             <div className="flex items-center">
                               {item.type === "lecture" ? (
                                 <MediaIcon className="w-[24px] h-[24px]" />
-                              ) : (
+                              ) : item.type === "assignment" ? (
                                 <TaskIcon className="w-[24px] h-[24px]" />
-                              )}
+                              ) : item.type === "file" ? (
+                                <FileIcon className="w-[24px] h-[24px]" /> // File 아이콘 추가
+                              ) : item.type === "url" ? (
+                                <LinkIcon className="w-[24px] h-[24px]" /> // URL 아이콘 추가
+                              ) : null}
                               <a
                                 href={item.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="ml-[1px]"
+                                className="ml-[7px]"
                               >
                                 {item.title}
                               </a>
