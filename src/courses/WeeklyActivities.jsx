@@ -1,11 +1,19 @@
+import React, { useState } from "react";
+
 import { ReactComponent as BookIcon } from "../assets/bookIcon.svg";
 import { ReactComponent as MediaIcon } from "../assets/mediaIcon.svg";
-import { ReactComponent as TaskIcon } from "../assets/task.svg";
+import { ReactComponent as TaskIcon } from "./taskIcon.svg";
 
-function WeeklyActivities({ activities }) {
-  const sortedWeeks = [...activities].sort(
-    (a, b) => a.activityCode - b.activityCode
+function WeeklyActivities({ contents }) {
+  const [hoveredWeek, setHoveredWeek] = useState(null);
+
+  const filteredWeeks = contents.filter((weekData) =>
+    weekData.contents.some(
+      (activity) =>
+        activity.type === "assignment" || activity.type === "lecture"
+    )
   );
+
   return (
     <>
       <div className="flex ml-[22px] mb-[12px]">
@@ -15,63 +23,98 @@ function WeeklyActivities({ activities }) {
         </p>
         <BookIcon />
       </div>
+
       <div className="flex space-x-4 overflow-x-auto">
-        {sortedWeeks.map((activity) => {
-          // lectures와 assignment 모두 없으면 빈 배열로 처리
-          const activityItems = [
-            ...(activity.lectures || []),
-            ...(activity.assignment || []),
-          ];
+        {filteredWeeks.length > 0 ? (
+          filteredWeeks.map((weekData) => {
+            const filteredContents = weekData.contents.filter(
+              (activity) =>
+                activity.type === "assignment" || activity.type === "lecture"
+            );
+            const isHovered = hoveredWeek === weekData.week;
+            const displayContents = isHovered
+              ? filteredContents
+              : filteredContents.slice(0, 1);
 
-          // 활동이 없는 경우 렌더링하지 않음
-          if (activityItems.length === 0) {
-            return null;
-          }
-
-          return (
-            <div key={activity.activityCode} className="flex space-x-4">
-              {activityItems.map((item) => (
-                <div
-                  key={item.activityCode}
-                  className="flex-none w-[300px] px-[24px] py-[21px] border rounded-xl"
-                >
-                  <p className="mb-[12px] text-[14px]">
-                    <span className="font-bold">{activity.week}주차 </span>
-                    <span> [{item.date}]</span>
+            return (
+              <div
+                key={`week-${weekData.week}`}
+                className={`
+                  flex-none w-[300px] px-[24px] py-[21px] 
+                  border rounded-xl relative 
+                  transition-all duration-300 ease-in-out
+                  ${isHovered ? "shadow-lg" : ""}
+                `}
+                onMouseEnter={() => setHoveredWeek(weekData.week)}
+                onMouseLeave={() => setHoveredWeek(null)}
+              >
+                <div className="flex justify-between items-center mb-[12px]">
+                  <p className="text-[14px]">
+                    <span className="font-bold">{weekData.week}주차</span>
                   </p>
-
-                  <div className="flex text-[14px] items-center justify-start p-[14px] border rounded-md">
-                    {item.activityType === "video" ? (
-                      <>
-                        <MediaIcon className="w-[24px] h-[24px]" />
-                        <a
-                          href={item.activityLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="ml-[1px]"
-                        >
-                          {item.activityName}
-                        </a>
-                      </>
-                    ) : (
-                      <>
-                        <TaskIcon className="w-[24px] h-[24px]" />
-                        <a
-                          href={item.activityLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="ml-[1px]"
-                        >
-                          {item.activityName}
-                        </a>
-                      </>
-                    )}
-                  </div>
+                  {filteredContents.length > 1 && !isHovered && (
+                    <span className="text-[12px] text-blue-500">
+                      +{filteredContents.length - 1}
+                    </span>
+                  )}
                 </div>
-              ))}
-            </div>
-          );
-        })}
+
+                <div
+                  className={`
+                  overflow-hidden transition-all duration-300 ease-in-out
+                  ${isHovered ? "max-h-96" : "max-h-[60px]"}
+                `}
+                >
+                  {filteredContents.length > 0 ? (
+                    displayContents.map((activity, index) => (
+                      <div
+                        key={`week-${weekData.week}-${
+                          activity.code || activity.title
+                        }`}
+                        className={`
+                          flex text-[14px] items-center justify-start 
+                          p-[14px] border rounded-md mb-2 
+                          transition-all duration-300 ease-in-out
+                          opacity-${isHovered ? "100" : "0"}
+                          ${
+                            !(activity.available && activity.link)
+                              ? "bg-gray-100 cursor-not-allowed text-gray-400"
+                              : ""
+                          }
+                        `}
+                        style={{
+                          transitionDelay: `${index * 100}ms`,
+                        }}
+                      >
+                        {activity.type === "assignment" ? (
+                          <TaskIcon className="w-[24px] h-[24px]" />
+                        ) : (
+                          <MediaIcon className="w-[24px] h-[24px]" />
+                        )}
+                        <a
+                          href={activity.available ? activity.link : undefined}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="ml-[8px]"
+                        >
+                          {activity.title}
+                        </a>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-gray-500 text-[14px]">
+                      등록된 학습 활동이 없습니다.
+                    </p>
+                  )}
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p className="text-gray-500 text-[14px]">
+            등록된 학습 활동이 없습니다.
+          </p>
+        )}
       </div>
     </>
   );
