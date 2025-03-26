@@ -93,7 +93,7 @@ function Courses() {
 
           {/* Weekly Activities Section */}
           <div className="max-w-6xl pb-[48px] border-b mb-[26px] mx-auto">
-            <WeeklyActivities courseName={courseData.courseName} />
+            <WeeklyActivities contents={courseData.contents} />
           </div>
 
           <div className="bg-[rgba(245,246,248,1)] max-w-6xl mx-auto h-[500px] rounded-xl px-[240px] py-[34px] overflow-y-auto">
