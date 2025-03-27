@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { ReactComponent as BookIcon } from "../assets/bookIcon.svg";
-import { ReactComponent as LeftArrowIcon } from "../courses/leftArrow.svg";
+import { ReactComponent as LeftArrowIcon } from "../courses/left.svg";
 import { ReactComponent as MediaIcon } from "../assets/mediaIcon.svg";
-import { ReactComponent as RightArrowIcon } from "../assets/arrowRight.svg";
+import { ReactComponent as RightArrowIcon } from "../courses/right.svg";
 import { ReactComponent as TaskIcon } from "./taskIcon.svg";
 
 function WeeklyActivities({ contents }) {
@@ -52,7 +52,7 @@ function WeeklyActivities({ contents }) {
         {currentPage > 0 && (
           <button
             onClick={handlePrevPage}
-            className="p-2 transition-opacity duration-300 hover:opacity-70"
+            className="transition-opacity duration-300 hover:opacity-70 w-[50px]"
           >
             <LeftArrowIcon />
           </button>
@@ -78,11 +78,12 @@ function WeeklyActivities({ contents }) {
                 <div
                   key={`week-${weekData.week}`}
                   className={`
-                      flex-none w-[253px] 
+                      flex-none w-[250px] 
                       px-[24px] py-[21px] 
                       border rounded-xl relative 
                       transition-all duration-300 ease-in-out
-                      ${isHovered ? "shadow-2xl" : ""}
+                      mb-[30px]
+                      ${isHovered ? "shadow-xl" : ""}
                       ${
                         hoveredWeek && hoveredWeek !== weekData.week
                           ? "opacity-50"
@@ -163,7 +164,7 @@ function WeeklyActivities({ contents }) {
         {currentPage < totalPages - 1 && (
           <button
             onClick={handleNextPage}
-            className="p-2 transition-opacity duration-300 hover:opacity-70"
+            className="transition-opacity duration-300 hover:opacity-70  w-[50px]"
           >
             <RightArrowIcon />
           </button>
