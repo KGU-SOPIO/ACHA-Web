@@ -96,7 +96,7 @@ function Courses() {
           </div>
 
           {/* Weekly Activities Section */}
-          <div className="max-w-full sm:max-w-5xl md:max-w-6xl pb-[48px] border-b mb-[26px] mx-auto">
+          <div className="max-w-full sm:max-w-5xl md:max-w-6xl pb-[28px] border-b mb-[26px] mx-auto">
             <WeeklyActivities contents={courseData.contents} />
           </div>
 
