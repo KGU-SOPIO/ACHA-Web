@@ -19,13 +19,7 @@ const Nav = () => {
     setIsMypageModalOpen((prev) => !prev);
     if (isNotificationModalOpen) setIsNotificationModalOpen((prev) => !prev);
   };
-  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    alert("로그아웃 되었습니다.");
-    navigate("/");
-  };
   return (
     <div>
       <nav className="fixed top-0 w-full bg-white shadow-md z-10">
@@ -68,13 +62,6 @@ const Nav = () => {
             >
               <MyIcon />
             </div>
-
-            {/* <button
-            onClick={handleLogout}
-            className="text-red-500 bg-red-100 hover:bg-red-200 p-2 px-6 rounded-md"
-          >
-            로그아웃
-          </button> */}
           </div>
         </div>
       </nav>

@@ -9,6 +9,7 @@ import Home from "./Home";
 import Login from "./Login";
 import MyPage from "./MyPage";
 import Nav from "../Nav";
+import PasswordError from "../login/PasswordError";
 import React from "react";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/passwordError" element={<PasswordError />} />
         <Route path="/courses/:courseCode" element={<Courses />} />
         <Route path="/courses/:courseCode/notices" element={<CourseNotice />} />
         <Route path="/courses" element={<CoursesList />} />

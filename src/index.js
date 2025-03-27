@@ -7,6 +7,7 @@ import AuthErrorPage from "./login/AuthErrorPage";
 import Landing from "./components/Landing";
 import Login from "./components/Login";
 import NotFoundPage from "./components/NotFoundPage";
+import PasswordError from "./login/PasswordError";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { configureSaveTokens } from "./api/server";
@@ -26,6 +27,7 @@ root.render(
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/passwordError" element={<PasswordError />} />
       <Route path="/LoginError" element={<AuthErrorPage />} />
       <Route path="/not-found" element={<NotFoundPage />} />
       <Route path="/*" element={<App />} />
