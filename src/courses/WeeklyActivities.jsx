@@ -82,7 +82,8 @@ function WeeklyActivities({ contents }) {
                       px-[24px] py-[21px] 
                       border rounded-xl relative 
                       transition-all duration-300 ease-in-out
-                      ${isHovered ? "shadow-2xl" : ""}
+                      mb-[30px]
+                      ${isHovered ? "shadow-xl" : ""}
                       ${
                         hoveredWeek && hoveredWeek !== weekData.week
                           ? "opacity-50"
