@@ -111,11 +111,6 @@ export const fetchCurrentMember = async () => {
   }
 };
 
-export const logout = () => {
-  clearTokens();
-  // await server.post("/members/logout");
-};
-
 export const deleteAccount = async (password) => {
   try {
     const { accessToken } = getTokens();

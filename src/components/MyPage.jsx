@@ -1,6 +1,7 @@
 import Input from "../signup/Input";
 import Modal from "../mypage/Modal";
 import checkIcon from "../mypage/check.png";
+import { clearTokens } from "../api/tokenService";
 import { deleteAccount } from "../api/authApi";
 import logoutIcon from "../mypage/logout.svg";
 import trashIcon from "../mypage/trash.svg";
@@ -65,6 +66,7 @@ function MyPage({ onClose }) {
 
   const confirmLogout = () => {
     alert("로그아웃되었습니다.");
+    clearTokens();
     closeModal("isLogoutModalOpen");
     navigate("/");
   };
