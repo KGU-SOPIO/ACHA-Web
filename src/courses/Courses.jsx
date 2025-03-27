@@ -69,7 +69,7 @@ function Courses() {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="flex-grow">
-        <div className="pt-[157px] px-6 sm:px-8 md:px-16 lg:px-[346px] pb-[208px]">
+        <div className="pt-[147px] px-6 sm:px-8 md:px-16 lg:px-[346px] pb-[208px]">
           {/* Header Section */}
           <div className="flex justify-between items-center mb-[30px] max-w-6xl mx-auto">
             <div className="flex flex-col justify-start">
@@ -96,11 +96,11 @@ function Courses() {
           </div>
 
           {/* Weekly Activities Section */}
-          <div className="max-w-full sm:max-w-5xl md:max-w-6xl pb-[48px] border-b mb-[26px] mx-auto">
+          <div className="max-w-full sm:max-w-5xl md:max-w-6xl pb-[28px] border-b mb-[26px] mx-auto">
             <WeeklyActivities contents={courseData.contents} />
           </div>
 
-          <div className="bg-[rgba(245,246,248,1)] max-w-full sm:max-w-5xl md:max-w-6xl mx-auto h-auto sm:h-[600px] md:h-[500px] rounded-xl px-6 sm:px-8 lg:px-[240px] py-[34px] overflow-y-auto">
+          <div className="bg-[rgba(245,246,248,1)] max-w-full sm:max-w-5xl md:max-w-6xl mx-auto h-auto sm:h-[800px] md:h-[700px] rounded-xl px-6 sm:px-8 lg:px-[240px] py-[34px] overflow-y-auto">
             <div>
               {courseData.contents.map((activity, index) => {
                 if (activity.contents.length === 0) return null;
