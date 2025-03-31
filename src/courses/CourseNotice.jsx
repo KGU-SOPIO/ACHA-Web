@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import { ReactComponent as LeftArrow } from "./leftArrow.svg";
 import Loading01 from "../components/Loading01";
 import { ReactComponent as NoteIcon } from "./note.svg";
-import { ReactComponent as UpArrow } from "../assets/upArrow.svg";
+import { ReactComponent as UpArrow } from "./upArrow.svg";
 
 function CourseNotice() {
   const { courseCode } = useParams();

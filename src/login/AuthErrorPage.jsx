@@ -1,5 +1,5 @@
 import Button from "../signup/Button";
-import { ReactComponent as ErrorIcon } from "../assets/stop-sign.svg";
+import { ReactComponent as ErrorIcon } from "./stop-sign.svg";
 import Footer from "../components/Footer";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import { useNavigate } from "react-router-dom";

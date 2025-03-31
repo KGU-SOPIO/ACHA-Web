@@ -2,8 +2,8 @@ import { formatDate, getDday } from "../utils/utils";
 import { useEffect, useState } from "react";
 
 import DdayRenderer from "../home/DdayRenderer";
-import { ReactComponent as LectureIcon } from "../assets/lecture.svg";
-import { ReactComponent as ListIcon } from "../assets/list_task.svg";
+import { ReactComponent as LectureIcon } from "./lecture.svg";
+import { ReactComponent as ListIcon } from "./list_task.svg";
 import Loading01 from "../components/Loading01";
 import { fetchActivityMy } from "../api/activity";
 

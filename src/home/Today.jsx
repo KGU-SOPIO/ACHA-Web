@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 import Loading01 from "../components/Loading01";
-import { ReactComponent as QuoteLeft } from "../assets/“left.svg";
-import { ReactComponent as QuoteRight } from "../assets/“right.svg";
+import { ReactComponent as QuoteLeft } from "./“left.svg";
+import { ReactComponent as QuoteRight } from "./“right.svg";
 import { fetchMemberTodayLecture } from "../api/lecture";
 import quoteData from "../mocks/quotesMocks.json";
 

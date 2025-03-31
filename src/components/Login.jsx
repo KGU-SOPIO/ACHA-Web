@@ -8,7 +8,7 @@ import Input from "../signup/Input";
 import Loading01 from "./Loading01";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import SignupSuccess from "../signup/SignupSuccess";
-import { ReactComponent as Warning } from "../assets/warning.svg";
+import { ReactComponent as Warning } from "../login/warning.svg";
 
 function Login() {
   // Login state

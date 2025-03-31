@@ -1,6 +1,6 @@
-import { ReactComponent as MediaIcon } from "../assets/media.svg";
+import { ReactComponent as MediaIcon } from "./media.svg";
 import React from "react";
-import { ReactComponent as TaskIcon } from "../assets/task.svg";
+import { ReactComponent as TaskIcon } from "./task.svg";
 import { formatDday } from "../utils/utils";
 
 const DdayRenderer = ({ items, getDday, formatDate }) => {
