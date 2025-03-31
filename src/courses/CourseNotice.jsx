@@ -26,6 +26,16 @@ function CourseNotice() {
         setIsLoading(true);
         const data = await fetchNotice(courseCode);
         setCourseData(data);
+
+        const details = await Promise.all(
+          data.contents.map(async (notice) => {
+            const detail = await fetchNoticeDetail(notice.id);
+            return { [notice.id]: detail };
+          })
+        );
+
+        const detailsObject = Object.assign({}, ...details);
+        setNoticeDetails(detailsObject);
       } catch (err) {
         console.error("공지사항 데이터 로딩 실패:", err);
         setError("공지사항 정보를 불러오는 데 실패했습니다.");
@@ -37,30 +47,11 @@ function CourseNotice() {
     fetchNoticeData();
   }, [courseCode]);
 
-  const toggleNotice = async (noticeId) => {
-    if (openNotices[noticeId]) {
-      setOpenNotices((prev) => ({
-        ...prev,
-        [noticeId]: false,
-      }));
-      return;
-    }
-    try {
-      if (!noticeDetails[noticeId]) {
-        const detailData = await fetchNoticeDetail(noticeId);
-        setNoticeDetails((prev) => ({
-          ...prev,
-          [noticeId]: detailData,
-        }));
-      }
-
-      setOpenNotices((prev) => ({
-        ...prev,
-        [noticeId]: true,
-      }));
-    } catch (err) {
-      console.error("공지사항 상세 정보 로딩 실패:", err);
-    }
+  const toggleNotice = (noticeId) => {
+    setOpenNotices((prev) => ({
+      ...prev,
+      [noticeId]: !prev[noticeId],
+    }));
   };
 
   if (isLoading) {
