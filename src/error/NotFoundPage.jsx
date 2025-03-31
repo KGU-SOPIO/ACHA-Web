@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import errorIcon1 from "../error/errorIcon1.png";
 import errorIcon2 from "../error/errorIcon2.png";
 import { useNavigate } from "react-router-dom";

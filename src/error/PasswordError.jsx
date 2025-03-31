@@ -1,9 +1,8 @@
-import Footer from "../components/Footer";
-import { ReactComponent as HandIcon } from "./handIcon.svg";
-import { ReactComponent as KutisIcon } from "./kutis.svg";
-import { ReactComponent as MenualIcon } from "./menual.svg";
-import { ReactComponent as PasswordStarIcon } from "./password_star.svg";
-import { ReactComponent as RetryIcon } from "./retry.svg";
+import { ReactComponent as HandIcon } from "../login/handIcon.svg";
+import { ReactComponent as KutisIcon } from "../login/kutis.svg";
+import { ReactComponent as MenualIcon } from "../login/menual.svg";
+import { ReactComponent as PasswordStarIcon } from "../login/password_star.svg";
+import { ReactComponent as RetryIcon } from "../login/retry.svg";
 import { useNavigate } from "react-router-dom";
 
 function PasswordError() {
@@ -11,10 +10,6 @@ function PasswordError() {
 
   const handleGoLogin = () => {
     navigate("/login");
-  };
-
-  const handleGoKutis = () => {
-    navigate("https://kutis.kyonggi.ac.kr/webkutis/view/indexWeb.jsp");
   };
 
   return (

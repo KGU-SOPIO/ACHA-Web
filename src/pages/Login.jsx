@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { fetchMemberData, login, signup } from "../api/authApi.js";
 
-import Button from "../signup/Button";
+import Button from "../signup/Button.jsx";
 import ConsentInformationModal from "../signup/ConsentInformationModal.jsx";
-import Footer from "./Footer";
-import Input from "../signup/Input";
-import Loading01 from "./Loading01";
+import Footer from "../components/Footer.jsx";
+import Input from "../signup/Input.jsx";
+import Loading01 from "../components/Loading01.jsx";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
-import SignupSuccess from "../signup/SignupSuccess";
-import { ReactComponent as Warning } from "../assets/warning.svg";
+import SignupSuccess from "../signup/SignupSuccess.jsx";
+import { ReactComponent as Warning } from "../login/warning.svg";
 
 function Login() {
   // Login state

@@ -3,11 +3,11 @@ import "./index.css";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import App from "./components/App";
-import AuthErrorPage from "./login/AuthErrorPage";
-import Landing from "./components/Landing";
-import Login from "./components/Login";
-import NotFoundPage from "./components/NotFoundPage";
-import PasswordError from "./login/PasswordError";
+import AuthErrorPage from "./error/AuthErrorPage";
+import Landing from "./pages/Landing";
+import Login from "./pages/Login";
+import NotFoundPage from "./error/NotFoundPage";
+import PasswordError from "./error/PasswordError";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { configureSaveTokens } from "./api/server";

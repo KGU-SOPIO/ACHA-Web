@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { ReactComponent as BookIcon } from "../assets/bookIcon.svg";
+import { ReactComponent as BookIcon } from "./bookIcon.svg";
 import { ReactComponent as LeftArrowIcon } from "../courses/left.svg";
 import { ReactComponent as MediaIcon } from "../assets/mediaIcon.svg";
 import { ReactComponent as RightArrowIcon } from "../courses/right.svg";

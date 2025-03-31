@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import Priority from "../home/Priority";
 import Today from "../home/Today";
 import UserSettings from "../home/UserSettings";

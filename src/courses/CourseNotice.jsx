@@ -1,32 +1,88 @@
+import { fetchNotice, fetchNoticeDetail } from "../api/activity";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { ReactComponent as DownArrow } from "../assets/downArrow.svg";
 import Footer from "../components/Footer";
 import { ReactComponent as LeftArrow } from "./leftArrow.svg";
+import Loading01 from "../components/Loading01";
 import { ReactComponent as NoteIcon } from "./note.svg";
-import { ReactComponent as UpArrow } from "../assets/upArrow.svg";
-import mockData from "../mocks/courseMock.json";
-import { useState } from "react";
+import { ReactComponent as UpArrow } from "./upArrow.svg";
 
 function CourseNotice() {
   const { courseCode } = useParams();
   const navigate = useNavigate();
   const [openNotices, setOpenNotices] = useState({});
+  const [courseData, setCourseData] = useState(null);
+  const [noticeDetails, setNoticeDetails] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const courseData = mockData.find(
-    (course) => course.courseCode === Number(courseCode)
-  );
+  useEffect(() => {
+    const fetchNoticeData = async () => {
+      if (!courseCode) return;
 
-  if (!courseData) {
-    return <p className="mt=[100px]">강좌를 찾을 수 없음.</p>;
+      try {
+        setIsLoading(true);
+        const data = await fetchNotice(courseCode);
+        setCourseData(data);
+      } catch (err) {
+        console.error("공지사항 데이터 로딩 실패:", err);
+        setError("공지사항 정보를 불러오는 데 실패했습니다.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchNoticeData();
+  }, [courseCode]);
+
+  const toggleNotice = async (noticeId) => {
+    if (openNotices[noticeId]) {
+      setOpenNotices((prev) => ({
+        ...prev,
+        [noticeId]: false,
+      }));
+      return;
+    }
+    try {
+      if (!noticeDetails[noticeId]) {
+        const detailData = await fetchNoticeDetail(noticeId);
+        setNoticeDetails((prev) => ({
+          ...prev,
+          [noticeId]: detailData,
+        }));
+      }
+
+      setOpenNotices((prev) => ({
+        ...prev,
+        [noticeId]: true,
+      }));
+    } catch (err) {
+      console.error("공지사항 상세 정보 로딩 실패:", err);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loading01 />
+      </div>
+    );
   }
 
-  const toggleNotice = (noticeIndex) => {
-    setOpenNotices((prev) => ({
-      ...prev,
-      [noticeIndex]: !prev[noticeIndex],
-    }));
-  };
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen text-red-500">
+        {error}
+      </div>
+    );
+  }
+
+  if (!courseData) {
+    return <p className="mt-[100px] text-center">강좌를 찾을 수 없음.</p>;
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <div className="flex-grow">
@@ -47,60 +103,66 @@ function CourseNotice() {
             </div>
 
             <div className="space-y-6">
-              {courseData.notices.map((notice) => (
-                <div
-                  key={notice.index}
-                  className="border border-gray-300 rounded-2xl p-[12px]"
-                >
+              {courseData.contents &&
+                courseData.contents.map((notice) => (
                   <div
-                    className="flex justify-between items-center p-[24px] cursor-pointer"
-                    onClick={() => toggleNotice(notice.index)}
+                    key={`notice-${notice.id}-${notice.index}`}
+                    className="border border-gray-300 rounded-2xl p-[12px]"
                   >
-                    <div className="flex items-center">
-                      <h3 className="text-[18px] font-bold">{notice.title}</h3>
-                      <span className="text-[14px] text-gray-500 ml-4">
-                        {notice.date}
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      {openNotices[notice.index] ? (
-                        <UpArrow className="w-[24px] h-[24px]" />
-                      ) : (
-                        <DownArrow className="w-[24px] h-[24px]" />
-                      )}
-                    </div>
-                  </div>
-                  {openNotices[notice.index] && (
-                    <div className="px-[24px] pb-[24px]">
-                      <div className="border-t">
-                        <p className="text-[14px] my-[32px] whitespace-pre-line">
-                          {notice.content}
-                        </p>
-                        {notice.files && notice.files.length > 0 && (
-                          <div className="border-t pt-[16px]">
-                            <p className="text-[14px] font-bold mb-[8px]">
-                              첨부파일
-                            </p>
-                            <div className="space-y-2">
-                              {notice.files.map((file, index) => (
-                                <a
-                                  key={index}
-                                  href={file.fileLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="block text-[14px] text-blue-600 hover:underline"
-                                >
-                                  {file.fileName}
-                                </a>
-                              ))}
-                            </div>
-                          </div>
+                    <div
+                      className="flex justify-between items-center p-[24px] cursor-pointer"
+                      onClick={() => toggleNotice(notice.id)}
+                    >
+                      <div className="flex items-center">
+                        <h3 className="text-[18px] font-bold">
+                          {notice.title}
+                        </h3>
+                        <span className="text-[14px] text-gray-500 ml-4">
+                          {notice.date}
+                        </span>
+                      </div>
+                      <div className="flex items-center">
+                        {openNotices[notice.id] ? (
+                          <UpArrow className="w-[24px] h-[24px]" />
+                        ) : (
+                          <DownArrow className="w-[24px] h-[24px]" />
                         )}
                       </div>
                     </div>
-                  )}
-                </div>
-              ))}
+                    {openNotices[notice.id] && noticeDetails[notice.id] && (
+                      <div className="px-[24px] pb-[24px]">
+                        <div className="border-t">
+                          <p className="text-[14px] my-[32px] whitespace-pre-line">
+                            {noticeDetails[notice.id].content}
+                          </p>
+                          {noticeDetails[notice.id].files &&
+                            noticeDetails[notice.id].files.length > 0 && (
+                              <div className="border-t pt-[16px]">
+                                <p className="text-[14px] font-bold mb-[8px]">
+                                  첨부파일
+                                </p>
+                                <div className="space-y-2">
+                                  {noticeDetails[notice.id].files.map(
+                                    (file, index) => (
+                                      <a
+                                        key={index}
+                                        href={file.fileLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block text-[14px] text-blue-600 hover:underline"
+                                      >
+                                        {file.fileName}
+                                      </a>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
             </div>
           </div>
         </div>

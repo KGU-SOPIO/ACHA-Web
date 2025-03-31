@@ -31,3 +31,46 @@ export const fetchCourseActivities = async (code) => {
     }
   }
 };
+
+export const fetchNotice = async (code) => {
+  try {
+    console.log("공지사항 API 요청 보냄: code =", code);
+    const response = await server.get(`/notifications`, {
+      params: { code },
+    });
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      console.error(
+        "서버 응답 에러:",
+        error.response.status,
+        error.response.data
+      );
+    } else if (error.request) {
+      console.error("요청은 갔으나 응답이 없음:", error.request);
+    } else {
+      console.error("기타 오류:", error.message);
+    }
+  }
+};
+
+export const fetchNoticeDetail = async (noticeId) => {
+  try {
+    console.log("공지사항 상세 정보 API 요청 보냄: id =", noticeId);
+    const response = await server.get(`/notifications/${noticeId}`);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      console.error(
+        "서버 응답 에러:",
+        error.response.status,
+        error.response.data
+      );
+    } else if (error.request) {
+      console.error("요청은 갔으나 응답이 없음:", error.request);
+    } else {
+      console.error("기타 오류:", error.message);
+    }
+    throw error;
+  }
+};

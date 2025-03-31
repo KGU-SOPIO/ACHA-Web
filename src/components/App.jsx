@@ -1,15 +1,15 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import About from "./About";
-import AuthErrorPage from "../login/AuthErrorPage";
+import About from "../pages/About";
+import AuthErrorPage from "../error/AuthErrorPage";
 import CourseNotice from "../courses/CourseNotice";
 import Courses from "../courses/Courses";
-import CoursesList from "./CoursesList";
-import Home from "./Home";
-import Login from "./Login";
+import CoursesList from "../pages/CoursesList";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
 import MyPage from "./MyPage";
 import Nav from "../Nav";
-import PasswordError from "../login/PasswordError";
+import PasswordError from "../error/PasswordError";
 import React from "react";
 
 const App = () => {
