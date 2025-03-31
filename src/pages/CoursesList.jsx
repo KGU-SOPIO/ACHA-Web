@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import MyCourseList from "../courses/MyCourseList";
 import Priority from "../home/Priority";
 

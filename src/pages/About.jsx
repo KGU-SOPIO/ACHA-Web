@@ -1,5 +1,5 @@
 import DeveloperData from "../mocks/member.json";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import { ReactComponent as LeftArrow } from "../courses/leftArrow.svg";
 import React from "react";
 import { ReactComponent as TeamIcon } from "../assets/teamIcon.svg";

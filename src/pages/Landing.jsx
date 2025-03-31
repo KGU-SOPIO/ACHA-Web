@@ -1,6 +1,6 @@
 import FAQ from "../landing/FAQ";
 import FeatureSection from "../landing/FeatureSection";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import ImageSlide from "../landing/ImageSlide";
 import LendingImg2 from "../assets/lending2.png";
 import { Link } from "react-router-dom";
