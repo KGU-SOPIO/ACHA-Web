@@ -1,83 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { formatDate, getDday } from "../utils/utils";
 
 import DdayRenderer from "../home/DdayRenderer";
 import Loading01 from "./Loading01";
-import { fetchActivityMy } from "../api/activity";
+import React from "react";
+import { usePriority } from "../contexts/PriorityContext";
 
 const NotificationModal = ({ onClose }) => {
-  const [lectures, setLectures] = useState([]);
-  const [assignments, setAssignments] = useState([]);
-  const [activeTab, setActiveTab] = useState("all");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const getActivities = async () => {
-      try {
-        setIsLoading(true);
-        const data = await fetchActivityMy();
-
-        const contents = data?.contents || [];
-
-        const extractTime = (deadlineStr) => {
-          if (!deadlineStr) return "23:59";
-
-          try {
-            if (deadlineStr.includes("T")) {
-              return deadlineStr.split("T")[1].substring(0, 5);
-            }
-
-            const parts = deadlineStr.split(" ");
-            if (parts.length > 1) {
-              return parts[1].substring(0, 5);
-            }
-
-            return "23:59";
-          } catch (e) {
-            console.error("시간 추출 오류:", e);
-            return "23:59";
-          }
-        };
-
-        const processedLectures = contents
-          .filter((item) => item.type === "lecture")
-          .map((item) => ({
-            activityCode: item.code || `lecture-${item.title}`,
-            courseName: item.courseName || "",
-            activityName: item.title || "",
-            activityLink: item.link || "https://lms.kyonggi.ac.kr/",
-            activityType: "video",
-            date: item.deadline || new Date().toISOString(),
-            time: extractTime(item.deadline),
-            available: item.available,
-          }));
-
-        const processedAssignments = contents
-          .filter((item) => item.type === "assignment")
-          .map((item) => ({
-            activityCode: item.code || `assignment-${item.title}`,
-            courseName: item.courseName || "",
-            activityName: item.title || "",
-            activityLink: item.link || "https://lms.kyonggi.ac.kr/",
-            activityType: "assignment",
-            date: item.deadline || new Date().toISOString(),
-            time: extractTime(item.deadline),
-            available: item.available,
-          }));
-
-        setLectures(processedLectures);
-        setAssignments(processedAssignments);
-      } catch (error) {
-        console.error("내 활동목록 조회 실패:", error);
-        setError("내 활동목록을 불러오는데 실패했습니다.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getActivities();
-  }, []);
+  const { lectures, assignments, isLoading, error } = usePriority();
+  const [activeTab, setActiveTab] = React.useState("all");
 
   const filteredData = () => {
     if (activeTab === "lectures") return lectures;
