@@ -29,6 +29,7 @@ function Courses() {
 
       try {
         setIsLoading(true);
+        console.log("강의활동 호출");
         const data = await fetchCourseActivities(courseCode);
         setCourseData(data);
       } catch (err) {
