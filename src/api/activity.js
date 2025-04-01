@@ -12,7 +12,6 @@ export const fetchActivityMy = async () => {
 
 export const fetchCourseActivities = async (code) => {
   try {
-    console.log("API 요청 보냄: code =", code);
     const response = await server.get(`/activities/lecture`, {
       params: { code },
     });

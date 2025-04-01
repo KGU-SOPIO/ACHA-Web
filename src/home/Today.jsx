@@ -3,41 +3,15 @@ import { useEffect, useState } from "react";
 import Loading01 from "../components/Loading01";
 import { ReactComponent as QuoteLeft } from "./“left.svg";
 import { ReactComponent as QuoteRight } from "./“right.svg";
-import { fetchMemberTodayLecture } from "../api/lecture";
 import quoteData from "../mocks/quotesMocks.json";
+import { useTodayLecture } from "../contexts/TodayLectureContext";
 
 function Today() {
-  const [currentDate, setCurrentDate] = useState("");
+  const { todayLecture, isLoading, error } = useTodayLecture();
   const [randomQuote, setRandomQuote] = useState("");
-  const [todayLecture, setTodayLecture] = useState({ contents: [] });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [currentDate, setCurrentDate] = useState("");
 
   useEffect(() => {
-    const getTodayLecture = async () => {
-      const today = new Date();
-      const dayOfWeek = today.getDay();
-
-      if (dayOfWeek === 0 || dayOfWeek === 6) {
-        setTodayLecture({ contents: [] });
-        return;
-      }
-
-      try {
-        setIsLoading(true);
-        const data = await fetchMemberTodayLecture();
-        console.log("API 응답 데이터:", data);
-        setTodayLecture(data?.contents ? data : { contents: [] });
-      } catch (error) {
-        console.error("오늘의 강의 조회 실패:", error);
-        setError("오늘의 강의를 불러오는데 실패했습니다.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getTodayLecture();
-
     const date = new Date();
     const formattedDate = `(${date.getMonth() + 1}.${date.getDate()})`;
     setCurrentDate(formattedDate);
@@ -82,7 +56,9 @@ function Today() {
                     <p className="text-xs text-gray-700">
                       {lecture.professor} 교수님
                     </p>
-                    <p className="font-bold">{lecture.title}</p>
+                    <p className="text-black font-noto text-base font-normal leading-normal">
+                      {lecture.title}
+                    </p>
                     <p className="text-xs text-gray-700">
                       {lecture.lectureRoom}
                     </p>

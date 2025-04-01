@@ -1,34 +1,9 @@
-import { useEffect, useState } from "react";
-
 import Loading01 from "../components/Loading01";
-import { fetchCurrentMember } from "../api/authApi";
+import { useUserSettings } from "../contexts/UserSettingsContext";
 
 function UserSettings() {
-  const [isNotificationOn, setIsNotificationOn] = useState(false);
-  const [memberInfo, setMemberInfo] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const getMemberInfo = async () => {
-      try {
-        setIsLoading(true);
-        const data = await fetchCurrentMember();
-        setMemberInfo(data);
-      } catch (error) {
-        console.error("회원 정보 조회 실패:", error);
-        setError("회원 정보를 불러오는데 실패했습니다.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getMemberInfo();
-  }, []);
-
-  const toggleNotification = () => {
-    setIsNotificationOn((prevState) => !prevState);
-  };
+  const { memberInfo, isNotificationOn, isLoading, error, toggleNotification } =
+    useUserSettings();
 
   if (isLoading) {
     return (
