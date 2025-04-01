@@ -6,6 +6,7 @@ import CourseNotice from "../courses/CourseNotice";
 import Courses from "../courses/Courses";
 import CoursesList from "../pages/CoursesList";
 import Home from "../pages/Home";
+import { LectureProvider } from "../hooks/useLecture";
 import Login from "../pages/Login";
 import MyPage from "./MyPage";
 import Nav from "../Nav";
@@ -20,22 +21,24 @@ const App = () => {
     <UserSettingsProvider>
       <TodayLectureProvider>
         <PriorityProvider>
-          <Nav />
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/passwordError" element={<PasswordError />} />
-            <Route path="/courses/:courseCode" element={<Courses />} />
-            <Route
-              path="/courses/:courseCode/notices"
-              element={<CourseNotice />}
-            />
-            <Route path="/courses" element={<CoursesList />} />
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/LoginError" element={<AuthErrorPage />} />
-            <Route path="*" element={<Navigate to="/not-found" replace />} />
-          </Routes>
+          <LectureProvider>
+            <Nav />
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/passwordError" element={<PasswordError />} />
+              <Route path="/courses/:courseCode" element={<Courses />} />
+              <Route
+                path="/courses/:courseCode/notices"
+                element={<CourseNotice />}
+              />
+              <Route path="/courses" element={<CoursesList />} />
+              <Route path="/mypage" element={<MyPage />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/LoginError" element={<AuthErrorPage />} />
+              <Route path="*" element={<Navigate to="/not-found" replace />} />
+            </Routes>
+          </LectureProvider>
         </PriorityProvider>
       </TodayLectureProvider>
     </UserSettingsProvider>

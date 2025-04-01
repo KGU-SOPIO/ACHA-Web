@@ -1,32 +1,10 @@
-import { useEffect, useState } from "react";
-
 import { ReactComponent as LectureIcon } from "./iconoir_book.svg";
 import { Link } from "react-router-dom";
 import Loading01 from "../components/Loading01";
-import { fetchMemberLecture } from "../api/lecture";
+import { useLecture } from "../hooks/useLecture";
 
 function MyCourseList() {
-  const [lecture, setLecture] = useState({ contents: [] });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const getLecture = async () => {
-      try {
-        setIsLoading(true);
-        const data = await fetchMemberLecture();
-        console.log("API 응답 데이터:", data);
-        setLecture(data?.contents ? data : { contents: [] });
-      } catch (error) {
-        console.error("나의 강좌 조회 실패:", error);
-        setError("나의 강좌를 불러오는데 실패했습니다.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getLecture();
-  }, []);
+  const { lecture, isLoading, error } = useLecture();
 
   if (isLoading) {
     return (
@@ -53,7 +31,6 @@ function MyCourseList() {
         </div>
         <div>
           {lecture.contents.map((lecture) => {
-            console.log("lecture 데이터:", lecture); // 디버깅
             return (
               <div
                 key={lecture.id}
