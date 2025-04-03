@@ -47,16 +47,6 @@ function Login() {
       const result = await login(studentId, password);
 
       if (!result.success) {
-        const memberData = await fetchMemberData(studentId, password);
-        setUserInfo({
-          studentId,
-          password,
-          name: memberData.name || "",
-          college: memberData.college || "",
-          department: memberData.department || "",
-          major: memberData.major || "",
-        });
-
         setModalMode("login");
         setIsConsentModalOpen(true);
         return;
@@ -65,10 +55,6 @@ function Login() {
       window.location.href = "/home";
     } catch (error) {
       console.error("로그인 에러:", error);
-      if (error.code === "KUTIS_PASSWORD_ERROR") {
-        window.location.href = "/passwordError";
-        return;
-      }
 
       if (error.code === "INVALID_STUDENT_ID_OR_PASSWORD") {
         setError("학번 또는 비밀번호를 잘못 입력했습니다.");
@@ -77,16 +63,6 @@ function Login() {
 
       if (error.code === "MEMBER_NOT_AUTHENTICATED") {
         try {
-          const memberData = await fetchMemberData(studentId, password);
-          setUserInfo({
-            studentId,
-            password,
-            name: memberData.name || "",
-            college: memberData.college || "",
-            department: memberData.department || "",
-            major: memberData.major || "",
-          });
-
           setModalMode("login");
           setIsConsentModalOpen(true);
           return;
@@ -98,16 +74,6 @@ function Login() {
 
       if (error.code === "MEMBER_NOT_FOUND") {
         try {
-          const memberData = await fetchMemberData(studentId, password);
-          setUserInfo({
-            studentId,
-            password,
-            name: memberData.name || "",
-            college: memberData.college || "",
-            department: memberData.department || "",
-            major: memberData.major || "",
-          });
-
           setModalMode("login");
           setIsConsentModalOpen(true);
           return;
@@ -146,11 +112,6 @@ function Login() {
       window.location.href = "/home";
     } catch (error) {
       console.error("로그인 에러:", error);
-
-      if (error.code === "KUTIS_PASSWORD_ERROR") {
-        window.location.href = "/passwordError";
-        return;
-      }
       if (error.code === "INVALID_STUDENT_ID_OR_PASSWORD") {
         setError("학번 또는 비밀번호를 잘못 입력했습니다.");
         return;

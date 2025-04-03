@@ -12,7 +12,7 @@ export const fetchActivityMy = async () => {
 
 export const fetchCourseActivities = async (code) => {
   try {
-    const response = await server.get(`/activities/lecture`, {
+    const response = await server.get(`/activities/course`, {
       params: { code },
     });
     return response.data;
