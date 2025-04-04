@@ -4,17 +4,21 @@ let accessToken = null;
 
 export const saveTokens = (newAccessToken, refreshToken) => {
   accessToken = newAccessToken;
-  localStorage.setItem("refreshToken", refreshToken);
+  sessionStorage.setItem("refreshToken", refreshToken);
 };
 
 export const getTokens = () => {
   return {
     accessToken: accessToken,
-    refreshToken: localStorage.getItem("refreshToken"),
+    refreshToken: sessionStorage.getItem("refreshToken"),
   };
 };
 
 export const clearTokens = () => {
   accessToken = null;
-  localStorage.removeItem("refreshToken");
+  sessionStorage.removeItem("refreshToken");
+};
+
+export const getAuthHeader = () => {
+  return accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
 };
