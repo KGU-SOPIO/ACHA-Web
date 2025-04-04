@@ -5,7 +5,10 @@ export const fetchActivityMy = async () => {
     const response = await server.get("/activities/my");
     return response.data;
   } catch (error) {
-    console.error("API 호출 오류:", error.response?.data || error.message);
+    console.error(
+      "fetchActivityMy API 호출 오류:",
+      error.response?.data || error.message
+    );
     throw error.response?.data || error.message;
   }
 };
@@ -17,17 +20,11 @@ export const fetchCourseActivities = async (code) => {
     });
     return response.data;
   } catch (error) {
-    if (error.response) {
-      console.error(
-        "서버 응답 에러:",
-        error.response.status,
-        error.response.data
-      );
-    } else if (error.request) {
-      console.error("요청은 갔으나 응답이 없음:", error.request);
-    } else {
-      console.error("기타 오류:", error.message);
-    }
+    console.error(
+      "fetchCourseActivities API 호출 오류:",
+      error.response?.data || error.message
+    );
+    throw error.response?.data || error.message;
   }
 };
 
@@ -39,17 +36,11 @@ export const fetchNotice = async (code) => {
     });
     return response.data;
   } catch (error) {
-    if (error.response) {
-      console.error(
-        "서버 응답 에러:",
-        error.response.status,
-        error.response.data
-      );
-    } else if (error.request) {
-      console.error("요청은 갔으나 응답이 없음:", error.request);
-    } else {
-      console.error("기타 오류:", error.message);
-    }
+    console.error(
+      "fetchNotice API 호출 오류:",
+      error.response?.data || error.message
+    );
+    throw error.response?.data || error.message;
   }
 };
 
@@ -59,17 +50,33 @@ export const fetchNoticeDetail = async (noticeId) => {
     const response = await server.get(`/notifications/${noticeId}`);
     return response.data;
   } catch (error) {
-    if (error.response) {
-      console.error(
-        "서버 응답 에러:",
-        error.response.status,
-        error.response.data
-      );
-    } else if (error.request) {
-      console.error("요청은 갔으나 응답이 없음:", error.request);
-    } else {
-      console.error("기타 오류:", error.message);
-    }
-    throw error;
+    console.error(
+      "fetchNoticeDetail API 호출 오류:",
+      error.response?.data || error.message
+    );
+    throw error.response?.data || error.message;
+  }
+};
+
+export const fetchFcm = async () => {
+  try {
+    const response = await server.get("/alert");
+    return response.data;
+  } catch (error) {
+    console.error(
+      "fetchFcm API 호출 오류:",
+      error.response?.data || error.message
+    );
+    throw error.response?.data || error.message;
+  }
+};
+
+export const fcm = async () => {
+  try {
+    const response = await server.post("/alert", {});
+    return response.data;
+  } catch (error) {
+    console.error("fcm API 호출 오류:", error.response?.data || error.message);
+    throw error.response?.data || error.message;
   }
 };
