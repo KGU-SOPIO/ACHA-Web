@@ -21,7 +21,6 @@ const ProtectedRoute = ({ children }) => {
           const response = await reissueToken(refreshToken);
           const { accessToken: newAccessToken } = response;
 
-          // 새 accessToken 저장
           saveTokens(newAccessToken, refreshToken);
           setIsAuthenticated(true);
         } else {
