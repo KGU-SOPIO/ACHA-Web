@@ -31,6 +31,7 @@ function Courses() {
         setIsLoading(true);
         console.log("강의활동 호출");
         const data = await fetchCourseActivities(courseCode);
+        console.log("강의활동데이터: ", data);
         setCourseData(data);
       } catch (err) {
         console.error("강좌 데이터 로딩 실패:", err);
@@ -42,6 +43,19 @@ function Courses() {
 
     fetchCourseData();
   }, [courseCode]);
+
+  const getWeekStatusColor = (contents) => {
+    for (const item of contents) {
+      if (item.type === "lecture" && !item.attendance)
+        return "bg-[rgba(255,78,107,1)]";
+      if (item.type === "assignment" && item.available) {
+        if (item.submitStatus === "none") return "bg-[rgba(255,78,107,1)]";
+        if (item.submitStatus === "miss") return "bg-gray-400";
+        if (item.submitStatus === "late") return "bg-orange-400";
+      }
+    }
+    return "bg-main-blue"; // 모든 항목이 완료된 상태
+  };
 
   const toggleWeek = (week) => {
     setOpenWeek(openWeek === week ? null : week);
@@ -113,7 +127,12 @@ function Courses() {
                   >
                     <div className="flex items-center px-[24px] justify-between">
                       <div className="flex items-center">
-                        <div className="w-[12px] h-[12px] bg-[rgba(255,78,107,1)] rounded-full"></div>
+                        <div
+                          className={`w-3 h-3 rounded-full ${getWeekStatusColor(
+                            activity.contents
+                          )}`}
+                        ></div>
+
                         <p className="px-[8px] py-[23px] text-[14px]">
                           <span>{activity.week}주차</span>
                         </p>
@@ -135,7 +154,7 @@ function Courses() {
                         <div
                           key={item.code}
                           className={` ${
-                            !(item.available && item.link)
+                            !item.available
                               ? "text-gray-400 cursor-not-allowed"
                               : "bg-white"
                           }`}
@@ -151,7 +170,7 @@ function Courses() {
                               ) : item.type === "url" ? (
                                 <LinkIcon className="w-[24px] h-[24px]" />
                               ) : null}
-                              {item.available && item.link ? (
+                              {item.available ? (
                                 <a
                                   href={item.link}
                                   target="_blank"

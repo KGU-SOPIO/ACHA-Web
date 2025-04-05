@@ -8,7 +8,7 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
 
   if (!items || items.length === 0) {
     return (
-      <div className="text-center text-gray-500 py-8">데이터가 없습니다.</div>
+      <div className="text-center text-gray-500 py-8">남은 활동이 없어요</div>
     );
   }
 

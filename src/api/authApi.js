@@ -9,15 +9,24 @@ export const login = async (studentId, password) => {
       password,
     });
 
-    if (response.data?.accessToken && response.data?.refreshToken) {
+    if (response.data.accessToken && response.data.refreshToken) {
       saveTokens(response.data.accessToken, response.data.refreshToken);
+    }
+
+    if (response.data.extract === false) {
+      try {
+        await registerInitial();
+      } catch (error) {
+        console.error("데이터 추출 실패:", error);
+        return { success: false, message: "데이터 추출에 실패했습니다." };
+      }
     }
 
     return { success: true, data: response.data };
   } catch (error) {
     if (
-      error.response?.status === 404 &&
-      error.response?.data?.code === "MEMBER_NOT_FOUND"
+      error.response.status === 404 &&
+      error.response.data.code === "MEMBER_NOT_FOUND"
     ) {
       return {
         success: false,
@@ -25,11 +34,11 @@ export const login = async (studentId, password) => {
         studentId,
       };
     }
-    if (error.response.data?.code === "MEMBER_NOT_AUTHENTICATED") {
+    if (error.response.data.code === "MEMBER_NOT_AUTHENTICATED") {
       return {
         success: false,
         message: "서비스를 이용하기 위해서 2~3일이 소요됩니다.",
-        studentId, //필요한가..?
+        studentId,
         requireSignup: false,
       };
     }
@@ -39,7 +48,7 @@ export const login = async (studentId, password) => {
 
 export const fetchMemberData = async (studentId, password) => {
   try {
-    const response = await server.post("/members/data", {
+    const response = await server.post("/members/student-data", {
       studentId,
       password,
     });
@@ -51,13 +60,16 @@ export const fetchMemberData = async (studentId, password) => {
 
 export const signup = async (signupData) => {
   try {
+    console.log("회원가입 호출");
     const response = await server.post("/members/signup", signupData);
+    console.log("회원가입 데이터:", response.data);
 
-    if (response.data?.accessToken && response.data?.refreshToken) {
+    if (response.data.accessToken && response.data.refreshToken) {
+      console.log("회원가입 토큰 저장");
       saveTokens(response.data.accessToken, response.data.refreshToken);
       try {
-        await registerInitialCourse();
-        await registerInitialActivity();
+        console.log("회원가입 스크래핑호출");
+        await registerInitial();
       } catch (error) {
         console.error("스크래핑 실패:", error);
       }
@@ -69,26 +81,19 @@ export const signup = async (signupData) => {
   }
 };
 
-export const registerInitialCourse = async () => {
+export const registerInitial = async () => {
   try {
-    const response = await server.post("/courses");
-    console.error("강의 응답:", response);
-    console.error("강의 응답 데이터:", response.data);
+    const response = await server.post("/courses/extract");
+    console.error("스크래핑 응답:", response);
+    console.error("스크래핑 응답 데이터:", response.data);
     return response.data;
   } catch (error) {
-    console.error("강의 등록 실패:", error);
-    throw error.response?.data || error.message;
-  }
-};
-
-export const registerInitialActivity = async () => {
-  try {
-    const response = await server.post("/activities");
-    console.error("활동 응답:", response);
-    console.error("활동 응답 데이터:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("활동 등록 실패:", error);
+    console.error("스크래핑 등록 실패:", error);
+    if (error.code === "KUTIS_PASSWORD_ERROR") {
+      window.location.href = "/passwordError";
+      return;
+    }
+    window.location.href = "/passwordError";
     throw error.response?.data || error.message;
   }
 };

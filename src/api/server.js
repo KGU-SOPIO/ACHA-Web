@@ -1,4 +1,9 @@
-import { clearTokens, getTokens, saveTokens } from "./tokenService";
+import {
+  clearTokens,
+  getAuthHeader,
+  getTokens,
+  saveTokens,
+} from "./tokenService";
 
 import axios from "axios";
 import { reissueToken } from "./authApi";
@@ -12,10 +17,10 @@ export const server = axios.create({
 
 server.interceptors.request.use(
   (config) => {
-    const { accessToken } = getTokens();
-    if (accessToken) {
-      config.headers["Authorization"] = `Bearer ${accessToken}`;
-    }
+    config.headers = {
+      ...config.headers,
+      ...getAuthHeader(),
+    };
     return config;
   },
   (error) => Promise.reject(error)
