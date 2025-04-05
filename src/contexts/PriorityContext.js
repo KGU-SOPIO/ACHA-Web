@@ -20,7 +20,7 @@ export const PriorityProvider = ({ children }) => {
         setIsLoading(true);
         console.log("우선순위호출");
         const data = await fetchActivityMy();
-
+        console.log("우선순위data:", data);
         const contents = data?.contents || [];
 
         const extractTime = (deadlineStr) => {
@@ -44,7 +44,12 @@ export const PriorityProvider = ({ children }) => {
         };
 
         const processedLectures = contents
-          .filter((item) => item.type === "lecture")
+          .filter(
+            (item) =>
+              item.type === "lecture" &&
+              item.available !== false &&
+              item.attendance !== true
+          )
           .map((item) => ({
             activityCode: item.code || `lecture-${item.title}`,
             courseName: item.courseName || "",
@@ -57,7 +62,12 @@ export const PriorityProvider = ({ children }) => {
           }));
 
         const processedAssignments = contents
-          .filter((item) => item.type === "assignment")
+          .filter(
+            (item) =>
+              item.type === "assignment" &&
+              item.available !== false &&
+              item.submitStatus !== "done"
+          )
           .map((item) => ({
             activityCode: item.code || `assignment-${item.title}`,
             courseName: item.courseName || "",
