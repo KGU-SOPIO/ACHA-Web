@@ -72,9 +72,9 @@ export const fetchFcm = async () => {
   }
 };
 
-export const fcm = async () => {
+export const fcm = async (nextStatus) => {
   try {
-    const response = await server.post("/alert", {});
+    const response = await server.post("/alert", { status: nextStatus });
     console.log("알림상태변경:", response.data);
     return response.data;
   } catch (error) {

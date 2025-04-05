@@ -41,8 +41,9 @@ export const UserSettingsProvider = ({ children }) => {
 
   const toggleNotification = async () => {
     try {
-      await fcm();
-      setIsNotificationOn((prev) => !prev);
+      const nextStatus = !isNotificationOn;
+      await fcm(nextStatus);
+      setIsNotificationOn(nextStatus);
     } catch (err) {
       console.error("알림 토글 실패:", err);
       setError("알림 상태 변경에 실패했습니다.");
