@@ -9,15 +9,12 @@ export const login = async (studentId, password) => {
       password,
     });
 
-    console.log("로그인 데이터:", response.data);
-    if (response.data?.accessToken && response.data?.refreshToken) {
-      console.log("로그인시 토큰 저장");
+    if (response.data.accessToken && response.data.refreshToken) {
       saveTokens(response.data.accessToken, response.data.refreshToken);
     }
 
-    if (response.data?.extract === false) {
+    if (response.data.extract === false) {
       try {
-        console.log("로그인 전체 강의 추출");
         await registerInitial();
       } catch (error) {
         console.error("데이터 추출 실패:", error);
@@ -28,8 +25,8 @@ export const login = async (studentId, password) => {
     return { success: true, data: response.data };
   } catch (error) {
     if (
-      error.response?.status === 404 &&
-      error.response?.data?.code === "MEMBER_NOT_FOUND"
+      error.response.status === 404 &&
+      error.response.data.code === "MEMBER_NOT_FOUND"
     ) {
       return {
         success: false,
@@ -37,7 +34,7 @@ export const login = async (studentId, password) => {
         studentId,
       };
     }
-    if (error.response.data?.code === "MEMBER_NOT_AUTHENTICATED") {
+    if (error.response.data.code === "MEMBER_NOT_AUTHENTICATED") {
       return {
         success: false,
         message: "서비스를 이용하기 위해서 2~3일이 소요됩니다.",
@@ -67,7 +64,7 @@ export const signup = async (signupData) => {
     const response = await server.post("/members/signup", signupData);
     console.log("회원가입 데이터:", response.data);
 
-    if (response.data?.accessToken && response.data?.refreshToken) {
+    if (response.data.accessToken && response.data.refreshToken) {
       console.log("회원가입 토큰 저장");
       saveTokens(response.data.accessToken, response.data.refreshToken);
       try {

@@ -9,8 +9,10 @@ import Loading01 from "../components/Loading01.jsx";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
 import SignupSuccess from "../signup/SignupSuccess.jsx";
 import { ReactComponent as Warning } from "../login/warning.svg";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   // Login state
   const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
@@ -52,7 +54,7 @@ function Login() {
         return;
       }
 
-      window.location.href = "/home";
+      navigate("/home");
     } catch (error) {
       console.error("로그인 에러:", error);
 
@@ -87,7 +89,8 @@ function Login() {
     }
   };
 
-  const handleLoginProcess = async () => {
+  const handleLoginProcess = async (e) => {
+    e.preventDefault();
     setError("");
     setIsLoading(true);
 
@@ -109,7 +112,7 @@ function Login() {
         return;
       }
 
-      window.location.href = "/home";
+      navigate("/home");
     } catch (error) {
       console.error("로그인 에러:", error);
       if (error.code === "INVALID_STUDENT_ID_OR_PASSWORD") {
