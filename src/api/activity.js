@@ -61,6 +61,7 @@ export const fetchNoticeDetail = async (noticeId) => {
 export const fetchFcm = async () => {
   try {
     const response = await server.get("/alert");
+    console.log("알림상태:", response.data);
     return response.data;
   } catch (error) {
     console.error(
@@ -74,6 +75,7 @@ export const fetchFcm = async () => {
 export const fcm = async () => {
   try {
     const response = await server.post("/alert", {});
+    console.log("알림상태변경:", response.data);
     return response.data;
   } catch (error) {
     console.error("fcm API 호출 오류:", error.response?.data || error.message);
