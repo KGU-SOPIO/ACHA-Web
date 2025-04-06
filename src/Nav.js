@@ -1,9 +1,9 @@
-import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
 import { ReactComponent as Logo } from "./assets/sopio_logo.svg";
 import { ReactComponent as MyIcon } from "./assets/myIcon.svg";
 import MyPage from "./components/MyPage";
+import { NavLink } from "react-router-dom";
 import NotificationModal from "./components/NotificationModal";
 import { ReactComponent as NotificationsIcon } from "./assets/bellIcon.svg";
 
