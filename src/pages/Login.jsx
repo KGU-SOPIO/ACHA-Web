@@ -156,14 +156,16 @@ function Login() {
 
   const validateLoginInputs = () => {
     const studentIdPattern = /^[0-9]+$/;
-    if (!studentId || !studentIdPattern.test(studentId)) {
-      setError("학번은 숫자만 입력 가능합니다.");
-      return false;
-    }
     if (!studentId || !password) {
       setError("학번과 비밀번호를 모두 입력해주세요.");
       return false;
     }
+
+    if (!studentIdPattern.test(studentId)) {
+      setError("학번은 숫자만 입력 가능합니다.");
+      return false;
+    }
+
     setError("");
     return true;
   };
