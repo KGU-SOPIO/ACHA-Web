@@ -114,80 +114,88 @@ function Courses() {
 
           <div className="bg-[rgba(245,246,248,1)] max-w-full sm:max-w-5xl md:max-w-6xl mx-auto h-auto sm:h-[800px] md:h-[700px] rounded-xl px-6 sm:px-8 lg:px-[240px] py-[34px] overflow-y-auto">
             <div>
-              {courseData.contents.map((activity, index) => {
-                if (activity.contents.length === 0) return null;
+              {courseData.contents.every(
+                (activity) => activity.contents.length === 0
+              ) ? (
+                <p className="text-center text-gray-500 text-sm py-10">
+                  등록된 활동이 없습니다.
+                </p>
+              ) : (
+                courseData.contents.map((activity, index) => {
+                  if (activity.contents.length === 0) return null;
 
-                return (
-                  <div
-                    key={`week-${activity.week}-${index}`}
-                    className="flex flex-col mb-[10px] bg-white rounded-xl"
-                  >
-                    <div className="flex items-center px-[24px] justify-between">
-                      <div className="flex items-center">
+                  return (
+                    <div
+                      key={`week-${activity.week}-${index}`}
+                      className="flex flex-col mb-[10px] bg-white rounded-xl"
+                    >
+                      <div className="flex items-center px-[24px] justify-between">
+                        <div className="flex items-center">
+                          <div
+                            className={`w-3 h-3 rounded-full ${getWeekStatusColor(
+                              activity.contents
+                            )}`}
+                          ></div>
+
+                          <p className="px-[8px] py-[23px] text-[14px]">
+                            <span>{activity.week}주차</span>
+                          </p>
+                        </div>
                         <div
-                          className={`w-3 h-3 rounded-full ${getWeekStatusColor(
-                            activity.contents
-                          )}`}
-                        ></div>
-
-                        <p className="px-[8px] py-[23px] text-[14px]">
-                          <span>{activity.week}주차</span>
-                        </p>
-                      </div>
-                      <div
-                        className="cursor-pointer flex items-center"
-                        onClick={() => toggleWeek(activity.week)}
-                      >
-                        {openWeek === activity.week ? (
-                          <UpArrow />
-                        ) : (
-                          <DownArrow />
-                        )}
-                      </div>
-                    </div>
-
-                    {openWeek === activity.week &&
-                      activity.contents.map((item) => (
-                        <div
-                          key={item.code}
-                          className={` ${
-                            !item.available
-                              ? "text-gray-400 cursor-not-allowed"
-                              : "bg-white"
-                          }`}
+                          className="cursor-pointer flex items-center"
+                          onClick={() => toggleWeek(activity.week)}
                         >
-                          <div className="flex text-[14px] items-center justify-start px-[20px] py-[23px] border-t">
-                            <div className="flex items-center">
-                              {item.type === "lecture" ? (
-                                <MediaIcon className="w-[24px] h-[24px]" />
-                              ) : item.type === "assignment" ? (
-                                <TaskIcon className="w-[24px] h-[24px]" />
-                              ) : item.type === "file" ? (
-                                <FileIcon className="w-[24px] h-[24px]" />
-                              ) : item.type === "url" ? (
-                                <LinkIcon className="w-[24px] h-[24px]" />
-                              ) : null}
-                              {item.available ? (
-                                <a
-                                  href={item.link}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="ml-[7px] text-black"
-                                >
-                                  {item.title}
-                                </a>
-                              ) : (
-                                <span className="ml-[7px]">
-                                  {item.title} (사용 불가)
-                                </span>
-                              )}
+                          {openWeek === activity.week ? (
+                            <UpArrow />
+                          ) : (
+                            <DownArrow />
+                          )}
+                        </div>
+                      </div>
+
+                      {openWeek === activity.week &&
+                        activity.contents.map((item) => (
+                          <div
+                            key={item.code}
+                            className={` ${
+                              !item.available
+                                ? "text-gray-400 cursor-not-allowed"
+                                : "bg-white"
+                            }`}
+                          >
+                            <div className="flex text-[14px] items-center justify-start px-[20px] py-[23px] border-t">
+                              <div className="flex items-center">
+                                {item.type === "lecture" ? (
+                                  <MediaIcon className="w-[24px] h-[24px]" />
+                                ) : item.type === "assignment" ? (
+                                  <TaskIcon className="w-[24px] h-[24px]" />
+                                ) : item.type === "file" ? (
+                                  <FileIcon className="w-[24px] h-[24px]" />
+                                ) : item.type === "url" ? (
+                                  <LinkIcon className="w-[24px] h-[24px]" />
+                                ) : null}
+                                {item.available ? (
+                                  <a
+                                    href={item.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="ml-[7px] text-black"
+                                  >
+                                    {item.title}
+                                  </a>
+                                ) : (
+                                  <span className="ml-[7px]">
+                                    {item.title} (사용 불가)
+                                  </span>
+                                )}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
-                  </div>
-                );
-              })}
+                        ))}
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>

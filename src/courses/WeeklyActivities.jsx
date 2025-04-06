@@ -68,7 +68,7 @@ function WeeklyActivities({ contents }) {
       </div>
       {filteredWeeks.length === 0 ? (
         <p className="text-center text-gray-500 text-[14px] mt-8">
-          등록된 학습 활동이 없습니다.
+          등록된 활동이 없습니다.
         </p>
       ) : (
         <>
