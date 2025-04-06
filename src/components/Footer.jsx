@@ -13,21 +13,28 @@ function Footer() {
         </div>
 
         {/* 연락처 및 기타 정보 섹션 */}
-        <div className="text-center md:text-left text-sm">
-          <p>상호 (주)SOPIO 대표자 OOO</p>
-          <p>주소 OOOO</p>
-          <p>이메일 OOO 전화 OOOO</p>
-          <p>사업자등록번호 OOOO</p>
-          <p>통신판매업신고번호 OOOO</p>
-        </div>
+        {/* <div className="text-center md:text-left text-sm">
+          <p>SOPIO 대표자 홍준서</p>
+          <p>AI 경기대학교 컴퓨터공학부</p>
+        </div> */}
 
         {/* 이용약관과 개인정보 처리방침 링크 */}
         <div className="text-xs text-center md:text-right">
-          <a href="/terms" className="hover:underline">
+          <a
+            href="https://www.acha.team/terms/service"
+            className="hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             이용약관
           </a>{" "}
-          │
-          <a href="/privacy" className="hover:underline">
+          │{" "}
+          <a
+            href="https://www.acha.team/terms/service/privacy"
+            className="hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             개인정보처리방침
           </a>
         </div>

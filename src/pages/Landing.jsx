@@ -5,6 +5,7 @@ import ImageSlide from "../landing/ImageSlide";
 import LendingImg2 from "../assets/lending2.png";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/sopio_logo.svg";
+import { ReactComponent as RightArrow } from "../landing/right.svg";
 import TaskSection from "../landing/TaskSection";
 import appleLogo from "../landing/Apple_logo_black 1.svg";
 import calendarImg from "../landing/calender.svg";
@@ -12,18 +13,36 @@ import playStoreLogo from "../landing/Google_Play_icon.svg 1.png";
 
 function Landing() {
   return (
-    <>
-      <div className="flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16">
+    <div className="relative overflow-x-hidden">
+      <div className="relative flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16">
         <Logo className="w-[50px] h-[50px] mt-[100px] sm:w-[70px] sm:h-[70px] sm:mt-[150px]" />
 
         <img
           src={calendarImg}
           alt="캘린더 이미지"
-          className="
-            absolute top-[-20px] left-1/2 -translate-x-1/2
-            sm:top-[-30px] sm:left-auto sm:right-[-300px] sm:translate-x-0
-            lg:top-[-50px] lg:right-[-400px] -rotate-[25deg]
-            w-[250px] sm:w-[500px] lg:w-[700px]"
+          className={`
+            absolute
+            -rotate-[25deg]
+            /* 기본(모바일) 사이즈 및 위치 */
+            w-[200px]
+            top-[-20px]
+            right-[-50px]
+
+            /* sm breakpoint (640px~) */
+            sm:w-[300px]
+            sm:top-[-30px]
+            sm:right-[-120px]
+
+            /* md breakpoint (768px~) */
+            md:w-[400px]
+            md:top-[-40px]
+            md:right-[-180px]
+
+            /* lg breakpoint (1024px~) */
+            lg:w-[600px]
+            lg:top-[-50px]
+            lg:right-[-300px]
+          `}
         />
 
         <h1 className="text-main-blue text-center font-pretendard text-[50px] sm:text-[80px] lg:text-[100px] font-extrabold leading-[55px] sm:leading-[65px] lg:leading-[71px] tracking-[-0.5px] py-[20px] sm:py-[34px]">
@@ -48,41 +67,61 @@ function Landing() {
           </div>
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-[12px] sm:gap-[16px] mt-6 text-white">
-          <a
-            href="https://apps.apple.com/kr/app/%EC%95%84%EC%B0%A8-%EC%9D%B4%EC%A0%A0-%EB%86%93%EC%B9%98%EC%A7%80-%EB%A7%88%EC%84%B8%EC%9A%94/id6742465621"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[#3C3C3C] px-[24px] sm:px-[34px] py-[10px] sm:py-[15px] rounded-2xl flex justify-center items-center gap-[10px] sm:gap-[20px]"
-          >
-            <img
-              src={appleLogo}
-              alt="Apple Icon"
-              className="w-4 sm:w-5 h-4 sm:h-5"
-            />
-            App Store
-          </a>
-          <a
-            href="https://play.google.com/store/apps/details?id=your.package.name"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[#3C3C3C] px-[24px] sm:px-[34px] py-[10px] sm:py-[15px] rounded-2xl flex justify-center items-center gap-[10px] sm:gap-[20px]"
-          >
-            <img
-              src={playStoreLogo}
-              alt="Google Play Icon"
-              className="w-4 sm:w-5 h-4 sm:h-5"
-            />
-            Google Play
-          </a>
-        </div>
+        <div className="flex flex-col items-center gap-4 mt-6">
+          <div className="w-full max-w-md">
+            {/* 1줄: 앱스토어와 구글플레이 버튼 */}
+            <div className="flex gap-4">
+              <a
+                href="https://apps.apple.com/kr/app/%EC%95%84%EC%B0%A8-%EC%9D%B4%EC%A0%A0-%EB%86%93%EC%B9%98%EC%A7%80-%EB%A7%88%EC%84%B8%EC%9A%94/id6742465621"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center 
+                  bg-[#3C3C3C] text-white px-[25px] py-[15px] rounded-2xl
+                  whitespace-nowrap font-pretendard text-[20px] font-bold leading-[34.5px]"
+              >
+                <img
+                  src={appleLogo}
+                  alt="Apple Icon"
+                  className="w-4 sm:w-5 h-4 sm:h-5 mr-2 "
+                />
+                App Store
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=your.package.name"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center bg-[#3C3C3C] text-white px-[25px] py-[15px] rounded-2xl whitespace-nowrap font-pretendard text-[20px] font-bold leading-[34.5px]"
+              >
+                <img
+                  src={playStoreLogo}
+                  alt="Google Play Icon"
+                  className="w-4 sm:w-5 h-4 sm:h-5 mr-2"
+                />
+                Google Play
+              </a>
+            </div>
 
-        <Link
-          to="/login"
-          className="bg-gray-200 text-gray-700 px-[60px] sm:px-[100px] py-[10px] sm:py-[15px] rounded-2xl mt-3"
-        >
-          Get started on the Web →
-        </Link>
+            {/* 2줄: 시작하기 버튼 */}
+            <div className="mt-[14px]">
+              <Link
+                to="/login"
+                className=" w-full block text-center bg-gray-200 text-gray-700 px-4 py-2 rounded-2xl whitespace-nowrap"
+              >
+                <div className="flex items-center justify-center px-[75px] py-[10px]">
+                  <p className="mr-[16px]">
+                    <span class="text-[#6D6D6D] text-center font-pretendard text-[20px] font-semibold leading-[34.5px]">
+                      Get started on the{" "}
+                    </span>
+                    <span class="text-[#6D6D6D] font-pretendard text-[20px] font-bold leading-[34.5px]">
+                      Web
+                    </span>
+                  </p>{" "}
+                  <RightArrow />
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
 
         <div className="mt-[80px] sm:mt-[130px] text-center px-4">
           <p className="mb-[15px] sm:mb-[25px]">
@@ -106,7 +145,7 @@ function Landing() {
       <ImageSlide />
       <FAQ />
       <Footer />
-    </>
+    </div>
   );
 }
 

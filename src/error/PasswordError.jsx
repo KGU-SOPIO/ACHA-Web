@@ -108,14 +108,21 @@ function PasswordError() {
 
         <div className="flex flex-col items-center mb-[34px] text-[15Px]">
           <div className="space-x-[30px]">
-            <a href="/terms" className="hover:underline">
+            <a
+              href="https://www.acha.team/terms/service"
+              className="hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               이용약관
             </a>
-            <a href="/privacy" className="hover:underline">
+            <a
+              href="https://www.acha.team/terms/service/privacy"
+              className="hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               개인정보처리방침
-            </a>
-            <a href="/privacy" className="hover:underline">
-              운영정책
             </a>
           </div>
         </div>

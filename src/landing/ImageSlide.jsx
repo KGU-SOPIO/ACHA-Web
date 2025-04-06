@@ -1,3 +1,5 @@
+import { ReactComponent as LeftArrow } from "./leftArrow.svg";
+import { ReactComponent as RightArrow } from "./rightArrow.svg";
 import img1 from "./image_1.png";
 import img2 from "./image_2.png";
 import img3 from "./image_3.png";
@@ -26,7 +28,7 @@ function ImageSlide() {
             onClick={prevSlide}
             className="p-[27px] sm:p-6 bg-gray-200 rounded-full"
           >
-            &lt;
+            <LeftArrow />
           </button>
         </div>
         <p className="text-center">
@@ -46,17 +48,19 @@ function ImageSlide() {
             onClick={nextSlide}
             className="p-[27px] sm:p-6  bg-gray-200 rounded-full"
           >
-            &gt;
+            <RightArrow />
           </button>
         </div>
       </div>
-      <div className="flex overflow-hidden gap-[100px]">
+      <div className="flex overflow-hidden gap-4 sm:gap-[100px] justify-center">
         {images.map((img, index) => (
           <img
             key={index}
             src={images[(currentIndex + index) % images.length]}
             alt="slide"
-            className="w-1/2 sm:w-1/3 h-[300px] sm:h-[450px] lg:h-[550px] object-cover transition-transform duration-300 rounded-2xl"
+            className={`w-1/2 sm:w-1/3 h-[300px] sm:h-[450px] lg:h-[550px] object-cover transition-transform duration-300 rounded-2xl transform ${
+              index === 1 ? "scale-110 sm:scale-100 shadow-lg" : "scale-100"
+            }`}
           />
         ))}
       </div>
