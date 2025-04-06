@@ -1,16 +1,10 @@
 import { ReactComponent as Check } from "./check.svg";
 import { ReactComponent as Note } from "./proicons_note.svg";
 import SchoolImage from "./image.png";
-import { useState } from "react";
 
 function ConsentInformationModal({ mode, onClose, onAgree }) {
-  const [agreePrivacy, setAgreePrivacy] = useState(false);
-  const [agreeService, setAgreeService] = useState(false);
   const isLoginMode = mode === "login";
   const isSignupMode = mode === "signup";
-
-  const isAllAgreed =
-    (isLoginMode && agreePrivacy) || (isSignupMode && agreeService);
 
   return (
     <div className="fixed inset-0  flex items-center justify-center bg-black bg-opacity-50 pointer-events-auto text-[16px]">
