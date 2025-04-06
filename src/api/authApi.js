@@ -4,7 +4,7 @@ import { server } from "./server";
 
 export const login = async (studentId, password) => {
   try {
-    const response = await server.post("/members/signin", {
+    const response = await server.post("/api/v1/members/signin", {
       studentId,
       password,
     });
@@ -47,7 +47,7 @@ export const login = async (studentId, password) => {
 
 export const fetchMemberData = async (studentId, password) => {
   try {
-    const response = await server.post("/members/student-data", {
+    const response = await server.post("/api/v1/members/student-data", {
       studentId,
       password,
     });
@@ -59,7 +59,7 @@ export const fetchMemberData = async (studentId, password) => {
 
 export const signup = async (signupData) => {
   try {
-    const response = await server.post("/members/signup", signupData);
+    const response = await server.post("/api/v1/members/signup", signupData);
 
     if (response.data.accessToken && response.data.refreshToken) {
       saveTokens(response.data.accessToken, response.data.refreshToken);
@@ -78,7 +78,7 @@ export const signup = async (signupData) => {
 
 export const registerInitial = async () => {
   try {
-    const response = await server.post("/courses/extract");
+    const response = await server.post("/api/v1/courses/extract");
     return response.data;
   } catch (error) {
     if (error.code === "KUTIS_PASSWORD_ERROR") {
@@ -92,7 +92,9 @@ export const registerInitial = async () => {
 
 export const reissueToken = async (refreshToken) => {
   try {
-    const response = await server.post("/members/reissue", { refreshToken });
+    const response = await server.post("/api/v1/members/reissue", {
+      refreshToken,
+    });
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;
@@ -101,7 +103,7 @@ export const reissueToken = async (refreshToken) => {
 
 export const fetchCurrentMember = async () => {
   try {
-    const response = await server.get("/members");
+    const response = await server.get("/api/v1/members");
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;
@@ -113,7 +115,7 @@ export const deleteAccount = async (password) => {
     const { accessToken } = getTokens();
 
     const response = await server.patch(
-      "/members/signout",
+      "/api/v1/members/signout",
       { password },
       {
         headers: {
