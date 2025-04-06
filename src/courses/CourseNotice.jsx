@@ -24,7 +24,10 @@ function CourseNotice() {
 
       try {
         setIsLoading(true);
+        console.log("공지호출");
         const data = await fetchNotice(courseCode);
+        console.log("공지데이터: ", data);
+        data.contents = data.contents || [];
         setCourseData(data);
 
         const details = await Promise.all(
@@ -37,7 +40,6 @@ function CourseNotice() {
         const detailsObject = Object.assign({}, ...details);
         setNoticeDetails(detailsObject);
       } catch (err) {
-        console.error("공지사항 데이터 로딩 실패:", err);
         setError("공지사항 정보를 불러오는 데 실패했습니다.");
       } finally {
         setIsLoading(false);
@@ -94,7 +96,11 @@ function CourseNotice() {
             </div>
 
             <div className="space-y-6">
-              {courseData.contents &&
+              {courseData.contents.length === 0 ? (
+                <div className="text-center text-gray-500 mt-10">
+                  등록된 공지사항이 없습니다.
+                </div>
+              ) : (
                 courseData.contents.map((notice) => (
                   <div
                     key={`notice-${notice.id}-${notice.index}`}
@@ -153,7 +159,8 @@ function CourseNotice() {
                       </div>
                     )}
                   </div>
-                ))}
+                ))
+              )}
             </div>
           </div>
         </div>

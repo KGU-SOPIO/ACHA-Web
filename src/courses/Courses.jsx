@@ -29,12 +29,9 @@ function Courses() {
 
       try {
         setIsLoading(true);
-        console.log("강의활동 호출");
         const data = await fetchCourseActivities(courseCode);
-        console.log("강의활동데이터: ", data);
         setCourseData(data);
       } catch (err) {
-        console.error("강좌 데이터 로딩 실패:", err);
         setError("강좌 정보를 불러오는 데 실패했습니다.");
       } finally {
         setIsLoading(false);
@@ -56,6 +53,10 @@ function Courses() {
     }
     return "bg-main-blue"; // 모든 항목이 완료된 상태
   };
+
+  const hasActivity = courseData?.contents?.some(
+    (activity) => activity.contents.length > 0
+  );
 
   const toggleWeek = (week) => {
     setOpenWeek(openWeek === week ? null : week);
@@ -99,14 +100,31 @@ function Courses() {
                 {courseData.courseName}
               </h2>
             </div>
-            <div className="flex justify-between items-center border border-main-blue rounded-2xl w-[160px] sm:w-[180px] md:w-[196px] px-[12px] sm:px-[18px] py-[10px] sm:py-[14px]">
+            <div
+              className={`flex justify-between items-center border ${
+                hasActivity ? "border-main-blue" : "border-gray-300"
+              } rounded-2xl w-[160px] sm:w-[180px] md:w-[196px] px-[12px] sm:px-[18px] py-[10px] sm:py-[14px]`}
+            >
               <button
-                className="text-main-blue text-[12px] sm:text-[14px]"
-                onClick={() => navigate(`/courses/${courseCode}/notices`)}
+                className={`${
+                  hasActivity
+                    ? "text-main-blue cursor-pointer"
+                    : "text-gray-400 cursor-not-allowed"
+                } text-[12px] sm:text-[14px]`}
+                onClick={() =>
+                  hasActivity
+                    ? navigate(`/courses/${courseCode}/notices`)
+                    : null
+                }
+                disabled={!hasActivity}
               >
                 공지사항
               </button>
-              <RightArrow className="w-[24px] h-[24px]" />
+              <RightArrow
+                className={`w-[24px] h-[24px] ${
+                  hasActivity ? "text-main-blue" : "text-gray-400"
+                }`}
+              />
             </div>
           </div>
 
@@ -117,80 +135,88 @@ function Courses() {
 
           <div className="bg-[rgba(245,246,248,1)] max-w-full sm:max-w-5xl md:max-w-6xl mx-auto h-auto sm:h-[800px] md:h-[700px] rounded-xl px-6 sm:px-8 lg:px-[240px] py-[34px] overflow-y-auto">
             <div>
-              {courseData.contents.map((activity, index) => {
-                if (activity.contents.length === 0) return null;
+              {courseData.contents.every(
+                (activity) => activity.contents.length === 0
+              ) ? (
+                <p className="text-center text-gray-500 text-sm py-10">
+                  등록된 활동이 없습니다.
+                </p>
+              ) : (
+                courseData.contents.map((activity, index) => {
+                  if (activity.contents.length === 0) return null;
 
-                return (
-                  <div
-                    key={`week-${activity.week}-${index}`}
-                    className="flex flex-col mb-[10px] bg-white rounded-xl"
-                  >
-                    <div className="flex items-center px-[24px] justify-between">
-                      <div className="flex items-center">
+                  return (
+                    <div
+                      key={`week-${activity.week}-${index}`}
+                      className="flex flex-col mb-[10px] bg-white rounded-xl"
+                    >
+                      <div className="flex items-center px-[24px] justify-between">
+                        <div className="flex items-center">
+                          <div
+                            className={`w-3 h-3 rounded-full ${getWeekStatusColor(
+                              activity.contents
+                            )}`}
+                          ></div>
+
+                          <p className="px-[8px] py-[23px] text-[14px]">
+                            <span>{activity.week}주차</span>
+                          </p>
+                        </div>
                         <div
-                          className={`w-3 h-3 rounded-full ${getWeekStatusColor(
-                            activity.contents
-                          )}`}
-                        ></div>
-
-                        <p className="px-[8px] py-[23px] text-[14px]">
-                          <span>{activity.week}주차</span>
-                        </p>
-                      </div>
-                      <div
-                        className="cursor-pointer flex items-center"
-                        onClick={() => toggleWeek(activity.week)}
-                      >
-                        {openWeek === activity.week ? (
-                          <UpArrow />
-                        ) : (
-                          <DownArrow />
-                        )}
-                      </div>
-                    </div>
-
-                    {openWeek === activity.week &&
-                      activity.contents.map((item) => (
-                        <div
-                          key={item.code}
-                          className={` ${
-                            !item.available
-                              ? "text-gray-400 cursor-not-allowed"
-                              : "bg-white"
-                          }`}
+                          className="cursor-pointer flex items-center"
+                          onClick={() => toggleWeek(activity.week)}
                         >
-                          <div className="flex text-[14px] items-center justify-start px-[20px] py-[23px] border-t">
-                            <div className="flex items-center">
-                              {item.type === "lecture" ? (
-                                <MediaIcon className="w-[24px] h-[24px]" />
-                              ) : item.type === "assignment" ? (
-                                <TaskIcon className="w-[24px] h-[24px]" />
-                              ) : item.type === "file" ? (
-                                <FileIcon className="w-[24px] h-[24px]" />
-                              ) : item.type === "url" ? (
-                                <LinkIcon className="w-[24px] h-[24px]" />
-                              ) : null}
-                              {item.available ? (
-                                <a
-                                  href={item.link}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="ml-[7px] text-black"
-                                >
-                                  {item.title}
-                                </a>
-                              ) : (
-                                <span className="ml-[7px]">
-                                  {item.title} (사용 불가)
-                                </span>
-                              )}
+                          {openWeek === activity.week ? (
+                            <UpArrow />
+                          ) : (
+                            <DownArrow />
+                          )}
+                        </div>
+                      </div>
+
+                      {openWeek === activity.week &&
+                        activity.contents.map((item) => (
+                          <div
+                            key={item.code}
+                            className={` ${
+                              !item.available
+                                ? "text-gray-400 cursor-not-allowed"
+                                : "bg-white"
+                            }`}
+                          >
+                            <div className="flex text-[14px] items-center justify-start px-[20px] py-[23px] border-t">
+                              <div className="flex items-center">
+                                {item.type === "lecture" ? (
+                                  <MediaIcon className="w-[24px] h-[24px]" />
+                                ) : item.type === "assignment" ? (
+                                  <TaskIcon className="w-[24px] h-[24px]" />
+                                ) : item.type === "file" ? (
+                                  <FileIcon className="w-[24px] h-[24px]" />
+                                ) : item.type === "url" ? (
+                                  <LinkIcon className="w-[24px] h-[24px]" />
+                                ) : null}
+                                {item.available ? (
+                                  <a
+                                    href={item.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="ml-[7px] text-black"
+                                  >
+                                    {item.title}
+                                  </a>
+                                ) : (
+                                  <span className="ml-[7px]">
+                                    {item.title} (사용 불가)
+                                  </span>
+                                )}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
-                  </div>
-                );
-              })}
+                        ))}
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>

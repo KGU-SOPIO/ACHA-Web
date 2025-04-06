@@ -17,7 +17,6 @@ export const login = async (studentId, password) => {
       try {
         await registerInitial();
       } catch (error) {
-        console.error("데이터 추출 실패:", error);
         return { success: false, message: "데이터 추출에 실패했습니다." };
       }
     }
@@ -60,18 +59,14 @@ export const fetchMemberData = async (studentId, password) => {
 
 export const signup = async (signupData) => {
   try {
-    console.log("회원가입 호출");
     const response = await server.post("/members/signup", signupData);
-    console.log("회원가입 데이터:", response.data);
 
     if (response.data.accessToken && response.data.refreshToken) {
-      console.log("회원가입 토큰 저장");
       saveTokens(response.data.accessToken, response.data.refreshToken);
       try {
-        console.log("회원가입 스크래핑호출");
         await registerInitial();
       } catch (error) {
-        console.error("스크래핑 실패:", error);
+        throw error.response?.data || error.message;
       }
     }
 
@@ -84,11 +79,8 @@ export const signup = async (signupData) => {
 export const registerInitial = async () => {
   try {
     const response = await server.post("/courses/extract");
-    console.error("스크래핑 응답:", response);
-    console.error("스크래핑 응답 데이터:", response.data);
     return response.data;
   } catch (error) {
-    console.error("스크래핑 등록 실패:", error);
     if (error.code === "KUTIS_PASSWORD_ERROR") {
       window.location.href = "/passwordError";
       return;

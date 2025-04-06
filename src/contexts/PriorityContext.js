@@ -18,9 +18,7 @@ export const PriorityProvider = ({ children }) => {
     const getActivities = async () => {
       try {
         setIsLoading(true);
-        console.log("우선순위호출");
         const data = await fetchActivityMy();
-        console.log("우선순위data:", data);
         const contents = data?.contents || [];
 
         const extractTime = (deadlineStr) => {
@@ -38,7 +36,6 @@ export const PriorityProvider = ({ children }) => {
 
             return "23:59";
           } catch (e) {
-            console.error("시간 추출 오류:", e);
             return "23:59";
           }
         };
@@ -82,7 +79,6 @@ export const PriorityProvider = ({ children }) => {
         setLectures(processedLectures);
         setAssignments(processedAssignments);
       } catch (error) {
-        console.error("내 활동목록 조회 실패:", error);
         setError("내 활동목록을 불러오는데 실패했습니다.");
       } finally {
         setIsLoading(false);

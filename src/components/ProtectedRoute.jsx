@@ -27,7 +27,6 @@ const ProtectedRoute = ({ children }) => {
           setIsAuthenticated(false);
         }
       } catch (error) {
-        console.error("인증 확인 중 오류:", error);
         setIsAuthenticated(false);
       } finally {
         setIsAuthChecking(false);

@@ -4,7 +4,6 @@ export const formatDate = (dateString) => {
   const date = new Date(dateString);
 
   if (isNaN(date.getTime())) {
-    console.error("Invalid date:", dateString);
     return "";
   }
 
@@ -20,7 +19,6 @@ export const getDday = (dateString) => {
   const targetDate = new Date(dateString);
 
   if (isNaN(targetDate.getTime())) {
-    console.error("Invalid date for D-day calculation:", dateString);
     return 0;
   }
 
