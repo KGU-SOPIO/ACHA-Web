@@ -78,8 +78,7 @@ function Login() {
     }
   };
 
-  const handleLoginProcess = async (e) => {
-    e.preventDefault();
+  const handleLoginProcess = async () => {
     setError("");
     setIsLoading(true);
 
