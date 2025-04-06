@@ -63,18 +63,10 @@ function Login() {
         return;
       }
 
-      if (error.code === "MEMBER_NOT_AUTHENTICATED") {
-        try {
-          setModalMode("login");
-          setIsConsentModalOpen(true);
-          return;
-        } catch (fetchError) {
-          console.error("학생 정보 요청 실패:", fetchError);
-          setError("학번 또는 비밀번호가 일치하지 않습니다.");
-        }
-      }
-
-      if (error.code === "MEMBER_NOT_FOUND") {
+      if (
+        error.code === "MEMBER_NOT_AUTHENTICATED" ||
+        error.code === "MEMBER_NOT_FOUND"
+      ) {
         try {
           setModalMode("login");
           setIsConsentModalOpen(true);
@@ -120,7 +112,10 @@ function Login() {
         return;
       }
 
-      if (error.code === "MEMBER_NOT_AUTHENTICATED") {
+      if (
+        error.code === "MEMBER_NOT_AUTHENTICATED" ||
+        error.code === "MEMBER_NOT_FOUND"
+      ) {
         try {
           const memberData = await fetchMemberData(studentId, password);
           setUserInfo({
@@ -134,26 +129,6 @@ function Login() {
 
           setModalMode("login");
           setIsConsentModalOpen(true);
-          return;
-        } catch (fetchError) {
-          console.error("학생 정보 요청 실패:", fetchError);
-          setError("학번 또는 비밀번호가 일치하지 않습니다.");
-        }
-      }
-
-      if (error.code === "MEMBER_NOT_FOUND") {
-        try {
-          const memberData = await fetchMemberData(studentId, password);
-          setUserInfo({
-            studentId,
-            password,
-            name: memberData.name || "",
-            college: memberData.college || "",
-            department: memberData.department || "",
-            major: memberData.major || "",
-          });
-
-          setIsSignupMode(true);
           return;
         } catch (fetchError) {
           console.error("학생 정보 요청 실패:", fetchError);
