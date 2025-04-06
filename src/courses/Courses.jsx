@@ -54,6 +54,10 @@ function Courses() {
     return "bg-main-blue"; // 모든 항목이 완료된 상태
   };
 
+  const hasActivity = courseData?.contents?.some(
+    (activity) => activity.contents.length > 0
+  );
+
   const toggleWeek = (week) => {
     setOpenWeek(openWeek === week ? null : week);
   };
@@ -96,14 +100,31 @@ function Courses() {
                 {courseData.courseName}
               </h2>
             </div>
-            <div className="flex justify-between items-center border border-main-blue rounded-2xl w-[160px] sm:w-[180px] md:w-[196px] px-[12px] sm:px-[18px] py-[10px] sm:py-[14px]">
+            <div
+              className={`flex justify-between items-center border ${
+                hasActivity ? "border-main-blue" : "border-gray-300"
+              } rounded-2xl w-[160px] sm:w-[180px] md:w-[196px] px-[12px] sm:px-[18px] py-[10px] sm:py-[14px]`}
+            >
               <button
-                className="text-main-blue text-[12px] sm:text-[14px]"
-                onClick={() => navigate(`/courses/${courseCode}/notices`)}
+                className={`${
+                  hasActivity
+                    ? "text-main-blue cursor-pointer"
+                    : "text-gray-400 cursor-not-allowed"
+                } text-[12px] sm:text-[14px]`}
+                onClick={() =>
+                  hasActivity
+                    ? navigate(`/courses/${courseCode}/notices`)
+                    : null
+                }
+                disabled={!hasActivity}
               >
                 공지사항
               </button>
-              <RightArrow className="w-[24px] h-[24px]" />
+              <RightArrow
+                className={`w-[24px] h-[24px] ${
+                  hasActivity ? "text-main-blue" : "text-gray-400"
+                }`}
+              />
             </div>
           </div>
 
