@@ -52,8 +52,6 @@ server.interceptors.response.use(
 
         return server(originalRequest);
       } catch (refreshError) {
-        console.error("토큰 재발급 실패:", refreshError);
-
         clearTokens();
         return Promise.reject(refreshError);
       }

@@ -29,12 +29,9 @@ function Courses() {
 
       try {
         setIsLoading(true);
-        console.log("강의활동 호출");
         const data = await fetchCourseActivities(courseCode);
-        console.log("강의활동데이터: ", data);
         setCourseData(data);
       } catch (err) {
-        console.error("강좌 데이터 로딩 실패:", err);
         setError("강좌 정보를 불러오는 데 실패했습니다.");
       } finally {
         setIsLoading(false);

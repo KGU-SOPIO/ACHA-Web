@@ -13,11 +13,9 @@ export function LectureProvider({ children }) {
     const getLecture = async () => {
       try {
         setIsLoading(true);
-        console.log("나의 강좌리스트 호출");
         const data = await fetchMemberLecture();
         setLecture(data?.contents ? data : { contents: [] });
       } catch (error) {
-        console.error("나의 강좌 조회 실패:", error);
         setError("나의 강좌를 불러오는데 실패했습니다.");
       } finally {
         setIsLoading(false);

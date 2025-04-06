@@ -37,7 +37,6 @@ function CourseNotice() {
         const detailsObject = Object.assign({}, ...details);
         setNoticeDetails(detailsObject);
       } catch (err) {
-        console.error("공지사항 데이터 로딩 실패:", err);
         setError("공지사항 정보를 불러오는 데 실패했습니다.");
       } finally {
         setIsLoading(false);

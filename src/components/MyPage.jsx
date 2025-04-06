@@ -53,7 +53,7 @@ function MyPage({ onClose }) {
 
       if (result.success) {
         alert("계정이 삭제되었습니다.");
-        window.location.href = "/login";
+        navigate("/login");
       } else {
         setError(result.message || "계정 삭제에 실패했습니다.");
       }

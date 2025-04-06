@@ -56,8 +56,6 @@ function Login() {
 
       navigate("/home");
     } catch (error) {
-      console.error("로그인 에러:", error);
-
       if (error.code === "INVALID_STUDENT_ID_OR_PASSWORD") {
         setError("학번 또는 비밀번호를 잘못 입력했습니다.");
         return;
@@ -72,7 +70,6 @@ function Login() {
           setIsConsentModalOpen(true);
           return;
         } catch (fetchError) {
-          console.error("학생 정보 요청 실패:", fetchError);
           setError("학번 또는 비밀번호가 일치하지 않습니다.");
         }
       }
@@ -106,7 +103,6 @@ function Login() {
 
       navigate("/home");
     } catch (error) {
-      console.error("로그인 에러:", error);
       if (error.code === "INVALID_STUDENT_ID_OR_PASSWORD") {
         setError("학번 또는 비밀번호를 잘못 입력했습니다.");
         return;
@@ -131,7 +127,6 @@ function Login() {
           setIsConsentModalOpen(true);
           return;
         } catch (fetchError) {
-          console.error("학생 정보 요청 실패:", fetchError);
           setError("학번 또는 비밀번호가 일치하지 않습니다.");
         }
       }
