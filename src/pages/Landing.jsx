@@ -15,7 +15,7 @@ function Landing() {
   return (
     <div className="relative overflow-x-hidden">
       <div className="relative flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16">
-        <Logo className="w-[50px] h-[50px] mt-[100px] sm:w-[70px] sm:h-[70px] sm:mt-[150px]" />
+        <Logo className="w-[50px] h-[50px] flex-shrink-0 aspect-[1/1] md:w-[70px] md:h-[74.229px] md:aspect-[70/74.23] mt-[140px] md:mt-[186px] md:mb-[50px] mb-[30px]" />
 
         <img
           src={calendarImg}
@@ -45,74 +45,78 @@ function Landing() {
           `}
         />
 
-        <h1 className="text-main-blue text-center font-pretendard text-[50px] sm:text-[80px] lg:text-[100px] font-extrabold leading-[55px] sm:leading-[65px] lg:leading-[71px] tracking-[-0.5px] py-[20px] sm:py-[34px]">
+        <h1 className="text-main-blue text-center font-black leading-[71px] tracking-[-0.5px] text-[48px] md:text-[100px] mb-[24px] md:mb-[48.5px]">
           ACHA!
         </h1>
 
         <p className="text-gray-600 text-base sm:text-lg text-center">
-          <span className="text-main-blue font-pretendard text-[18px] sm:text-[20px] font-extrabold leading-[28px] sm:leading-[32px]">
+          <span className="text-main-blue text-center font-extrabold text-[16px] leading-[32px] md:text-[20px]">
             ‘해야지’{" "}
           </span>
-          <span className="text-[#24223E] font-pretendard text-[18px] sm:text-[20px] font-bold leading-[28px] sm:leading-[32px]">
+          <span className="text-[#24223E] font-bold text-[16px] leading-[32px] md:text-[20px]">
             하고, 잊어버리시진 않았나요?
           </span>
           <br />
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center text-[#24223E] font-normal text-[16px] leading-[32px] md:text-[20px]">
             다가올 마감일 놓치지 마세요!
-            <img
-              src={LendingImg2}
-              alt="앱 화면"
-              className="w-[20px] sm:w-[30px]"
-            />
+            <img src={LendingImg2} alt="앱 화면" className="w-[30px]" />
           </div>
         </p>
 
         <div className="flex flex-col items-center gap-4 mt-6">
           <div className="w-full max-w-md">
             {/* 1줄: 앱스토어와 구글플레이 버튼 */}
-            <div className="flex gap-4">
+            <div className="flex gap-[13px] md:gap-[16px]">
               <a
                 href="https://apps.apple.com/kr/app/%EC%95%84%EC%B0%A8-%EC%9D%B4%EC%A0%A0-%EB%86%93%EC%B9%98%EC%A7%80-%EB%A7%88%EC%84%B8%EC%9A%94/id6742465621"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center 
-                  bg-[#3C3C3C] text-white px-[25px] py-[15px] rounded-2xl
-                  whitespace-nowrap font-pretendard text-[20px] font-bold leading-[34.5px]"
+                  bg-[#3C3C3C] text-white px-[28px] py-[14px] md:px-[34px] md:py-[15px] rounded-3xl
+                  whitespace-nowrap font-pretendard text-[20px] font-bold leading-[34.5px]
+                  gap-[12px] md:gap-[20px] shadow-[0px_4px_4px_rgba(87,75,172,0.15)]"
               >
                 <img
                   src={appleLogo}
                   alt="Apple Icon"
-                  className="w-4 sm:w-5 h-4 sm:h-5 mr-2 "
+                  className="w-[20px] h-[25px]"
                 />
-                App Store
+                <p className="text-white text-center font-bold text-[16px] leading-[34.5px] md:text-[20px]">
+                  App Store
+                </p>
               </a>
               <a
                 href="https://play.google.com/store/apps/details?id=your.package.name"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center bg-[#3C3C3C] text-white px-[25px] py-[15px] rounded-2xl whitespace-nowrap font-pretendard text-[20px] font-bold leading-[34.5px]"
+                className="flex-1 flex items-center justify-center 
+                  bg-[#3C3C3C] text-white px-[22px] py-[9px] md:px-[25px] md:py-[15px] rounded-3xl
+                  whitespace-nowrap font-pretendard text-[20px] font-bold leading-[34.5px]
+                  gap-[12px] md:gap-[20px] shadow-[0px_4px_4px_rgba(87,75,172,0.15)]"
               >
                 <img
                   src={playStoreLogo}
                   alt="Google Play Icon"
-                  className="w-4 sm:w-5 h-4 sm:h-5 mr-2"
+                  className="w-[20px] h-[22px]"
                 />
-                Google Play
+                <p className="text-white text-center font-bold text-[16px] leading-[34.5px] md:text-[20px]">
+                  Google Play
+                </p>
               </a>
             </div>
 
             {/* 2줄: 시작하기 버튼 */}
-            <div className="mt-[14px]">
+            <div className="mt-[26px] md:mt-[14px]">
               <Link
                 to="/login"
-                className=" w-full block text-center bg-gray-200 text-gray-700 px-4 py-2 rounded-2xl whitespace-nowrap"
+                className=" w-full block text-center bg-gray-200 text-gray-700 px-4 py-2 rounded-3xl whitespace-nowrap"
               >
-                <div className="flex items-center justify-center px-[75px] py-[10px]">
-                  <p className="mr-[16px]">
-                    <span class="text-[#6D6D6D] text-center font-pretendard text-[20px] font-semibold leading-[34.5px]">
+                <div className="flex items-center justify-center pt-[10px] pr-[37px] pb-[11px] pl-[85px] md:pt-[16.75px] md:pr-[73px] md:pb-[14px] md:pl-[89px]">
+                  <p className="mr-[32px] md:mr-[26px]  text-[#6D6D6D]">
+                    <span class="text-center text-[16px] md:text-[20px] font-semibold leading-[34.5px]">
                       Get started on the{" "}
                     </span>
-                    <span class="text-[#6D6D6D] font-pretendard text-[20px] font-bold leading-[34.5px]">
+                    <span class="text-[16px] md:text-[20px] font-bold leading-[34.5px]">
                       Web
                     </span>
                   </p>{" "}
@@ -123,17 +127,17 @@ function Landing() {
           </div>
         </div>
 
-        <div className="mt-[80px] sm:mt-[130px] text-center px-4">
-          <p className="mb-[15px] sm:mb-[25px]">
-            <span className="text-[#1E1E1E] text-center font-pretendard text-[30px] sm:text-[47px] font-medium leading-[40px] sm:leading-[60px]">
+        <div className="mt-[53px] md:mt-[130.5px] text-center px-4">
+          <p className="mb-[26.5px] md:mb-[25.5px]">
+            <span className="text-[#1E1E1E] text-center text-[24px] md:text-[47px] font-medium leading-[40px] md:leading-[60px]">
               과제 마감 전
             </span>
             <br />
-            <span className="text-[#06F] font-pretendard text-[30px] sm:text-[47px] font-extrabold leading-[40px] sm:leading-[60px]">
+            <span className="text-main-blue text-center text-[24px] md:text-[47px] font-extrabold leading-[40px] md:leading-[60px]">
               알림을 받으세요!
             </span>
           </p>
-          <p className="text-[#24223E] text-center font-pretendard text-[16px] sm:text-[20px] font-normal leading-[24px] sm:leading-[27px]">
+          <p className="text-[#24223E] text-center text-[16px] md:text-[20px] font-normal leading-[27px]">
             <span>바쁜 일상 속에서 과제 마감일을 잊어버리지 않도록</span>
             <br />
             <span>아차가 도와드립니다.</span>
