@@ -34,7 +34,7 @@ export default function FeatureSection() {
         <img
           src={phoneImg}
           alt="앱 화면"
-          className="w-[500px] h-[333px] md:w-[1200px] md:h-[800px]"
+          className="w-[500px] h-[333px] md:w-[1200px] md:h-[750px]"
         />
       </div>
     </div>
