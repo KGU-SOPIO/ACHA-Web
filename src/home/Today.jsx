@@ -6,18 +6,35 @@ import { ReactComponent as QuoteRight } from "./“right.svg";
 import quoteData from "../mocks/quotesMocks.json";
 import { useTodayLecture } from "../contexts/TodayLectureContext";
 
+function getTodayKey() {
+  const today = new Date();
+  return today.toISOString().split("T")[0];
+}
+
 function Today() {
   const { todayLecture, isLoading, error } = useTodayLecture();
-  const [randomQuote, setRandomQuote] = useState("");
   const [currentDate, setCurrentDate] = useState("");
+  const [quote, setQuote] = useState("");
 
   useEffect(() => {
     const date = new Date();
     const formattedDate = `(${date.getMonth() + 1}.${date.getDate()})`;
     setCurrentDate(formattedDate);
 
-    const randomId = Math.floor(Math.random() * quoteData.quotes.length);
-    setRandomQuote(quoteData.quotes[randomId]);
+    const todayKey = getTodayKey();
+    const savedData = JSON.parse(localStorage.getItem("dailyQuote") || "{}");
+
+    if (savedData.date === todayKey && savedData.quote) {
+      setQuote(savedData.quote);
+    } else {
+      const quotes = quoteData.quotes;
+      const newQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      localStorage.setItem(
+        "dailyQuote",
+        JSON.stringify({ date: todayKey, quote: newQuote })
+      );
+      setQuote(newQuote);
+    }
   }, []);
 
   if (isLoading) {
@@ -67,17 +84,23 @@ function Today() {
           </div>
         </div>
       </div>
-      <div className="p-8 rounded-xl bg-white border border-gray">
-        <p>
-          <span className="text-[#1E1E1E] font-medium text-[16px] leading-[20px]">
-            오늘의{" "}
-          </span>
+      <div className="px-[40px] py-[35px] pb-[40px] rounded-[31px] bg-white border border-gray">
+        <p className="pb-4 text-[16px] leading-[20px] font-medium">
+          <span>오늘의 </span>
           <span className="font-bold">문구</span>
         </p>
-        <div className="mt-4 text-main-blue text-center relative">
-          <QuoteLeft className="flex absolute left-2 top-0 w-4 h-4 text-blue-500" />
-          <p className="p-6 text-xl font-bold mx-4">{randomQuote}</p>
-          <QuoteRight className="absolute right-2 bottom-0 w-4 h-4 text-blue-500" />
+
+        <div className="mt-[30px] mb-[50px] flex items-start text-main-blue relative">
+          <QuoteLeft className="absolute left-2 top-0 w-[17px] h-[14px] text-blue-500" />
+          <p className="px-[14px] pt-[10px] pb-[9px] font-bold text-[16px] leading-normal capitalize break-words text-center mx-auto">
+            {quote.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                <br />
+              </span>
+            ))}
+          </p>
+          <QuoteRight className="absolute right-2 bottom-0 w-[17px] h-[14px] text-blue-500 mt-auto" />
         </div>
       </div>
     </div>
