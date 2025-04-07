@@ -35,7 +35,7 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
       <div key={key}>
         {showDday && (
           <div
-            className={`inline-block mb-4 rounded-full text-center font-[Noto_Sans_KR] text-[14px] font-bold leading-[20px] bg-blue-100 items-center ${
+            className={`inline-block mb-[13px] rounded-full text-center text-[14px] font-bold leading-[20px] bg-blue-100 items-center ${
               isDday ? "text-white" : ""
             }`}
           >
@@ -44,7 +44,7 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
                 isDday
                   ? "bg-main-blue text-white border-2 border-main-blue"
                   : "text-main-blue border-2 border-main-blue bg-[rgba(245,246,248,1)]"
-              } font-bold rounded-full p-2 px-4 inline-block`}
+              } font-bold rounded-full px-[18px] py-[5px] inline-block`}
             >
               {dDay}
             </div>
@@ -53,17 +53,20 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
             </div>
           </div>
         )}
-        <div className="mb-4 p-4 border rounded-lg shadow-sm">
-          <h3 className="text-md font-bold">{title}</h3>
-          <p className="text-sm">{courseName}</p>
-          <div className="flex justify-between items-center">
-            <div className="text-sm mt-2 text-gray-500">{time} 까지</div>
+        <div className="mb-[16px] py-[15px] pl-[23px] pr-[21px] rounded-[20px] border border-[#E4E8F1] bg-white text-[#3C3C3C] leading-normal font-normal">
+          <h3 className="font-medium text-[16px]">{title}</h3>
+          <p className="text-[13px]">{courseName}</p>
+          <div className="flex justify-between items-end">
+            <p className="text-[#979797]">
+              <span className="text-[14px] font-medium">{time}</span>
+              <span className="text-[12px]">까지</span>
+            </p>
             <a
               href={item.activityLink || "#"}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="mt-2 px-4 py-2 border text-sm rounded-lg">
+              <button className="mt-[9px] px-[15px] py-[5px] border text-sm rounded-lg">
                 <div className="flex items-center">
                   {activityType === "video" ? <MediaIcon /> : <TaskIcon />}
                   <div className="pl-2">
