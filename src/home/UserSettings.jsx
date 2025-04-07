@@ -22,13 +22,7 @@ function UserSettings() {
   }
 
   return (
-    <div
-      className="py-[38px] pl-[55px] pr-[64px] max-w-6xl mx-auto rounded-3xl border border-[#E4E8F1] bg-white"
-      style={{
-        fontFamily: '"Noto Sans KR"',
-        fontFeatureSettings: "'liga' off, 'clig' off",
-      }}
-    >
+    <div className="py-[38px] pl-[55px] pr-[64px] max-w-6xl mx-auto rounded-[20px] border border-[#E4E8F1] bg-white">
       <div className="flex justify-between items-center">
         {/* 사용자 정보 */}
         <div className="flex items-center pr-[80px]">
