@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         "main-blue": "#0066FF",
       },
+      fontFamily: {
+        sans: ["Pretendard", "sans-serif"],
+      },
     },
   },
   plugins: [],
