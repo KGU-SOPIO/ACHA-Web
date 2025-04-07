@@ -30,11 +30,11 @@ export default function FeatureSection() {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/2 flex justify-center">
+      <div className="w-full sm:w-[250%] md:w-[400%] lg:w-1/2 flex justify-center">
         <img
           src={phoneImg}
           alt="앱 화면"
-          className="w-full max-w-[500px] md:max-w-[1000px] h-auto"
+          className="w-full max-w-[500px] md:max-w-[800px] lg:max-w-[1200px] h-auto"
         />
       </div>
     </div>
