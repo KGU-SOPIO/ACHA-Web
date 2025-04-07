@@ -22,15 +22,27 @@ function UserSettings() {
   }
 
   return (
-    <div className="p-8 px-12 max-w-6xl mx-auto rounded-lg bg-white">
+    <div
+      className="py-[38px] pl-[55px] pr-[64px] max-w-6xl mx-auto rounded-3xl border border-[#E4E8F1] bg-white"
+      style={{
+        fontFamily: '"Noto Sans KR"',
+        fontFeatureSettings: "'liga' off, 'clig' off",
+      }}
+    >
       <div className="flex justify-between items-center">
         {/* 사용자 정보 */}
-        <div className="flex items-center pr-12">
-          <div className="">
-            <h2 className="text-lg font-semibold">{memberInfo?.name}님</h2>
-            <p className="text-sm text-gray-500">
-              {memberInfo?.college}{" "}
-              <span className="bg-main-blue text-white px-2 py-1 rounded-xl">
+        <div className="flex items-center pr-[80px]">
+          <div>
+            <p className="text-[#1E1E1E] text-[24px] leading-[40px]">
+              <span className="font-bold ">{memberInfo.name}</span>
+              <span className="font-medium">님</span>
+            </p>
+
+            <p className="leading-[20px]">
+              <span className="text-[#979797] font-normal text-[15px] mr-[9px]">
+                {memberInfo.college}
+              </span>
+              <span className="text-white text-center font-medium text-[12px] bg-main-blue px-[9px] py-[8px] rounded-full">
                 {memberInfo?.affiliation}
               </span>
             </p>
@@ -38,48 +50,56 @@ function UserSettings() {
         </div>
 
         {/* 구분선 */}
-        <div className="border-l-2 border-gray-300 h-12 mx-8"></div>
+        <div className="border-l-[1px] border-[#D9D9D9] h-[100px] "></div>
 
         {/* 알림주기 */}
-        <div>
-          <div className="flex justify-between items-start mb-2">
-            <div>
-              <p className="mr-[24px]">알림주기</p>
-            </div>
-            <div className="text-end items-center text-gray-500">
-              <p>여러분의 알림은</p>
-              <p>
-                <span className="font-bold">3일전 / 1일전 / 1시간 전</span>
-                <span>에</span>
-              </p>
-              <p>전송됩니다</p>
-            </div>
+        <div className="flex justify-between items-start">
+          <div className="pr-[60px]">
+            <p className="text-[#1E1E1E] font-normal text-[15px] capitalize">
+              알림주기
+            </p>
+          </div>
+          <div className="text-end">
+            <p className="text-[#3C3C3C] font-normal text-[15px] leading-[32px] capitalize">
+              <span className="text-main-blue text-right font-bold">3</span>
+              <span>일</span>
+              <span>·</span>
+              <span className="text-main-blue text-right font-bold">1</span>
+              <span>일</span>
+              <span>·</span>
+              <span className="text-main-blue text-right font-bold">1</span>
+              <span>시간 전</span>
+              <br />
+              <span className="text-[#979797] font-normal">
+                강의 / 과제 알림 발송
+              </span>
+            </p>
           </div>
         </div>
 
         {/* 구분선 */}
-        <div className="border-l-2 border-gray-300 h-12 mx-8"></div>
+        <div className="border-l-[1px] border-[#D9D9D9] h-[100px] "></div>
 
         {/* 알림 켜기*/}
-        <div>
-          <div className="flex justify-between items-center">
-            <p className="pr-24">알림켜기</p>
+
+        <div className="flex justify-between items-start mb-[35px]">
+          <p className="text-[#1E1E1E] font-normal text-[15px] leading-normal capitalize pr-[168px]">
+            알림켜기
+          </p>
+          <div
+            className="flex items-center cursor-pointer"
+            onClick={toggleNotification}
+          >
             <div
-              className="flex items-center cursor-pointer"
-              onClick={toggleNotification}
+              className={`w-[46.4px] h-[24px] rounded-full flex items-center transition-colors duration-300 ${
+                isNotificationOn ? "bg-main-blue" : "bg-gray-300"
+              }`}
             >
               <div
-                className={`w-12 h-6 rounded-full p-1 flex items-center transition-colors duration-300 ${
-                  isNotificationOn ? "bg-main-blue" : "bg-gray-300"
+                className={`w-[20px] h-[20px] rounded-full bg-white transition-transform duration-300 ${
+                  isNotificationOn ? "transform translate-x-6" : ""
                 }`}
-              >
-                <div
-                  className={`w-4 h-4 rounded-full bg-white transition-transform duration-300 ${
-                    isNotificationOn ? "transform translate-x-6" : ""
-                  }`}
-                />
-              </div>
-              <p className="ml-2">{isNotificationOn ? "켜짐" : "꺼짐"}</p>
+              />
             </div>
           </div>
         </div>
