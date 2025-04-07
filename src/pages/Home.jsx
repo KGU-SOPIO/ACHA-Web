@@ -5,7 +5,13 @@ import UserSettings from "../home/UserSettings";
 
 function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div
+      className="min-h-screen flex flex-col "
+      style={{
+        fontFamily: '"Noto Sans KR"',
+        fontFeatureSettings: "'liga' off, 'clig' off",
+      }}
+    >
       <div className="flex-grow bg-[rgba(245,246,248,1)]">
         <div className="max-w-full overflow-x-hidden py-32 ">
           <UserSettings />
