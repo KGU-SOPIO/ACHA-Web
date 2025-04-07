@@ -14,7 +14,7 @@ import playStoreLogo from "../landing/Google_Play_icon.svg 1.png";
 function Landing() {
   return (
     <div className="relative overflow-x-hidden">
-      <div className="relative flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16">
+      <div className="relative flex flex-col items-center justify-center">
         <Logo className="w-[50px] h-[50px] flex-shrink-0 aspect-[1/1] md:w-[70px] md:h-[74.229px] md:aspect-[70/74.23] mt-[140px] md:mt-[186px] md:mb-[50px] mb-[30px]" />
 
         <img
