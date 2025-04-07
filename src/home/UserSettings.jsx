@@ -28,7 +28,7 @@ function UserSettings() {
         <div className="flex items-center pr-[80px]">
           <div>
             <p className="text-[#1E1E1E] text-[24px] leading-[40px]">
-              <span className="font-bold ">{memberInfo.name}</span>
+              <span className="font-bold ">{memberInfo.name} </span>
               <span className="font-medium">님</span>
             </p>
 

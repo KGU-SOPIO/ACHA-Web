@@ -26,19 +26,20 @@ function Priority() {
   }
 
   return (
-    <div className="p-8 px-12 rounded-xl bg-white border border-gray w-full max-w-6xl mx-auto">
+    <div className="pl-[44px] pr-[40px] pt-[43px] pb-[55px] rounded-[20px] border border-[#E4E8F1] bg-white w-full max-w-6xl mx-auto">
       <div className="flex h-full">
         {/* 우선순위 강의 */}
         <div className="w-1/2 pr-4 h-full space-y-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <h2 className="flex text-lg font-bold items-center">
-                나의 우선강의
-              </h2>
-              <LectureIcon className="flex items center w-4 h-4" />
+            <div className="flex items-center gap-[10px]">
+              <p className="text-[#1E1E1E] text-[16px] leading-[20px]">
+                <span className="font-medium">나의 </span>
+                <span className="font-bold">우선강의</span>
+              </p>
+              <LectureIcon className="w-[14px] h-[14px]" />
             </div>
           </div>
-          <div className="max-h-[600px] overflow-y-auto pr-4">
+          <div className="max-h-[650px] overflow-y-auto mr-[7px]">
             <DdayRenderer
               items={lectures}
               getDday={getDday}
@@ -50,11 +51,12 @@ function Priority() {
         {/* 우선순위 과제 */}
         <div className="w-1/2 pl-4 h-full space-y-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <h2 className="flex text-lg font-bold items-center">
-                나의 우선과제
-              </h2>
-              <ListIcon className="flex items center w-4 h-4" />
+            <div className="flex items-center gap-[10px]">
+              <p className="text-[#1E1E1E] text-[16px] leading-[20px]">
+                <span className="font-medium">나의 </span>
+                <span className="font-bold">우선강의</span>
+              </p>
+              <ListIcon className="w-[16px] h-[16px]" />
             </div>
           </div>
           <div className="max-h-[600px] overflow-y-auto pr-4">

@@ -47,7 +47,7 @@ function Today() {
 
   if (error) {
     return (
-      <div className="p-8 px-12 max-w-6xl mx-auto rounded-lg bg-white">
+      <div className="p-8 px-12 max-w-6xl mx-auto rounded-[31px] bg-white">
         <div className="text-red-500 text-center">{error}</div>
       </div>
     );
@@ -55,7 +55,7 @@ function Today() {
 
   return (
     <div className="space-y-4 w-1/2">
-      <div className="px-[40px] pt-[33px] pb-[45px] rounded-[31px] bg-white border border-gray text-[#1E1E1E]">
+      <div className="px-[40px] pt-[33px] pb-[45px] rounded-[31px] border border-[#E4E8F1] bg-white text-[#1E1E1E]">
         <p className="pb-4 text-[16px] leading-[20px] font-medium">
           <span>오늘의 </span>
           <span className="font-bold">강의</span>
@@ -84,7 +84,7 @@ function Today() {
           </div>
         </div>
       </div>
-      <div className="px-[40px] py-[35px] pb-[40px] rounded-[31px] bg-white border border-gray">
+      <div className="px-[40px] py-[35px] pb-[40px] rounded-[31px] border border-[#E4E8F1] bg-white">
         <p className="pb-4 text-[16px] leading-[20px] font-medium">
           <span>오늘의 </span>
           <span className="font-bold">문구</span>
