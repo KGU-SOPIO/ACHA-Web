@@ -23,28 +23,26 @@ function MyCourseList() {
   }
 
   return (
-    <div className="space-y-4 w-1/2">
-      <div className="p-8 rounded-xl bg-white border border-gray">
-        <div className="text-[20px] font-bold flex items-center mb-[41px]">
+    <div className="space-y-4">
+      <div className="rounded-xl">
+        <div className="text-[#1E1E1E] text-[20px] font-bold leading-[40px] flex items-center mb-[41px]">
           나의 강좌
           <LectureIcon className="bg-white" />
         </div>
-        <div>
-          {lecture.contents.map((lecture) => {
-            return (
-              <div
-                key={lecture.id}
-                className="px-[26px] py-[16px] text-[12px] text-gray-500 border-[1.5px] border-gray-200 rounded-2xl mb-[11px]"
-              >
-                <Link to={`/courses/${lecture.code}`}>
-                  <p>{lecture.professor} 교수님</p>
-                  <p className="text-[16px] text-black">{lecture.title}</p>
-                  <p>{lecture.lectureRoom}</p>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
+        {lecture.contents.map((lecture) => {
+          return (
+            <div
+              key={lecture.id}
+              className="px-[26px] py-[16px] text-[12px] text-[#6D6D6D] font-normal text-[12px] leading-normal rounded-[20px] border-[1.5px] border-[#EDEFF2] bg-white mb-[11px] w-[340px]"
+            >
+              <Link to={`/courses/${lecture.code}`}>
+                <p>{lecture.professor} 교수님</p>
+                <p className="text-black text-[16px]">{lecture.title}</p>
+                <p>{lecture.lectureRoom}</p>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

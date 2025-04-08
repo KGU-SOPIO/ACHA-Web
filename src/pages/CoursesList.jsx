@@ -1,15 +1,20 @@
 import Footer from "../components/Footer";
 import MyCourseList from "../courses/MyCourseList";
 import Priority from "../home/Priority";
-
 function CoursesList() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="flex-grow bg-[rgba(245,246,248,1)]">
+    <div
+      className="min-h-screen flex flex-col"
+      style={{
+        fontFamily: '"Noto Sans KR"',
+        fontFeatureSettings: "'liga' off, 'clig' off",
+      }}
+    >
+      <div className="flex-grow ">
         <div className="max-w-full overflow-x-hidden py-32 ">
-          <div className="flex gap-8 max-w-6xl mx-auto">
+          <div className="flex gap-8 max-w-6xl mx-auto items-start">
             <MyCourseList />
-            <Priority />
+            <Priority className="mt-[80px]" />
           </div>
         </div>
       </div>

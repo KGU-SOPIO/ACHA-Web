@@ -19,7 +19,7 @@ const NotificationModal = ({ onClose }) => {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <Loading01 />
       </div>
     );
@@ -27,7 +27,7 @@ const NotificationModal = ({ onClose }) => {
 
   if (error) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div className="p-8 px-12 rounded-lg bg-white border border-gray-300">
           <div className="text-red-500 text-center">{error}</div>
         </div>
@@ -36,9 +36,9 @@ const NotificationModal = ({ onClose }) => {
   }
 
   return (
-    <div className="fixed inset-0  flex items-start justify-end mt-[61px] mr-[100px]">
-      <div className="absolute inset-0 " onClick={onClose}></div>
-      <div className="relative bg-white p-6 rounded-xl border border-gray-100 shadow-md w-[444px] ">
+    <div className="fixed inset-0 flex items-start justify-end mt-[61px] mr-[100px] z-50">
+      <div className="absolute inset-0" onClick={onClose}></div>
+      <div className="relative bg-white p-6 rounded-[30px] border border-gray-100 shadow-md w-[444px] z-50">
         <div className="flex justify-center mb-4 mx-[70px] bg-gray-100 p-[3px] rounded-full">
           <button
             className={`py-[7px] px-[27px] rounded-full ${
