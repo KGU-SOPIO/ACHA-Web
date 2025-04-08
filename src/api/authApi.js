@@ -10,7 +10,7 @@ export const login = async (studentId, password) => {
     });
 
     if (response.data.accessToken && response.data.refreshToken) {
-      saveTokens(response.data.accessToken, response.data.refreshToken);
+      await saveTokens(response.data.accessToken, response.data.refreshToken);
     }
 
     if (response.data.extract === false) {
@@ -112,7 +112,7 @@ export const fetchCurrentMember = async () => {
 
 export const deleteAccount = async (password) => {
   try {
-    const { accessToken } = getTokens();
+    const { accessToken } = await getTokens();
 
     const response = await server.patch(
       "/api/v1/members/signout",

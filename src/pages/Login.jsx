@@ -160,6 +160,11 @@ function Login() {
       return false;
     }
 
+    if (studentId.length !== 9) {
+      setError("학번은 9자리로 입력해주세요.");
+      return false;
+    }
+
     setError("");
     return true;
   };

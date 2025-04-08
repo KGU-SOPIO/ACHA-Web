@@ -13,7 +13,8 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const checkAuthentication = async () => {
       try {
-        const { accessToken, refreshToken } = getTokens();
+        // getTokens를 비동기로 호출합니다.
+        const { accessToken, refreshToken } = await getTokens();
 
         if (accessToken) {
           setIsAuthenticated(true);
@@ -21,7 +22,8 @@ const ProtectedRoute = ({ children }) => {
           const response = await reissueToken(refreshToken);
           const { accessToken: newAccessToken } = response;
 
-          saveTokens(newAccessToken, refreshToken);
+          // saveTokens도 await 처리를 해줍니다.
+          await saveTokens(newAccessToken, refreshToken);
           setIsAuthenticated(true);
         } else {
           setIsAuthenticated(false);
