@@ -22,7 +22,7 @@ function UserSettings() {
   }
 
   return (
-    <div className="py-8 px-8 max-w-6xl mx-auto rounded-xl border border-[#E4E8F1] bg-white">
+    <div className="py-8 px-8 max-w-6xl mx-auto rounded-[20px] border border-[#E4E8F1] bg-white">
       {/* 
         flex: 기본 flex-col (mobile) / md:flex-row (데스크탑)
         요소마다 구분선 처리를 위해 각 항목을 flex-1로 감쌌습니다.

@@ -12,7 +12,7 @@ function CoursesList() {
     >
       <div className="flex-grow ">
         <div className="max-w-full overflow-x-hidden py-32 px-[16px] md:px-[0px]">
-          <div className="flex gap-[10px] md:gap-[46px] max-w-6xl mx-auto items-start">
+          <div className="flex gap-[10px] md:gap-[46px] max-w-6xl mx-auto items-start px-[16px] sm:px-[16px] md:px-[16px] lg:px-[16px] xl:px-[16px] 2xl:px-[16px]">
             <MyCourseList />
             <Priority className="mt-[80px]" />
           </div>
