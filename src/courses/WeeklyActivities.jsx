@@ -100,7 +100,7 @@ function WeeklyActivities({ contents }) {
                     <div
                       key={`week-${weekData.week}`}
                       className={`
-                        flex-none w-[250px] 
+                        flex-none w-[252px] 
                         px-[24px] py-[21px] 
                         border rounded-xl relative 
                         transition-all duration-300 ease-in-out
