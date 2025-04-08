@@ -86,7 +86,7 @@ function Landing() {
                 </p>
               </a>
               <a
-                href="https://play.google.com/store/apps/details?id=your.package.name"
+                href="https://www.acha.team/install/android"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center 
