@@ -6,7 +6,7 @@ import { ReactComponent as ListIcon } from "./list_task.svg";
 import Loading01 from "../components/Loading01";
 import { usePriority } from "../contexts/PriorityContext";
 
-function Priority() {
+function Priority({ className = "" }) {
   const { lectures, assignments, isLoading, error } = usePriority();
 
   if (isLoading) {
@@ -26,7 +26,9 @@ function Priority() {
   }
 
   return (
-    <div className="pl-[44px] pr-[40px] pt-[43px] pb-[55px] rounded-[20px] border border-[#E4E8F1] bg-white w-full max-w-6xl mx-auto">
+    <div
+      className={`pl-[44px] pr-[40px] pt-[43px] pb-[55px] rounded-[20px] border border-[#E4E8F1] bg-white w-full max-w-6xl mx-auto ${className}`}
+    >
       <div className="flex h-full">
         {/* 우선순위 강의 */}
         <div className="w-1/2 pr-4 h-full space-y-4">
