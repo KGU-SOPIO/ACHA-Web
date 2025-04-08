@@ -38,7 +38,7 @@ const NotificationModal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-start justify-end mt-[61px] mr-[100px] z-50">
       <div className="absolute inset-0" onClick={onClose}></div>
-      <div className="relative bg-white p-6 rounded-xl border border-gray-100 shadow-md w-[444px] z-50">
+      <div className="relative bg-white p-6 rounded-[30px] border border-gray-100 shadow-md w-[444px] z-50">
         <div className="flex justify-center mb-4 mx-[70px] bg-gray-100 p-[3px] rounded-full">
           <button
             className={`py-[7px] px-[27px] rounded-full ${
