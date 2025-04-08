@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
 function Modal({
   icon,
   title,
@@ -10,9 +11,11 @@ function Modal({
   confirmButtonColor = "",
   margin,
 }) {
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-2xl px-[28px] py-[33px] w-[400px]">
+  const modalContent = (
+    // z-50 추가
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      {/* 모달 내용 컨테이너에도 필요한 경우 z-index를 줄 수 있음 */}
+      <div className="relative bg-white rounded-[30px] px-[28px] py-[33px] w-[400px]">
         {icon && (
           <div
             className={`flex items-center justify-center mb-4 rounded-full p-[14px]`}
@@ -34,13 +37,13 @@ function Modal({
         <div className="flex w-full gap-[21px] text-[16px]">
           <button
             onClick={onCancel}
-            className="py-[16px] bg-gray-200 rounded-xl w-full"
+            className="py-[16px] bg-gray-200 rounded-[12px] w-full"
           >
             취소
           </button>
           <button
             onClick={onConfirm}
-            className={`py-[16px] text-white rounded-xl w-full ${confirmButtonColor}`}
+            className={`py-[16px] text-white rounded-[12px] w-full ${confirmButtonColor}`}
           >
             {name}
           </button>
@@ -48,6 +51,7 @@ function Modal({
       </div>
     </div>
   );
+  return ReactDOM.createPortal(modalContent, document.body);
 }
 
 export default Modal;
