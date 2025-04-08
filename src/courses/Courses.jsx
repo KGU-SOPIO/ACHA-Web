@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { ReactComponent as BookIcon } from "./book_no_lecture.svg";
 import { ReactComponent as DownArrow } from "../assets/downArrowIcon.svg";
 import { ReactComponent as FileIcon } from "./fileIcon.svg";
 import Footer from "../components/Footer";
@@ -138,9 +139,17 @@ function Courses() {
               {courseData.contents.every(
                 (activity) => activity.contents.length === 0
               ) ? (
-                <p className="text-center text-gray-500 text-sm py-10">
-                  등록된 활동이 없습니다.
-                </p>
+                <div className="flex flex-col items-center my-[100px]">
+                  <div className="bg-white p-[14px] rounded-full mb-2">
+                    <BookIcon />
+                  </div>
+                  <p className="text-[#6D6D6D] text-center font-bold text-[20px] leading-[28px] mt-[25px]">
+                    강의 / 과제 없음
+                  </p>
+                  <p className="text-[#B5AFAF] text-center font-normal text-[16px] leading-[28px] mt-[22px]">
+                    새 강의와 과제를 기다리고 있어요
+                  </p>
+                </div>
               ) : (
                 courseData.contents.map((activity, index) => {
                   if (activity.contents.length === 0) return null;
