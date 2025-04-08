@@ -11,8 +11,8 @@ function CoursesList() {
       }}
     >
       <div className="flex-grow ">
-        <div className="max-w-full overflow-x-hidden py-32 ">
-          <div className="flex gap-8 max-w-6xl mx-auto items-start">
+        <div className="max-w-full overflow-x-hidden py-32 px-[16px] md:px-[0px]">
+          <div className="flex gap-[10px] md:gap-[46px] max-w-6xl mx-auto items-start">
             <MyCourseList />
             <Priority className="mt-[80px]" />
           </div>
