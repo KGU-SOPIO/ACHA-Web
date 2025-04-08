@@ -56,7 +56,7 @@ function Priority({ className = "" }) {
             <div className="flex items-center gap-[10px]">
               <p className="text-[#1E1E1E] text-[16px] leading-[20px]">
                 <span className="font-medium">나의 </span>
-                <span className="font-bold">우선강의</span>
+                <span className="font-bold">우선과제</span>
               </p>
               <ListIcon className="w-[16px] h-[16px]" />
             </div>

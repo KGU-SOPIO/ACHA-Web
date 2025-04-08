@@ -54,22 +54,24 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
           </div>
         )}
         <div className="mb-[16px] py-[15px] pl-[23px] pr-[21px] rounded-[20px] border border-[#E4E8F1] bg-white text-[#3C3C3C] leading-normal font-normal">
-          <h3 className="font-medium text-[16px]">{title}</h3>
-          <p className="text-[13px]">{courseName}</p>
+          <h3 className="font-medium text-[14px] md:text-[16px]">{title}</h3>
+          <p className="text-[11px] md:text-[13px]">{courseName}</p>
           <div className="flex justify-between items-end">
             <p className="text-[#979797]">
-              <span className="text-[14px] font-medium">{time}</span>
-              <span className="text-[12px]">까지</span>
+              <span className="text-[10px] md:text-[14px] font-medium">
+                {time}
+              </span>
+              <span className="text-[10px] md:text-[12px]">까지</span>
             </p>
             <a
               href={item.activityLink || "#"}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="mt-[9px] px-[15px] py-[5px] border text-sm rounded-lg">
+              <button className="mt-[9px] px-[8px] py-[4px] md:px-[15px] md:py-[5px] border text-[8px] md:text-[14px] rounded-lg">
                 <div className="flex items-center">
                   {activityType === "video" ? <MediaIcon /> : <TaskIcon />}
-                  <div className="pl-2">
+                  <div className="pl-[1px] md:pl-2">
                     {activityType === "video" ? "강의 시청" : "과제 보기"}
                   </div>
                 </div>
