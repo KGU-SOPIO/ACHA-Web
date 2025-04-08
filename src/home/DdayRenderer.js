@@ -71,7 +71,7 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
               <button className="mt-[9px] px-[8px] py-[4px] md:px-[15px] md:py-[5px] border text-[8px] md:text-[14px] rounded-lg">
                 <div className="flex items-center">
                   {activityType === "video" ? <MediaIcon /> : <TaskIcon />}
-                  <div className="pl-[1px] md:pl-2">
+                  <div className="pl-[1px] md:pl-[2px]">
                     {activityType === "video" ? "강의 시청" : "과제 보기"}
                   </div>
                 </div>
