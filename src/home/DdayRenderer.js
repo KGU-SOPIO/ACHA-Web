@@ -68,7 +68,7 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="mt-[9px] px-[8px] py-[4px] md:px-[15px] md:py-[5px] border text-[10px] md:text-[14px] rounded-lg">
+              <button className="mt-[9px] px-[8px] py-[4px] md:px-[15px] md:py-[5px] border text-[8px] md:text-[14px] rounded-lg">
                 <div className="flex items-center">
                   {activityType === "video" ? <MediaIcon /> : <TaskIcon />}
                   <div className="pl-[1px] md:pl-2">

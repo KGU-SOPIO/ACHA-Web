@@ -13,7 +13,7 @@ function Home() {
       }}
     >
       <div className="flex-grow bg-[rgba(245,246,248,1)]">
-        <div className="max-w-full overflow-x-hidden py-32 ">
+        <div className="max-w-full overflow-x-hidden py-32 px-[16px] md:px-[0px]">
           <UserSettings />
           <div className="flex gap-8 max-w-6xl mx-auto my-10">
             <Today />
