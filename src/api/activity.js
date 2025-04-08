@@ -27,6 +27,9 @@ export const fetchNotice = async (code) => {
     });
     return response.data;
   } catch (error) {
+    if (error.response && error.response.status === 404) {
+      return { contents: [] };
+    }
     throw error.response?.data || error.message;
   }
 };
