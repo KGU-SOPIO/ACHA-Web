@@ -67,11 +67,13 @@ function Today() {
               todayLecture.contents.map((lecture, id) => (
                 <div
                   key={id}
-                  className="pt-[15px] pb-[18px] px-[23px] rounded-[20px] border-[1.5px] border-[#EDEFF2] bg-white flex justify-between w-full"
+                  className="pt-[10px] pb-[13px] px-[18px] md:pt-[15px] md:pb-[18px] md:px-[23px] rounded-[20px] border-[1.5px] border-[#EDEFF2] bg-white flex justify-between w-full"
                 >
-                  <div className="font-normal text-[12px] leading-normal">
+                  <div className="font-normal text-[10px] md:text-[12px] leading-normal">
                     <p className="text-[#6D6D6D]">{lecture.professor} 교수님</p>
-                    <p className="text-black text-[16px]">{lecture.title}</p>
+                    <p className="text-black text-[14px] md:text-[16px]">
+                      {lecture.title}
+                    </p>
                     <p className="text-[#6D6D6D] pt-[3px]">
                       {lecture.lectureRoom}
                     </p>
@@ -92,7 +94,7 @@ function Today() {
 
         <div className="mt-[30px] mb-[50px] flex items-start text-main-blue relative">
           <QuoteLeft className="absolute left-2 top-0 w-[17px] h-[14px] text-blue-500" />
-          <p className="px-[14px] pt-[10px] pb-[9px] font-bold text-[16px] leading-normal capitalize break-words text-center mx-auto">
+          <p className="px-[14px] pt-[10px] pb-[9px] font-bold text-[10px] md:text-[16px] leading-normal capitalize break-words text-center mx-auto">
             {quote.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
