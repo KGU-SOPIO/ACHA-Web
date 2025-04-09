@@ -6,7 +6,7 @@ import UserSettings from "../home/UserSettings";
 function Home() {
   return (
     <div
-      className="min-h-screen flex flex-col "
+      className="min-h-[calc(100vh+200px)] flex flex-col "
       style={{
         fontFamily: '"Noto Sans KR"',
         fontFeatureSettings: "'liga' off, 'clig' off",

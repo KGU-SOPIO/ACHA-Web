@@ -32,11 +32,13 @@ function MyCourseList() {
         return (
           <div
             key={lecture.id}
-            className="px-[26px] py-[16px] text-[12px] text-[#6D6D6D] font-normal text-[12px] leading-normal rounded-[20px] border-[1.5px] border-[#EDEFF2] bg-white mb-[11px] w-[240px] md:w-[340px]"
+            className="px-[26px] py-[16px] text-[12px] text-[#6D6D6D] font-normal leading-normal rounded-[20px] border-[1.5px] border-[#EDEFF2] bg-white mb-[11px] w-[240px] md:w-[340px]"
           >
             <Link to={`/courses/${lecture.code}`}>
               <p>{lecture.professor} 교수님</p>
-              <p className="text-black text-[16px]">{lecture.title}</p>
+              <p className="text-black text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]">
+                {lecture.title}
+              </p>
               <p>{lecture.lectureRoom}</p>
             </Link>
           </div>

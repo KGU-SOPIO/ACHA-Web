@@ -84,9 +84,9 @@ function Courses() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-[calc(100vh+200px)] flex flex-col">
       <div className="flex-grow">
-        <div className="pt-[147px] px-6 sm:px-8 md:px-16 lg:px-[346px] pb-[208px]">
+        <div className="pt-[147px] px-[20px] sm:px-[60px} md:px-[200px] lg:px-[100px] xl:px-[346px] pb-[208px]">
           {/* Header Section */}
           <div className="flex justify-between items-center mb-[30px] max-w-6xl mx-auto">
             <div className="flex flex-col justify-start">
@@ -130,11 +130,11 @@ function Courses() {
           </div>
 
           {/* Weekly Activities Section */}
-          <div className="max-w-full sm:max-w-5xl md:max-w-6xl pb-[28px] border-b mb-[26px] mx-auto">
+          <div className="max-w-full sm:max-w-3xl md:max-w-6xl  pb-[28px] border-b mb-[26px] mx-auto">
             <WeeklyActivities contents={courseData.contents} />
           </div>
 
-          <div className="bg-[rgba(245,246,248,1)] max-w-full sm:max-w-5xl md:max-w-6xl mx-auto h-auto sm:h-[800px] md:h-[700px] rounded-xl px-6 sm:px-8 lg:px-[240px] py-[34px] overflow-y-auto">
+          <div className="bg-[rgba(245,246,248,1)] max-w-full sm:max-w-3xl md:max-w-6xl  mx-auto h-auto sm:h-[800px] md:h-[700px] rounded-[30px] py-[34px] overflow-y-auto px-[20px] md:px-[100px] lg:px-[140px] xl:px-[180px]">
             <div>
               {courseData.contents.every(
                 (activity) => activity.contents.length === 0
@@ -184,44 +184,52 @@ function Courses() {
                       </div>
 
                       {openWeek === activity.week &&
-                        activity.contents.map((item) => (
-                          <div
-                            key={item.code}
-                            className={` ${
-                              !item.available
-                                ? "text-gray-400 cursor-not-allowed"
-                                : "bg-white"
-                            }`}
-                          >
-                            <div className="flex text-[14px] items-center justify-start px-[20px] py-[23px] border-t">
-                              <div className="flex items-center">
-                                {item.type === "lecture" ? (
-                                  <MediaIcon className="w-[24px] h-[24px]" />
-                                ) : item.type === "assignment" ? (
-                                  <TaskIcon className="w-[24px] h-[24px]" />
-                                ) : item.type === "file" ? (
-                                  <FileIcon className="w-[24px] h-[24px]" />
-                                ) : item.type === "url" ? (
-                                  <LinkIcon className="w-[24px] h-[24px]" />
-                                ) : null}
-                                {item.available ? (
-                                  <a
-                                    href={item.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="ml-[7px] text-black"
-                                  >
-                                    {item.title}
-                                  </a>
-                                ) : (
-                                  <span className="ml-[7px]">
-                                    {item.title} (사용 불가)
-                                  </span>
-                                )}
+                        activity.contents.map((item, idx) => {
+                          const isLastItem =
+                            idx === activity.contents.length - 1;
+                          return (
+                            <div
+                              key={item.code}
+                              className={`${
+                                !item.available
+                                  ? "text-gray-400 cursor-not-allowed"
+                                  : "bg-white"
+                              } ${
+                                isLastItem
+                                  ? "rounded-bl-[30px] rounded-br-[30px]"
+                                  : ""
+                              }`}
+                            >
+                              <div className="flex text-[14px] items-center justify-start px-[20px] py-[23px] border-t">
+                                <div className="flex items-center">
+                                  {item.type === "lecture" ? (
+                                    <MediaIcon className="w-[24px] h-[24px]" />
+                                  ) : item.type === "assignment" ? (
+                                    <TaskIcon className="w-[24px] h-[24px]" />
+                                  ) : item.type === "file" ? (
+                                    <FileIcon className="w-[24px] h-[24px]" />
+                                  ) : item.type === "url" ? (
+                                    <LinkIcon className="w-[24px] h-[24px]" />
+                                  ) : null}
+                                  {item.available ? (
+                                    <a
+                                      href={item.link}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="ml-[7px] text-black"
+                                    >
+                                      {item.title}
+                                    </a>
+                                  ) : (
+                                    <span className="ml-[7px]">
+                                      {item.title} (사용 불가)
+                                    </span>
+                                  )}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                     </div>
                   );
                 })

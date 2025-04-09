@@ -11,14 +11,6 @@ function Footer() {
             Copyright ⓒ 2025. All Rights Reserved Acha
           </p>
         </div>
-
-        {/* 연락처 및 기타 정보 섹션 */}
-        {/* <div className="text-center md:text-left text-sm">
-          <p>SOPIO 대표자 홍준서</p>
-          <p>AI 경기대학교 컴퓨터공학부</p>
-        </div> */}
-
-        {/* 이용약관과 개인정보 처리방침 링크 */}
         <div className="text-xs text-center md:text-right">
           <a
             href="https://www.acha.team/terms/service"
