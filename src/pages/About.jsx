@@ -9,9 +9,9 @@ const About = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-[calc(100vh+200px)] flex flex-col">
       <div className="flex-grow">
-        <div className="pt-[114px] px-[346px] pb-[208px]">
+        <div className="pt-[114px] px-[100px] lg:px-[150px] xl:px-[320px] pb-[208px]">
           {/* Header Section */}
           <div className="flex justify-between items-center mb-[77px] max-w-6xl mx-auto">
             <div className="flex flex-col justify-start">
