@@ -54,7 +54,7 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
           </div>
         )}
         <div className="mb-[16px] py-[15px] pl-[23px] pr-[21px] rounded-[20px] border border-[#E4E8F1] bg-white text-[#3C3C3C] leading-normal font-normal">
-          <h3 className="font-medium text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]">
+          <h3 className="font-medium text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px]">
             {title}
           </h3>
           <p className="text-[11px] sm:text-[12px] md:text-[13px]">
