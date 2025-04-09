@@ -113,10 +113,10 @@ function Landing() {
               >
                 <div className="flex items-center justify-center pt-[10px] pr-[37px] pb-[11px] pl-[85px] md:pt-[16.75px] md:pr-[73px] md:pb-[14px] md:pl-[89px]">
                   <p className="mr-[32px] md:mr-[26px]  text-[#6D6D6D]">
-                    <span class="text-center text-[16px] md:text-[20px] font-semibold leading-[34.5px]">
+                    <span className="text-center text-[16px] md:text-[20px] font-semibold leading-[34.5px]">
                       Get started on the{" "}
                     </span>
-                    <span class="text-[16px] md:text-[20px] font-bold leading-[34.5px]">
+                    <span classname="text-[16px] md:text-[20px] font-bold leading-[34.5px]">
                       Web
                     </span>
                   </p>{" "}

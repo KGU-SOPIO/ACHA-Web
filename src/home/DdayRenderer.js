@@ -54,11 +54,15 @@ const DdayRenderer = ({ items, getDday, formatDate }) => {
           </div>
         )}
         <div className="mb-[16px] py-[15px] pl-[23px] pr-[21px] rounded-[20px] border border-[#E4E8F1] bg-white text-[#3C3C3C] leading-normal font-normal">
-          <h3 className="font-medium text-[14px] md:text-[16px]">{title}</h3>
-          <p className="text-[11px] md:text-[13px]">{courseName}</p>
+          <h3 className="font-medium text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px]">
+            {title}
+          </h3>
+          <p className="text-[11px] sm:text-[12px] md:text-[13px]">
+            {courseName}
+          </p>
           <div className="flex justify-between items-end">
             <p className="text-[#979797]">
-              <span className="text-[10px] md:text-[14px] font-medium">
+              <span className="text-[10px] sm:text-[13px] md:text-[14px] font-medium">
                 {time}
               </span>
               <span className="text-[10px] md:text-[12px]">까지</span>

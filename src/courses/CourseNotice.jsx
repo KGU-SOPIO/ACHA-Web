@@ -77,7 +77,7 @@ function CourseNotice() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-[calc(100vh+200px)] flex flex-col">
       <div className="flex-grow">
         <div className="pt-[157px] sm:px-6 md:px-12 lg:px-24 xl:px-[346px] px-[346px] pb-[32px]">
           <div className="max-w-6xl mx-auto ">
