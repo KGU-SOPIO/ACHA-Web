@@ -86,7 +86,7 @@ function Courses() {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="flex-grow">
-        <div className="pt-[147px] px-6 sm:px-8 md:px-16 lg:px-[346px] pb-[208px]">
+        <div className="pt-[147px] px-[20px] sm:px-[60px} md:px-[200px] lg:px-[100px] xl:px-[346px] pb-[208px]">
           {/* Header Section */}
           <div className="flex justify-between items-center mb-[30px] max-w-6xl mx-auto">
             <div className="flex flex-col justify-start">
@@ -134,7 +134,7 @@ function Courses() {
             <WeeklyActivities contents={courseData.contents} />
           </div>
 
-          <div className="bg-[rgba(245,246,248,1)] max-w-full sm:max-w-3xl md:max-w-6xl  mx-auto h-auto sm:h-[800px] md:h-[700px] rounded-[30px] py-[34px] overflow-y-auto md:px-[100px] lg:px-[20px] xl:px-[180px]">
+          <div className="bg-[rgba(245,246,248,1)] max-w-full sm:max-w-3xl md:max-w-6xl  mx-auto h-auto sm:h-[800px] md:h-[700px] rounded-[30px] py-[34px] overflow-y-auto px-[20px] md:px-[100px] lg:px-[140px] xl:px-[180px]">
             <div>
               {courseData.contents.every(
                 (activity) => activity.contents.length === 0

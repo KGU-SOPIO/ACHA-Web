@@ -95,13 +95,12 @@ function WeeklyActivities({ contents }) {
                   const displayContents = isHovered
                     ? filteredContents
                     : filteredContents.slice(0, 1);
-                  const isSingleItem = filteredContents.length === 1;
 
                   return (
                     <div
                       key={`week-${weekData.week}`}
                       className={`
-                        flex-none w-[252px] 
+                        flex-none w-[250px] 
                         px-[24px] py-[21px] 
                         border rounded-xl relative 
                         transition-all duration-300 ease-in-out
@@ -110,7 +109,7 @@ function WeeklyActivities({ contents }) {
                         ${
                           hoveredWeek && hoveredWeek !== weekData.week
                             ? "opacity-50"
-                            : "opacity-100"
+                            : "opacity-200"
                         }
                       `}
                       onMouseEnter={() => setHoveredWeek(weekData.week)}
@@ -121,7 +120,7 @@ function WeeklyActivities({ contents }) {
                           <span className="font-bold">{weekData.week}주차</span>
                         </p>
                         {filteredContents.length > 1 && !isHovered && (
-                          <span className="flex items-center text-[#7C8FAC] text-center text-[16px] not-italic font-semibold leading-[24px] border border-gray-200 px-[12px] rounded-full">
+                          <span className=" flex items-center text-[#7C8FAC] text-center font-pretendard text-[16px] not-italic font-semibold leading-[24px] border border-gray-200 px-[12px] rounded-full">
                             +{filteredContents.length - 1}
                           </span>
                         )}
@@ -130,13 +129,7 @@ function WeeklyActivities({ contents }) {
                       <div
                         className={`
                           overflow-hidden transition-all duration-300 ease-in-out
-                          ${
-                            isSingleItem
-                              ? "max-h-[60px]"
-                              : isHovered
-                              ? "max-h-96"
-                              : "max-h-[60px]"
-                          }
+                          ${isHovered ? "max-h-96" : "max-h-[60px]"}
                         `}
                       >
                         {displayContents.map((activity, index) => (
@@ -148,13 +141,6 @@ function WeeklyActivities({ contents }) {
                               flex text-[14px] items-center justify-start 
                               p-[14px] border rounded-md mb-2 
                               transition-all duration-300 ease-in-out
-                              ${
-                                isHovered && !isSingleItem
-                                  ? "opacity-100"
-                                  : isSingleItem
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              }
                               ${
                                 !activity.available
                                   ? "bg-gray-100 cursor-not-allowed text-gray-400"
@@ -176,7 +162,7 @@ function WeeklyActivities({ contents }) {
                               }
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="ml-[8px]"
+                              className="ml-[8px] truncate"
                             >
                               {activity.title}
                             </a>
@@ -193,7 +179,7 @@ function WeeklyActivities({ contents }) {
             {currentPage < totalPages - 1 && (
               <button
                 onClick={handleNextPage}
-                className="transition-opacity duration-300 hover:opacity-70 w-[50px]"
+                className="transition-opacity duration-300 hover:opacity-70  w-[50px]"
               >
                 <RightArrowIcon />
               </button>
@@ -201,7 +187,7 @@ function WeeklyActivities({ contents }) {
           </div>
 
           {/* 페이지 인디케이터 */}
-          <div className="flex justify-center mt-4 z-10">
+          <div className="flex justify-center mt-4">
             {[...Array(totalPages)].map((_, index) => (
               <div
                 key={index}
