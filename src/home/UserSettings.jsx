@@ -35,7 +35,7 @@ function UserSettings() {
               <span className="text-[#979797] font-normal sm:text-sm md:text-[12px] lg:text-[15px] mr-[9px]">
                 {memberInfo.college}
               </span>
-              <span className="text-white text-center font-medium text-[10px] sm:text-[11px] md:text-[12px] bg-main-blue px-[9px] py-[8px] rounded-full">
+              <span className="text-white text-center font-medium text-[10px] sm:text-[11px] md:text-[12px] bg-main-blue px-[9px] py-[4px] rounded-full">
                 {memberInfo?.affiliation}
               </span>
             </p>
