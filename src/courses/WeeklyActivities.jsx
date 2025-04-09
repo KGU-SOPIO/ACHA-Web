@@ -60,7 +60,7 @@ function WeeklyActivities({ contents }) {
   return (
     <div className="relative w-full">
       <div className="flex ml-[22px] mb-[12px]">
-        <p className="text-[14px]">
+        <p className="text-[14px] text-[#1E1E1E] pr-[4px]">
           <span className="font-bold">주차 별 </span>
           <span>학습 활동</span>
         </p>
@@ -102,7 +102,7 @@ function WeeklyActivities({ contents }) {
                       className={`
                         flex-none w-[250px] 
                         px-[24px] py-[21px] 
-                        border rounded-xl relative 
+                        border rounded-[25px] relative 
                         transition-all duration-300 ease-in-out
                         mb-[30px]
                         ${isHovered ? "shadow-xl" : ""}
@@ -138,8 +138,8 @@ function WeeklyActivities({ contents }) {
                               activity.code || activity.title
                             }`}
                             className={`
-                              flex text-[14px] items-center justify-start 
-                              p-[14px] border rounded-md mb-2 
+                              flex text-[#3C3C3C] font-[400] text-[14px] not-italic leading-normal items-center justify-start 
+                              p-[14px] border rounded-[12px] mb-2 
                               transition-all duration-300 ease-in-out
                               ${
                                 !activity.available
