@@ -84,7 +84,7 @@ function Courses() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-[calc(100vh+200px)] flex flex-col">
       <div className="flex-grow">
         <div className="pt-[147px] px-[20px] sm:px-[60px} md:px-[200px] lg:px-[100px] xl:px-[346px] pb-[208px]">
           {/* Header Section */}
