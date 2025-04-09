@@ -27,15 +27,15 @@ function UserSettings() {
         {/* 사용자 정보 */}
         <div className="flex-1 flex items-center md:pr-[20px] pl-[30px]">
           <div>
-            <p className="text-[#1E1E1E] text-[24px] leading-[40px]">
+            <p className="text-[#1E1E1E] text-base sm:text-lg md:text-xl lg:text-[24px] leading-[40px]">
               <span className="font-bold">{memberInfo.name} </span>
               <span className="font-medium">님</span>
             </p>
             <p className="leading-[20px]">
-              <span className="text-[#979797] font-normal text-[15px] mr-[9px]">
+              <span className="text-[#979797] font-normal sm:text-sm md:text-[12px] lg:text-[15px] mr-[9px]">
                 {memberInfo.college}
               </span>
-              <span className="text-white text-center font-medium text-[12px] bg-main-blue px-[9px] py-[8px] rounded-full">
+              <span className="text-white text-center font-medium text-[10px] sm:text-[11px] md:text-[12px] bg-main-blue px-[9px] py-[8px] rounded-full">
                 {memberInfo?.affiliation}
               </span>
             </p>
@@ -50,10 +50,10 @@ function UserSettings() {
         {/* 알림주기 */}
         <div className="flex-1 flex  items-start">
           <div className="capitalize flex justify-between">
-            <p className="text-[#1E1E1E] font-normal text-[15px] pr-[60px] pl-[30px]">
+            <p className="text-[#1E1E1E] font-normal sm:text-sm md:text-[12px] lg:text-[15px] pr-[60px] pl-[30px]">
               알림주기
             </p>
-            <p className="text-[#3C3C3C] font-normal text-[15px] leading-[32px]">
+            <p className="text-[#3C3C3C] font-normal leading-[32px] sm:text-sm md:text-[12px] lg:text-[15px]">
               <span className="text-main-blue font-bold">3</span>
               <span>일 · </span>
               <span className="text-main-blue font-bold">1</span>
@@ -72,8 +72,8 @@ function UserSettings() {
         <div className="hidden md:block border-l border-gray-300 h-24 mx-4"></div>
 
         {/* 알림 켜기 */}
-        <div className="flex-1 flex items-center mb-[40px]">
-          <p className="text-gray-900 text-sm capitalize mr-[168px] pl-[30px]">
+        <div className="flex-1 flex items-center mb-[20px]">
+          <p className="text-gray-900 sm:text-sm md:text-[12px] lg:text-[15px] capitalize mr-[100px] pl-[30px]">
             알림켜기
           </p>
           <div
@@ -81,13 +81,13 @@ function UserSettings() {
             onClick={toggleNotification}
           >
             <div
-              className={`w-12 h-6 rounded-full flex items-center transition-colors duration-300 ${
+              className={`w-[46.4px] h-[24px] rounded-full flex items-center transition-colors duration-300 ${
                 isNotificationOn ? "bg-main-blue" : "bg-gray-300"
               }`}
             >
               <div
-                className={`w-5 h-5 rounded-full bg-white transition-transform duration-300 ${
-                  isNotificationOn ? "translate-x-6" : ""
+                className={`w-[20px] h-[20px] rounded-full bg-white transition-transform duration-300 ${
+                  isNotificationOn ? "transform translate-x-6" : ""
                 }`}
               />
             </div>
