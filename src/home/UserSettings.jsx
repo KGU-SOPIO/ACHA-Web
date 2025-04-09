@@ -23,21 +23,19 @@ function UserSettings() {
 
   return (
     <div className="py-8 px-8 max-w-6xl mx-auto rounded-[20px] border border-[#E4E8F1] bg-white">
-      {/* 
-        flex: 기본 flex-col (mobile) / md:flex-row (데스크탑)
-        요소마다 구분선 처리를 위해 각 항목을 flex-1로 감쌌습니다.
-      */}
       <div className="flex flex-col md:flex-row md:items-center">
         {/* 사용자 정보 */}
-        <div className="flex-1 flex items-center md:pr-10">
+        <div className="flex-1 flex items-center md:pr-[20px] pl-[30px]">
           <div>
-            <p className="text-gray-900 text-xl leading-snug">
+            <p className="text-[#1E1E1E] text-[24px] leading-[40px]">
               <span className="font-bold">{memberInfo.name} </span>
               <span className="font-medium">님</span>
             </p>
-            <p className="mt-1 text-sm leading-tight">
-              <span className="text-gray-500 mr-2">{memberInfo.college}</span>
-              <span className="text-white text-center font-medium text-xs bg-main-blue px-2 py-1 rounded-full">
+            <p className="leading-[20px]">
+              <span className="text-[#979797] font-normal text-[15px] mr-[9px]">
+                {memberInfo.college}
+              </span>
+              <span className="text-white text-center font-medium text-[12px] bg-main-blue px-[9px] py-[8px] rounded-full">
                 {memberInfo?.affiliation}
               </span>
             </p>
@@ -50,10 +48,12 @@ function UserSettings() {
         <div className="hidden md:block border-l border-gray-300 h-24 mx-4"></div>
 
         {/* 알림주기 */}
-        <div className="flex-1 flex items-start md:pr-10">
-          <div>
-            <p className="text-gray-900 text-sm capitalize">알림주기</p>
-            <p className="mt-1 text-gray-700 text-sm leading-relaxed capitalize">
+        <div className="flex-1 flex  items-start">
+          <div className="capitalize flex justify-between">
+            <p className="text-[#1E1E1E] font-normal text-[15px] pr-[60px] pl-[30px]">
+              알림주기
+            </p>
+            <p className="text-[#3C3C3C] font-normal text-[15px] leading-[32px]">
               <span className="text-main-blue font-bold">3</span>
               <span>일 · </span>
               <span className="text-main-blue font-bold">1</span>
@@ -72,8 +72,10 @@ function UserSettings() {
         <div className="hidden md:block border-l border-gray-300 h-24 mx-4"></div>
 
         {/* 알림 켜기 */}
-        <div className="flex-1 flex items-center">
-          <p className="text-gray-900 text-sm capitalize mr-6">알림켜기</p>
+        <div className="flex-1 flex items-center mb-[40px]">
+          <p className="text-gray-900 text-sm capitalize mr-[168px] pl-[30px]">
+            알림켜기
+          </p>
           <div
             className="flex items-center cursor-pointer"
             onClick={toggleNotification}
